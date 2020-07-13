@@ -1,0 +1,16 @@
+{
+  "meals": [
+    {
+      "name": "Potato Omelette",
+      "ingredients": ["potatoes", "eggs", "onion"]
+    },
+    {
+      "name": "Zucchini Pasta",
+      "ingredients": ["zucchini", "pasta", "garlic", "cheese"]
+    },
+    {
+      "name": "Veggie Couscous",
+      "ingredients": ["broccoli", "cauliflower", "onion", "couscous", "vegetable stock"]
+    }
+  ]
+}
