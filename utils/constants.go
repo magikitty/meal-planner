@@ -24,3 +24,6 @@ var QuitNo = "n"
 
 // QuitProgram is a bool that is set to true when user wants to quit program
 var QuitProgram = false
+
+// MealPlanDuration for length of meal plan
+var MealPlanDuration = "How many days do you want to create a meal plan for?"

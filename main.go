@@ -43,6 +43,7 @@ func callMenuFunctions(menuSelection string) {
 
 func generateMealPlan() {
 	fmt.Println("We are going to generate a meal plan! Yay!") // debugging
+	utils.GetMealPlanDuration()
 }
 
 func addNewMeal() {

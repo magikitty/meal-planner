@@ -17,3 +17,22 @@ func GetUserInput() string {
 	inputTrimmedSpaces := strings.TrimSpace(userInput)
 	return inputTrimmedSpaces
 }
+
+// GetMealPlanDuration returns number of days meal plan should last
+func GetMealPlanDuration() (durationInput string) {
+	fmt.Println(MealPlanDuration)
+	durationInput = GetUserInput()
+	return durationInput
+}
+
+// func ValidateMealPlanDurationInput(durationInput string) (durationInputInt int) {
+// 	inputValid := false
+// 	for inputValid == false {
+// 		durationInputInt, err := strconv.Atoi(durationInput)
+// 		// fmt.Println("days:", durationInput)
+// 		if err == nil {
+// 			inputValid = true
+// 		}
+// 	}
+// 	return durationInputInt
+// }
