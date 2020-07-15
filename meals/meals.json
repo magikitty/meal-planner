@@ -2,15 +2,18 @@
   "meals": [
     {
       "name": "Potato Omelette",
-      "ingredients": ["potatoes", "eggs", "onion"]
+      "ingredients": ["potatoes", "eggs", "onion"],
+      "portions" : 1
     },
     {
       "name": "Zucchini Pasta",
-      "ingredients": ["zucchini", "pasta", "garlic", "cheese"]
+      "ingredients": ["zucchini", "pasta", "garlic", "cheese"],
+      "portions" : 1
     },
     {
       "name": "Veggie Couscous",
-      "ingredients": ["broccoli", "cauliflower", "onion", "couscous", "vegetable stock"]
+      "ingredients": ["broccoli", "cauliflower", "onion", "couscous", "vegetable stock"],
+      "portions" : 1
     }
   ]
 }
