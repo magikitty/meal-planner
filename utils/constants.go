@@ -32,3 +32,14 @@ var MenuMainOptions = map[string]string{
 
 // QuitProgram is a bool that is set to true when user wants to quit program
 var QuitProgram = false
+
+// FilePaths function returning struct object with filePaths
+func FilePaths() filePaths {
+	FilePaths := filePaths{}
+	FilePaths.JSONMealsData = "./meals/meals.json"
+	return FilePaths
+}
+
+type filePaths struct {
+	JSONMealsData string
+}
