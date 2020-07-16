@@ -2,8 +2,9 @@ package utils
 
 import (
 	"fmt"
-	"menu"
 	"strings"
+
+	"github.com/magikitty/menu"
 )
 
 // MainMenu calls functions for the main menu
@@ -41,11 +42,8 @@ func addNewMeal() {
 	fmt.Println("We are going to add a new meal! Yay!") // debugging
 }
 
-// simplify by looping while userInput == "", and returning whatever user inputs
 func getQuitInput() (userInput string) {
-	for userInput != MenuMessages().QuitYes && userInput != MenuMessages().QuitNo {
-		fmt.Println(MenuMessages().ConfirmQuit)
-		userInput = GetUserInput()
-	}
+	fmt.Println(MenuMessages().ConfirmQuit)
+	userInput = GetUserInput()
 	return strings.ToLower(userInput)
 }
