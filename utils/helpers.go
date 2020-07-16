@@ -25,7 +25,7 @@ func GetMealPlanDuration() (durationInputInt int) {
 	durationInput := GetUserInput()
 	durationInputInt, err := strconv.Atoi(durationInput)
 	if err != nil {
-		GetMealPlanDuration()
+		return GetMealPlanDuration()
 	}
 	return durationInputInt
 }
