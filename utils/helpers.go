@@ -6,9 +6,11 @@ import (
 	"fmt"
 	"io/ioutil"
 	"log"
+	"math/rand"
 	"os"
 	"strconv"
 	"strings"
+	"time"
 )
 
 // GetUserInput returns user input without leading or trailing white space
@@ -45,4 +47,12 @@ func ReadDataFromFile(filePath string) AllMeals {
 		log.Fatal(err)
 	}
 	return allMeals
+}
+
+// GetRandomMeal returns a random meal from AllMeals struct
+func GetRandomMeal(allMeals AllMeals) (meal Meal) {
+	rand.Seed(time.Now().UnixNano())
+	max := len(allMeals.Meals)
+	randomNum := rand.Intn(max)
+	return allMeals.Meals[randomNum]
 }
