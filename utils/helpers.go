@@ -4,6 +4,7 @@ import (
 	"bufio"
 	"fmt"
 	"os"
+	"strconv"
 	"strings"
 )
 
@@ -19,20 +20,12 @@ func GetUserInput() string {
 }
 
 // GetMealPlanDuration returns number of days meal plan should last
-func GetMealPlanDuration() (durationInput string) {
-	fmt.Println(MealPlanDuration)
-	durationInput = GetUserInput()
-	return durationInput
+func GetMealPlanDuration() (durationInputInt int) {
+	fmt.Println(MenuMessages().MealPlanDuration)
+	durationInput := GetUserInput()
+	durationInputInt, err := strconv.Atoi(durationInput)
+	if err != nil {
+		GetMealPlanDuration()
+	}
+	return durationInputInt
 }
-
-// func ValidateMealPlanDurationInput(durationInput string) (durationInputInt int) {
-// 	inputValid := false
-// 	for inputValid == false {
-// 		durationInputInt, err := strconv.Atoi(durationInput)
-// 		// fmt.Println("days:", durationInput)
-// 		if err == nil {
-// 			inputValid = true
-// 		}
-// 	}
-// 	return durationInputInt
-// }
