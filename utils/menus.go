@@ -34,8 +34,11 @@ func callMenuFunctions(menuSelection string) {
 }
 
 func generateMealPlan() {
-	fmt.Println("We are going to generate a meal plan! Yay!") // debugging
-	GetMealPlanDuration()
+	duration := GetMealPlanDuration()
+	fmt.Printf("*****You want a meal plan for %v days\n", duration) // debugging
+	mealData := ReadDataFromFile(FilePaths().JSONMealsData)
+	randomMeal := GetRandomMeal(mealData)
+	fmt.Println("-----Random meal is", randomMeal) // debugging
 }
 
 func addNewMeal() {
