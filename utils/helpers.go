@@ -2,7 +2,10 @@ package utils
 
 import (
 	"bufio"
+	"encoding/json"
 	"fmt"
+	"io/ioutil"
+	"log"
 	"os"
 	"strconv"
 	"strings"
@@ -28,4 +31,18 @@ func GetMealPlanDuration() (durationInputInt int) {
 		return GetMealPlanDuration()
 	}
 	return durationInputInt
+}
+
+// ReadDataFromFile reads JSON data from a file and returns data in AllMeals struct
+func ReadDataFromFile(filePath string) AllMeals {
+	var allMeals AllMeals
+	jsonData, err := ioutil.ReadFile(filePath)
+	if err != nil {
+		log.Fatal(err)
+	}
+	err = json.Unmarshal(jsonData, &allMeals)
+	if err != nil {
+		log.Fatal(err)
+	}
+	return allMeals
 }
