@@ -25,3 +25,13 @@ func GetRandomMeal(allMeals AllMeals) (meal Meal) {
 	randomNum := rand.Intn(max)
 	return allMeals.Meals[randomNum]
 }
+
+// MakeMealPlan returns a collection of length duration containing random meals
+func MakeMealPlan(duration int, mealData AllMeals) []Meal {
+	mealPlan := []Meal{}
+	for i := 0; i < duration; i++ {
+		randomMeal := GetRandomMeal(mealData)
+		mealPlan = append(mealPlan, randomMeal)
+	}
+	return mealPlan
+}
