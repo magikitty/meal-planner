@@ -31,7 +31,12 @@ func MakeMealPlan(duration int, mealData AllMeals) []Meal {
 	mealPlan := []Meal{}
 	for i := 0; i < duration; i++ {
 		randomMeal := GetRandomMeal(mealData)
-		mealPlan = append(mealPlan, randomMeal)
+		duplicateMeal := checkDuplicateMeal(mealPlan, randomMeal)
+		if duplicateMeal == false {
+			mealPlan = append(mealPlan, randomMeal)
+		} else {
+			i--
+		}
 	}
 	return mealPlan
 }
@@ -42,7 +47,7 @@ func checkDuplicateMeal(mealPlan []Meal, meal Meal) (mealInPlan bool) {
 	for i := 0; i < len(mealPlan); i++ {
 		if mealPlan[i].Name == meal.Name {
 			mealInPlan = true
-			fmt.Printf("checked if %v is the same as %v and returned %v\n", mealPlan[i].Name, meal.Name, mealInPlan)
+			fmt.Printf("checked if %v is the same as %v and returned %v\n", mealPlan[i].Name, meal.Name, mealInPlan) // debugging
 		}
 	}
 	return mealInPlan
