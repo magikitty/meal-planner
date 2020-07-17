@@ -35,3 +35,15 @@ func MakeMealPlan(duration int, mealData AllMeals) []Meal {
 	}
 	return mealPlan
 }
+
+// checkDuplicateMeal checks if a meal is already in the meal plan and returns true if it is
+func checkDuplicateMeal(mealPlan []Meal, meal Meal) (mealInPlan bool) {
+	mealInPlan = false
+	for i := 0; i < len(mealPlan); i++ {
+		if mealPlan[i].Name == meal.Name {
+			mealInPlan = true
+			fmt.Printf("checked if %v is the same as %v and returned %v\n", mealPlan[i].Name, meal.Name, mealInPlan)
+		}
+	}
+	return mealInPlan
+}
