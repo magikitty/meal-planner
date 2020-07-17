@@ -14,6 +14,26 @@
       "name": "Veggie Couscous",
       "ingredients": ["broccoli", "cauliflower", "onion", "couscous", "vegetable stock"],
       "portions" : 1
+    },
+    {
+      "name": "Veggie Casserole",
+      "ingredients": ["potatoes", "zucchini", "onion", "rice", "canned tomato", "oatcream"],
+      "portions" : 3
+    },
+    {
+      "name": "Nachos",
+      "ingredients": ["nacho chips", "black beans", "corn", "onion", "tomatoes", "cheese", "taco spice"],
+      "portions" : 3
+    },
+    {
+      "name": "Burritos",
+      "ingredients": ["burrito wraps", "black beans", "corn", "onion", "tomatoes", "cheese", "rice"],
+      "portions" : 2
+    },
+    {
+      "name": "Stew",
+      "ingredients": ["potatoes", "zucchini", "onion", "carrots"],
+      "portions" : 4
     }
   ]
 }
