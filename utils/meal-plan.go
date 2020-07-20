@@ -30,13 +30,27 @@ func GetRandomMeal(allMeals AllMeals) (meal Meal) {
 func MakeMealPlan(duration int, mealData AllMeals) []Meal {
 	mealPlan := []Meal{}
 	for i := 0; i < duration; i++ {
-		randomMeal := GetRandomMeal(mealData)
-		duplicateMeal := checkDuplicateMeal(mealPlan, randomMeal)
+		meal := GetRandomMeal(mealData)
+		fmt.Printf("0)))) got meal %v and i is %v\n", meal, i) // debugging
+		duplicateMeal := checkDuplicateMeal(mealPlan, meal)
+
 		if duplicateMeal == false {
-			mealPlan = append(mealPlan, randomMeal)
+			if meal.Portions > 1 && meal.Portions <= (duration-i) {
+				mealCollectionPortions := addPortions(meal)
+				mealPlan = append(mealPlan, mealCollectionPortions...)
+				i = i + meal.Portions - 1
+				fmt.Printf("1)))) meal plan is %v\n", mealPlan) // debugging
+			} else if meal.Portions == 1 {
+				mealPlan = append(mealPlan, meal)
+				fmt.Printf("2)))) meal plan is %v\n", mealPlan) // debugging
+			} else {
+				i--
+				continue
+			}
 		} else {
 			i--
 		}
+
 	}
 	return mealPlan
 }
