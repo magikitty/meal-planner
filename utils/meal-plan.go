@@ -52,3 +52,12 @@ func checkDuplicateMeal(mealPlan []Meal, meal Meal) (mealInPlan bool) {
 	}
 	return mealInPlan
 }
+
+func addPortions(meal Meal) []Meal {
+	mealCollection := []Meal{}
+	for portion := 1; portion <= meal.Portions; portion++ {
+		mealCollection = append(mealCollection, meal)
+		fmt.Printf("added meal -- %v -- to plan\n", meal)
+	}
+	return mealCollection
+}
