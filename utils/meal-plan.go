@@ -26,29 +26,22 @@ func GetRandomMeal(allMeals AllMeals) (meal Meal) {
 	return allMeals.Meals[randomNum]
 }
 
-// MakeMealPlan returns a collection of length duration containing random meals
+// MakeMealPlan returns a collection of length duration containing randomly picked meals
 func MakeMealPlan(duration int, mealData AllMeals) []Meal {
 	mealPlan := []Meal{}
-	for i := 0; i < duration; i++ {
+	for i := 0; i < duration; {
 		meal := GetRandomMeal(mealData)
-		fmt.Printf("0)))) got meal %v and i is %v\n", meal, i) // debugging
 		duplicateMeal := checkDuplicateMeal(mealPlan, meal)
 
 		if duplicateMeal == false {
 			if meal.Portions > 1 && meal.Portions <= (duration-i) {
 				mealCollectionPortions := addPortions(meal)
 				mealPlan = append(mealPlan, mealCollectionPortions...)
-				i = i + meal.Portions - 1
-				fmt.Printf("1)))) meal plan is %v\n", mealPlan) // debugging
+				i = i + meal.Portions
 			} else if meal.Portions == 1 {
 				mealPlan = append(mealPlan, meal)
-				fmt.Printf("2)))) meal plan is %v\n", mealPlan) // debugging
-			} else {
-				i--
-				continue
+				i++
 			}
-		} else {
-			i--
 		}
 
 	}
@@ -61,17 +54,16 @@ func checkDuplicateMeal(mealPlan []Meal, meal Meal) (mealInPlan bool) {
 	for i := 0; i < len(mealPlan); i++ {
 		if mealPlan[i].Name == meal.Name {
 			mealInPlan = true
-			fmt.Printf("checked if %v is the same as %v and returned %v\n", mealPlan[i].Name, meal.Name, mealInPlan) // debugging
 		}
 	}
 	return mealInPlan
 }
 
+// addPortions returns a collection containing a meal the number of times equal to its portion size
 func addPortions(meal Meal) []Meal {
 	mealCollection := []Meal{}
 	for portion := 1; portion <= meal.Portions; portion++ {
 		mealCollection = append(mealCollection, meal)
-		fmt.Printf("added meal -- %v -- to plan\n", meal)
 	}
 	return mealCollection
 }
