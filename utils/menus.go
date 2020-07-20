@@ -38,7 +38,7 @@ func generateMealPlan() {
 	fmt.Printf("*****You want a meal plan for %v days\n", duration) // debugging
 	mealData := ReadDataFromFile(FilePaths().JSONMealsData)
 	mealPlan := MakeMealPlan(duration, mealData)
-	fmt.Println("Here is your meal plan:", mealPlan) // debugging
+	displayMealPlan(mealPlan)
 }
 
 func addNewMeal() {

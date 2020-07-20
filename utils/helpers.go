@@ -34,3 +34,10 @@ func ReadDataFromFile(filePath string) AllMeals {
 	}
 	return allMeals
 }
+
+func displayMealPlan(mealPlan []Meal) {
+	fmt.Println(MenuMessages().DisplayMealPlan)
+	for i, meal := range mealPlan {
+		fmt.Printf("%v. %v\n", i+1, meal)
+	}
+}
