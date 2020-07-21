@@ -7,6 +7,16 @@ import (
 	"time"
 )
 
+
+// getTotalPortions returns the total portions of all the meals combined
+func getTotalPortions(meals AllMeals) (totalPortions int) {
+	totalPortions = 0
+	for _, meal := range meals.Meals {
+		totalPortions += meal.Portions
+	}
+	return totalPortions
+}
+
 // GetMealPlanDuration returns number of days meal plan should last
 func GetMealPlanDuration() (durationInputInt int) {
 	fmt.Println(MenuMessages().MealPlanDuration)
