@@ -7,6 +7,7 @@ func MenuMessages() menuMessages {
 	menuMessages.MenuInstructions = "\nWhat do you want to do? Press the number of your choice."
 	menuMessages.MenuMainOptions = MenuMainOptions
 	menuMessages.MealPlanDuration = "How many days do you want to create a meal plan for?"
+	menuMessages.DurationNotViable = "You do not have enough recipes for that. Create a meal plan for less days or add more recipes."
 	menuMessages.ConfirmQuit = "Are you sure you want to quit? y/n"
 	menuMessages.DisplayMealPlan = "\nHere is your meal plan:"
 	menuMessages.QuitYes = "y"
@@ -15,14 +16,15 @@ func MenuMessages() menuMessages {
 }
 
 type menuMessages struct {
-	WelcomeMessage   string
-	MenuInstructions string
-	MenuMainOptions  map[string]string
-	MealPlanDuration string
-	ConfirmQuit      string
-	DisplayMealPlan  string
-	QuitYes          string
-	QuitNo           string
+	WelcomeMessage    string
+	MenuInstructions  string
+	MenuMainOptions   map[string]string
+	MealPlanDuration  string
+	DurationNotViable string
+	ConfirmQuit       string
+	DisplayMealPlan   string
+	QuitYes           string
+	QuitNo            string
 }
 
 // MenuMainOptions contains options for the main menu

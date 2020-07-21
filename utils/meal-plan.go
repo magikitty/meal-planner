@@ -7,6 +7,15 @@ import (
 	"time"
 )
 
+func checkDurationViability(mealPlanDuration int, totalPortions int) (durationViable bool) {
+	durationViable = false
+	if mealPlanDuration > totalPortions {
+		fmt.Println(MenuMessages().DurationNotViable)
+	} else {
+		durationViable = true
+	}
+	return durationViable
+}
 
 // getTotalPortions returns the total portions of all the meals combined
 func getTotalPortions(meals AllMeals) (totalPortions int) {
