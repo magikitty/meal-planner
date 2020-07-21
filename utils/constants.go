@@ -3,28 +3,28 @@ package utils
 // MenuMessages function returning struct object with menu messages
 func MenuMessages() menuMessages {
 	menuMessages := menuMessages{}
-	menuMessages.WelcomeMessage = "Welcome to the Meal Planner!"
-	menuMessages.MenuInstructions = "\nWhat do you want to do? Press the number of your choice."
-	menuMessages.MenuMainOptions = MenuMainOptions
-	menuMessages.MealPlanDuration = "How many days do you want to create a meal plan for?"
-	menuMessages.DurationNotViable = "You do not have enough recipes for that. Create a meal plan for less days or add more recipes."
 	menuMessages.ConfirmQuit = "Are you sure you want to quit? y/n"
 	menuMessages.DisplayMealPlan = "\nHere is your meal plan:"
+	menuMessages.DurationNotViable = "You do not have enough recipes for that. Create a meal plan for less days or add more recipes."
+	menuMessages.MealPlanDuration = "How many days do you want to create a meal plan for?"
+	menuMessages.MenuInstructions = "\nWhat do you want to do? Press the number of your choice."
+	menuMessages.MenuMainOptions = MenuMainOptions
 	menuMessages.QuitYes = "y"
 	menuMessages.QuitNo = "n"
+	menuMessages.WelcomeMessage = "Welcome to the Meal Planner!"
 	return menuMessages
 }
 
 type menuMessages struct {
-	WelcomeMessage    string
-	MenuInstructions  string
-	MenuMainOptions   map[string]string
-	MealPlanDuration  string
-	DurationNotViable string
 	ConfirmQuit       string
 	DisplayMealPlan   string
+	DurationNotViable string
+	MealPlanDuration  string
+	MenuInstructions  string
+	MenuMainOptions   map[string]string
 	QuitYes           string
 	QuitNo            string
+	WelcomeMessage    string
 }
 
 // MenuMainOptions contains options for the main menu
