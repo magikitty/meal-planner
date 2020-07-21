@@ -21,22 +21,27 @@ func callMenuFunctions(menuSelection string) {
 		generateMealPlan()
 	case MenuMessages().MenuMainOptions["2"]:
 		addNewMeal()
+		// Refactor case logic into own function
 	case MenuMessages().MenuMainOptions["3"]:
 		if getQuitInput() == MenuMessages().QuitYes {
 			QuitProgram = true
+			// Decide if this is for debugging or now
 			fmt.Println("Quitting now. Bye bye!") // debugging
 		} else {
 			MainMenu()
 		}
+		// Remove
 	default:
 		fmt.Println("Nothing to do") // debugging
 	}
 }
 
 func generateMealPlan() {
+	// Rename duration variables to be consistent
 	duration := GetMealPlanDuration()
 	mealData := ReadDataFromFile(FilePaths().JSONMealsData)
 	totalPortions := getTotalPortions(mealData)
+	// Rename bool (valid)
 	mealPlanDurationViable := checkDurationViability(duration, totalPortions)
 
 	if mealPlanDurationViable == true {

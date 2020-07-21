@@ -10,6 +10,9 @@ import (
 	"strings"
 )
 
+// Move into magikitty/menu library or use pre-existing menu library function
+// Update to return int from input string (durationInputInt, err := strconv.Atoi(durationInput) or err
+
 // GetUserInput returns user input without leading or trailing white space
 func GetUserInput() string {
 	reader := bufio.NewReader(os.Stdout)
@@ -35,6 +38,8 @@ func ReadDataFromFile(filePath string) AllMeals {
 	return allMeals
 }
 
+// Move into menus.go
+// Improve Printf formatting
 func displayMealPlan(mealPlan []Meal) {
 	fmt.Println(MenuMessages().DisplayMealPlan)
 	for i, meal := range mealPlan {

@@ -10,6 +10,7 @@ import (
 // GetMealPlanDuration returns number of days meal plan should last
 func GetMealPlanDuration() (durationInputInt int) {
 	fmt.Println(MenuMessages().MealPlanDuration)
+	// replace with new getInputAsInt() return value (durationInput, err)
 	durationInput := GetUserInput()
 	durationInputInt, err := strconv.Atoi(durationInput)
 	if err != nil {
@@ -78,10 +79,13 @@ func checkDuplicateMeal(mealPlan []Meal, meal Meal) (mealInPlan bool) {
 	return mealInPlan
 }
 
+// Rename for dumb people like me who can't easily understand what it does
+
 // addPortions returns a collection containing a meal the number of times equal to its portion size
 func addPortions(meal Meal) []Meal {
 	mealCollection := []Meal{}
 	for portion := 1; portion <= meal.Portions; portion++ {
+		fmt.Println(portion)
 		mealCollection = append(mealCollection, meal)
 	}
 	return mealCollection
