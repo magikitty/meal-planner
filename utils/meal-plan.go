@@ -7,6 +7,17 @@ import (
 	"time"
 )
 
+// GetMealPlanDuration returns number of days meal plan should last
+func GetMealPlanDuration() (durationInputInt int) {
+	fmt.Println(MenuMessages().MealPlanDuration)
+	durationInput := GetUserInput()
+	durationInputInt, err := strconv.Atoi(durationInput)
+	if err != nil {
+		return GetMealPlanDuration()
+	}
+	return durationInputInt
+}
+
 func checkDurationViability(mealPlanDuration int, totalPortions int) (durationViable bool) {
 	durationViable = false
 	if mealPlanDuration > totalPortions {
@@ -24,25 +35,6 @@ func getTotalPortions(meals AllMeals) (totalPortions int) {
 		totalPortions += meal.Portions
 	}
 	return totalPortions
-}
-
-// GetMealPlanDuration returns number of days meal plan should last
-func GetMealPlanDuration() (durationInputInt int) {
-	fmt.Println(MenuMessages().MealPlanDuration)
-	durationInput := GetUserInput()
-	durationInputInt, err := strconv.Atoi(durationInput)
-	if err != nil {
-		return GetMealPlanDuration()
-	}
-	return durationInputInt
-}
-
-// GetRandomMeal returns a random meal from AllMeals struct
-func GetRandomMeal(allMeals AllMeals) (meal Meal) {
-	rand.Seed(time.Now().UnixNano())
-	max := len(allMeals.Meals)
-	randomNum := rand.Intn(max)
-	return allMeals.Meals[randomNum]
 }
 
 // MakeMealPlan returns a collection of length duration containing randomly picked meals
@@ -65,6 +57,14 @@ func MakeMealPlan(duration int, mealData AllMeals) []Meal {
 
 	}
 	return mealPlan
+}
+
+// GetRandomMeal returns a random meal from AllMeals struct
+func GetRandomMeal(allMeals AllMeals) (meal Meal) {
+	rand.Seed(time.Now().UnixNano())
+	max := len(allMeals.Meals)
+	randomNum := rand.Intn(max)
+	return allMeals.Meals[randomNum]
 }
 
 // checkDuplicateMeal checks if a meal is already in the meal plan and returns true if it is

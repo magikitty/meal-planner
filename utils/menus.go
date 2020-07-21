@@ -35,7 +35,6 @@ func callMenuFunctions(menuSelection string) {
 
 func generateMealPlan() {
 	duration := GetMealPlanDuration()
-	fmt.Printf("*****You want a meal plan for %v days\n", duration) // debugging
 	mealData := ReadDataFromFile(FilePaths().JSONMealsData)
 	totalPortions := getTotalPortions(mealData)
 	mealPlanDurationViable := checkDurationViability(duration, totalPortions)
