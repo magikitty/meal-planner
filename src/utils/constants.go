@@ -40,7 +40,7 @@ var QuitProgram = false
 // FilePaths function returning struct object with filePaths
 func FilePaths() filePaths {
 	FilePaths := filePaths{}
-	FilePaths.JSONMealsData = "./meals/meals.json"
+	FilePaths.JSONMealsData = "./data/meals/meals.json"
 	return FilePaths
 }
 

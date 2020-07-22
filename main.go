@@ -2,7 +2,7 @@ package main
 
 import (
 	"fmt"
-	"meal-planner/utils"
+	"meal-planner/src/utils"
 )
 
 // Reorganise project into src, data directories
