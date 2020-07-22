@@ -19,14 +19,14 @@ func GetMealPlanDuration() (durationInputInt int) {
 	return durationInputInt
 }
 
-func checkDurationViability(mealPlanDuration int, totalPortions int) (durationViable bool) {
-	durationViable = false
+func checkDurationValid(mealPlanDuration int, totalPortions int) (durationValid bool) {
+	durationValid = false
 	if mealPlanDuration > totalPortions {
-		fmt.Println(MenuMessages().DurationNotViable)
+		fmt.Println(MenuMessages().DurationNotValid)
 	} else {
-		durationViable = true
+		durationValid = true
 	}
-	return durationViable
+	return durationValid
 }
 
 // getTotalPortions returns the total portions of all the meals combined

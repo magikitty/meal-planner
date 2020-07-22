@@ -27,14 +27,12 @@ func callMenuFunctions(menuSelection string) {
 }
 
 func generateMealPlan() {
-	// Rename duration variables to be consistent
 	duration := GetMealPlanDuration()
 	mealData := ReadDataFromFile(FilePaths().JSONMealsData)
 	totalPortions := getTotalPortions(mealData)
-	// Rename bool (valid)
-	mealPlanDurationViable := checkDurationViability(duration, totalPortions)
+	durationValid := checkDurationValid(duration, totalPortions)
 
-	if mealPlanDurationViable == true {
+	if durationValid == true {
 		mealPlan := MakeMealPlan(duration, mealData)
 		displayMealPlan(mealPlan)
 	}
