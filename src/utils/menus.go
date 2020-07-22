@@ -21,18 +21,8 @@ func callMenuFunctions(menuSelection string) {
 		generateMealPlan()
 	case MenuMessages().MenuMainOptions["2"]:
 		addNewMeal()
-		// Refactor case logic into own function
 	case MenuMessages().MenuMainOptions["3"]:
-		if getQuitInput() == MenuMessages().QuitYes {
-			QuitProgram = true
-			// Decide if this is for debugging or now
-			fmt.Println("Quitting now. Bye bye!") // debugging
-		} else {
-			MainMenu()
-		}
-		// Remove
-	default:
-		fmt.Println("Nothing to do") // debugging
+		quit()
 	}
 }
 
@@ -52,6 +42,14 @@ func generateMealPlan() {
 
 func addNewMeal() {
 	fmt.Println("We are going to add a new meal! Yay!") // debugging
+}
+
+func quit() {
+	if getQuitInput() == MenuMessages().QuitYes {
+		QuitProgram = true
+	} else {
+		MainMenu()
+	}
 }
 
 func getQuitInput() (userInput string) {
