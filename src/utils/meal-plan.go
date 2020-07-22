@@ -29,13 +29,13 @@ func checkDurationValid(mealPlanDuration int, totalPortions int) (durationValid 
 	return durationValid
 }
 
-// getTotalPortions returns the total portions of all the meals combined
-func getTotalPortions(meals AllMeals) (totalPortions int) {
-	totalPortions = 0
+// getSumAllMealsPortions returns the sum of all the portions of all the meals combined
+func getSumAllMealsPortions(meals AllMeals) (sumAllPortions int) {
+	sumAllPortions = 0
 	for _, meal := range meals.Meals {
-		totalPortions += meal.Portions
+		sumAllPortions += meal.Portions
 	}
-	return totalPortions
+	return sumAllPortions
 }
 
 // MakeMealPlan returns a collection of length duration containing randomly picked meals

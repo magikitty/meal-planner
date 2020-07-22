@@ -29,8 +29,8 @@ func callMenuFunctions(menuSelection string) {
 func generateMealPlan() {
 	duration := GetMealPlanDuration()
 	mealData := ReadDataFromFile(FilePaths().JSONMealsData)
-	totalPortions := getTotalPortions(mealData)
-	durationValid := checkDurationValid(duration, totalPortions)
+	sumAllPortions := getSumAllMealsPortions(mealData)
+	durationValid := checkDurationValid(duration, sumAllPortions)
 
 	if durationValid == true {
 		mealPlan := MakeMealPlan(duration, mealData)
