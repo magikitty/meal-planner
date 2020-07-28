@@ -1,27 +1,20 @@
 package utils
 
 import (
-	"bufio"
 	"encoding/json"
 	"fmt"
 	"io/ioutil"
 	"log"
-	"os"
-	"strings"
+	"strconv"
+
+	"github.com/magikitty/menu"
 )
 
-// Move into magikitty/menu library or use pre-existing menu library function
-// Update to return int from input string (durationInputInt, err := strconv.Atoi(durationInput) or err
-
-// GetUserInput returns user input without leading or trailing white space
-func GetUserInput() string {
-	reader := bufio.NewReader(os.Stdout)
-	userInput, err := reader.ReadString('\n')
-	if err != nil {
-		fmt.Println(err)
-	}
-	inputTrimmedSpaces := strings.TrimSpace(userInput)
-	return inputTrimmedSpaces
+// GetInputAsInt returns an error and user input as an int
+func GetInputAsInt() (int, error) {
+	inputString := menu.GetUserInput()
+	inputInt, err := strconv.Atoi(inputString)
+	return inputInt, err
 }
 
 // ReadDataFromFile reads JSON data from a file and returns data in AllMeals struct
