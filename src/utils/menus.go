@@ -52,6 +52,6 @@ func quit() {
 
 func getQuitInput() (userInput string) {
 	fmt.Println(MenuMessages().ConfirmQuit)
-	userInput = GetUserInput()
+	userInput = menu.GetUserInput()
 	return strings.ToLower(userInput)
 }
