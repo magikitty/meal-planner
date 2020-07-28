@@ -3,20 +3,17 @@ package utils
 import (
 	"fmt"
 	"math/rand"
-	"strconv"
 	"time"
 )
 
 // GetMealPlanDuration returns number of days meal plan should last
 func GetMealPlanDuration() (durationInputInt int) {
 	fmt.Println(MenuMessages().MealPlanDuration)
-	// replace with new getInputAsInt() return value (durationInput, err)
-	durationInput := GetUserInput()
-	durationInputInt, err := strconv.Atoi(durationInput)
+	durationInput, err := GetInputAsInt()
 	if err != nil {
 		return GetMealPlanDuration()
 	}
-	return durationInputInt
+	return durationInput
 }
 
 func checkDurationValid(mealPlanDuration int, totalPortions int) (durationValid bool) {
