@@ -2,7 +2,6 @@ package utils
 
 import (
 	"encoding/json"
-	"fmt"
 	"io/ioutil"
 	"log"
 	"strconv"
@@ -29,13 +28,4 @@ func ReadDataFromFile(filePath string) AllMeals {
 		log.Fatal(err)
 	}
 	return allMeals
-}
-
-// Move into menus.go
-// Improve Printf formatting
-func displayMealPlan(mealPlan []Meal) {
-	fmt.Println(MenuMessages().DisplayMealPlan)
-	for i, meal := range mealPlan {
-		fmt.Printf("%v. %v\n", i+1, meal)
-	}
 }

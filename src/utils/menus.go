@@ -38,6 +38,13 @@ func generateMealPlan() {
 	}
 }
 
+func displayMealPlan(mealPlan []Meal) {
+	fmt.Println(MenuMessages().DisplayMealPlan)
+	for i, meal := range mealPlan {
+		fmt.Printf(MenuMessages().DisplayPlanFormatting, i+1, meal.Name, meal.Ingredients, meal.Portions)
+	}
+}
+
 func addNewMeal() {
 	fmt.Println("We are going to add a new meal! Yay!") // debugging
 }
