@@ -44,7 +44,7 @@ func MakeMealPlan(duration int, mealData AllMeals) []Meal {
 
 		if duplicateMeal == false {
 			if meal.Portions > 1 && meal.Portions <= (duration-i) {
-				mealCollectionPortions := addPortions(meal)
+				mealCollectionPortions := addAllPortionsOfMeal(meal)
 				mealPlan = append(mealPlan, mealCollectionPortions...)
 				i = i + meal.Portions
 			} else if meal.Portions == 1 {
@@ -76,13 +76,10 @@ func checkDuplicateMeal(mealPlan []Meal, meal Meal) (mealInPlan bool) {
 	return mealInPlan
 }
 
-// Rename for dumb people like me who can't easily understand what it does
-
-// addPortions returns a collection containing a meal the number of times equal to its portion size
-func addPortions(meal Meal) []Meal {
+// addAllPortionsOfMeal returns a collection containing a meal the number of times equal to its portion size
+func addAllPortionsOfMeal(meal Meal) []Meal {
 	mealCollection := []Meal{}
 	for portion := 1; portion <= meal.Portions; portion++ {
-		fmt.Println(portion)
 		mealCollection = append(mealCollection, meal)
 	}
 	return mealCollection

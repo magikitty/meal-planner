@@ -5,7 +5,6 @@ import (
 	"meal-planner/src/utils"
 )
 
-// Reorganise project into src, data directories
 // Remove unnecessary debugging comments
 func main() {
 	fmt.Println(utils.MenuMessages().WelcomeMessage)
