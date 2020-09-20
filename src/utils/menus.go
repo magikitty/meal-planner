@@ -33,7 +33,7 @@ func generateMealPlan() {
 	durationValid := checkDurationValid(duration, sumAllPortions)
 
 	if durationValid == true {
-		mealPlan := MakeMealPlan(duration, mealData)
+		mealPlan := MakeMealPlan(duration, mealData.Meals)
 		displayMealPlan(mealPlan)
 	}
 }
