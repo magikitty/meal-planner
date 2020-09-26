@@ -39,24 +39,20 @@ func getSumAllMealsPortions(meals AllMeals) (sumAllPortions int) {
 func MakeMealPlan(duration int, allMealsSlice []Meal) []Meal {
 	var mealPlan []Meal
 	for i := 0; i < duration; {
-		fmt.Println("1......... All meals are:", allMealsSlice) // debugging
 		randomNum := GetRandomMealIndex(allMealsSlice)
-		meal := allMealsSlice[randomNum]
-		fmt.Println("2......... Got meal:", meal) // debugging
+		randomMeal := allMealsSlice[randomNum]
 
-		if meal.Portions > 1 && meal.Portions <= (duration-i) {
-			mealCollectionPortions := addAllPortionsOfMeal(meal)
-			mealPlan = append(mealPlan, mealCollectionPortions...)
-			i = i + meal.Portions
-		} else if meal.Portions == 1 {
-			mealPlan = append(mealPlan, meal)
+		if randomMeal.Portions > 1 && randomMeal.Portions <= (duration-i) {
+			mealPlan = append(mealPlan, addAllPortionsOfMeal(randomMeal)...)
+			i = i + randomMeal.Portions
+		} else if randomMeal.Portions == 1 {
+			mealPlan = append(mealPlan, randomMeal)
 			i++
 		} else {
 			fmt.Println(MenuMessages().MealPlanCreationFailed)
-			//MainMenu()
+			MainMenu()
 		}
-
-		removeMeal(allMealsSlice, randomNum)
+		allMealsSlice = removeMeal(allMealsSlice, randomNum)
 	}
 	return mealPlan
 }
