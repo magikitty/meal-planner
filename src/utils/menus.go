@@ -2,6 +2,7 @@ package utils
 
 import (
 	"fmt"
+	"os"
 	"strings"
 
 	"github.com/magikitty/menu"
@@ -51,9 +52,7 @@ func addNewMeal() {
 
 func quit() {
 	if getQuitInput() == MenuMessages().QuitYes {
-		QuitProgram = true
-	} else {
-		MainMenu()
+		os.Exit(0)
 	}
 }
 
