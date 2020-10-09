@@ -51,13 +51,11 @@ func addNewMeal() {
 }
 
 func quit() {
-	if getQuitInput() == MenuMessages().QuitYes {
+	fmt.Println(MenuMessages().ConfirmQuit)
+	userInput := menu.GetUserInput()
+	strings.ToLower(userInput)
+
+	if userInput == MenuMessages().QuitYes {
 		os.Exit(0)
 	}
-}
-
-func getQuitInput() (userInput string) {
-	fmt.Println(MenuMessages().ConfirmQuit)
-	userInput = menu.GetUserInput()
-	return strings.ToLower(userInput)
 }
