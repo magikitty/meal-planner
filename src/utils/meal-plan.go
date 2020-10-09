@@ -50,7 +50,7 @@ func makeMealPlan(duration int, allMealsSlice []Meal) []Meal {
 			i++
 		} else {
 			fmt.Println(MenuMessages().MealPlanCreationFailed)
-			MainMenu()
+			MenuMain()
 		}
 		allMealsSlice = removeMeal(allMealsSlice, randomNum)
 	}

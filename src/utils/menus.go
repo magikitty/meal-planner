@@ -8,15 +8,15 @@ import (
 	"github.com/magikitty/menu"
 )
 
-// MainMenu displays and handles user input for main menu
-func MainMenu() {
+// MenuMain displays and handles user input for main menu
+func MenuMain() {
 	fmt.Println(MenuMessages().MenuInstructions)
 	menu.PrintMenu(MenuMainOptions, true)
 	menuSelection := menu.GetMenuSelection(MenuMainOptions)
-	callMenuFunctions(menuSelection)
+	menuMainSelection(menuSelection)
 }
 
-func callMenuFunctions(menuSelection string) {
+func menuMainSelection(menuSelection string) {
 	switch menuSelection {
 	case MenuMessages().MenuMainOptions["1"]:
 		generateMealPlan()

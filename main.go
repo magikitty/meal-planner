@@ -9,6 +9,6 @@ func main() {
 	fmt.Println(utils.MenuMessages().WelcomeMessage)
 
 	for true {
-		utils.MainMenu()
+		utils.MenuMain()
 	}
 }
