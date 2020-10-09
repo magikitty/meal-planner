@@ -6,12 +6,12 @@ import (
 	"time"
 )
 
-// GetMealPlanDuration returns number of days meal plan must last
-func GetMealPlanDuration() (durationInputInt int) {
+// getMealPlanDuration returns number of days meal plan must last
+func getMealPlanDuration() (durationInputInt int) {
 	fmt.Println(MenuMessages().MealPlanDuration)
 	durationInput, err := GetInputAsInt()
 	if err != nil {
-		return GetMealPlanDuration()
+		return getMealPlanDuration()
 	}
 	return durationInput
 }
@@ -35,11 +35,11 @@ func getSumAllMealsPortions(meals AllMeals) (sumAllPortions int) {
 	return sumAllPortions
 }
 
-// MakeMealPlan returns collection of random meals of duration length
-func MakeMealPlan(duration int, allMealsSlice []Meal) []Meal {
+// makeMealPlan returns collection of random meals of duration length
+func makeMealPlan(duration int, allMealsSlice []Meal) []Meal {
 	var mealPlan []Meal
 	for i := 0; i < duration; {
-		randomNum := GetRandomMealIndex(allMealsSlice)
+		randomNum := getRandomMealIndex(allMealsSlice)
 		randomMeal := allMealsSlice[randomNum]
 
 		if randomMeal.Portions > 1 && randomMeal.Portions <= (duration-i) {
@@ -57,8 +57,8 @@ func MakeMealPlan(duration int, allMealsSlice []Meal) []Meal {
 	return mealPlan
 }
 
-// GetRandomMealIndex returns random valid index of slice
-func GetRandomMealIndex(allMealsSlice []Meal) int {
+// getRandomMealIndex returns random valid index of slice
+func getRandomMealIndex(allMealsSlice []Meal) int {
 	rand.Seed(time.Now().UnixNano())
 	max := len(allMealsSlice)
 	return rand.Intn(max)

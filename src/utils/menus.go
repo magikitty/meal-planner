@@ -28,13 +28,13 @@ func callMenuFunctions(menuSelection string) {
 }
 
 func generateMealPlan() {
-	duration := GetMealPlanDuration()
+	duration := getMealPlanDuration()
 	mealData := ReadDataFromFile(FilePaths().JSONMealsData)
 	sumAllPortions := getSumAllMealsPortions(mealData)
 	durationValid := checkDurationValid(duration, sumAllPortions)
 
 	if durationValid == true {
-		mealPlan := MakeMealPlan(duration, mealData.Meals)
+		mealPlan := makeMealPlan(duration, mealData.Meals)
 		displayMealPlan(mealPlan)
 	}
 }
