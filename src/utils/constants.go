@@ -1,5 +1,15 @@
 package utils
 
+// MenuMainOptions contains main menu options
+var MenuMainOptions = map[string]string{
+	"1": "Generate a meal plan",
+	"2": "Add a new meal",
+	"3": "Quit",
+}
+
+// QuitProgram set to false quits the program
+var QuitProgram = false
+
 // MenuMessages returns struct with menu messages
 func MenuMessages() menuMessages {
 	menuMessages := menuMessages{}
@@ -17,6 +27,13 @@ func MenuMessages() menuMessages {
 	return menuMessages
 }
 
+// FilePaths returns struct with file paths
+func FilePaths() filePaths {
+	FilePaths := filePaths{}
+	FilePaths.JSONMealsData = "./data/meals/meals.json"
+	return FilePaths
+}
+
 type menuMessages struct {
 	ConfirmQuit            string
 	DisplayMealPlan        string
@@ -29,23 +46,6 @@ type menuMessages struct {
 	QuitYes                string
 	QuitNo                 string
 	WelcomeMessage         string
-}
-
-// MenuMainOptions contains main menu options
-var MenuMainOptions = map[string]string{
-	"1": "Generate a meal plan",
-	"2": "Add a new meal",
-	"3": "Quit",
-}
-
-// QuitProgram set to false quits the program
-var QuitProgram = false
-
-// FilePaths returns struct with file paths
-func FilePaths() filePaths {
-	FilePaths := filePaths{}
-	FilePaths.JSONMealsData = "./data/meals/meals.json"
-	return FilePaths
 }
 
 type filePaths struct {
