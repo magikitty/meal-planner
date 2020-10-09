@@ -47,7 +47,7 @@ func displayMealPlan(mealPlan []Meal) {
 }
 
 func addNewMeal() {
-	fmt.Println("We are going to add a new meal! Yay!") // debugging
+	fmt.Println("We are going to add a new meal! Yay!")
 }
 
 func quit() {
