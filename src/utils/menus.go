@@ -8,7 +8,7 @@ import (
 	"github.com/magikitty/menu"
 )
 
-// MainMenu calls functions for the main menu
+// MainMenu displays and handles user input for main menu
 func MainMenu() {
 	fmt.Println(MenuMessages().MenuInstructions)
 	menu.PrintMenu(MenuMainOptions, true)

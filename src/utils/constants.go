@@ -1,6 +1,6 @@
 package utils
 
-// MenuMessages function returning struct object with menu messages
+// MenuMessages returns struct with menu messages
 func MenuMessages() menuMessages {
 	menuMessages := menuMessages{}
 	menuMessages.ConfirmQuit = "Are you sure you want to quit? y/n"
@@ -31,17 +31,17 @@ type menuMessages struct {
 	WelcomeMessage         string
 }
 
-// MenuMainOptions contains options for the main menu
+// MenuMainOptions contains main menu options
 var MenuMainOptions = map[string]string{
 	"1": "Generate a meal plan",
 	"2": "Add a new meal",
 	"3": "Quit",
 }
 
-// QuitProgram is a bool that is set to true when user wants to quit program
+// QuitProgram set to false quits the program
 var QuitProgram = false
 
-// FilePaths function returning struct object with filePaths
+// FilePaths returns struct with file paths
 func FilePaths() filePaths {
 	FilePaths := filePaths{}
 	FilePaths.JSONMealsData = "./data/meals/meals.json"

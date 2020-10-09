@@ -9,14 +9,14 @@ import (
 	"github.com/magikitty/menu"
 )
 
-// GetInputAsInt returns an error and user input as an int
+// GetInputAsInt returns user input converted to int
 func GetInputAsInt() (int, error) {
 	inputString := menu.GetUserInput()
 	inputInt, err := strconv.Atoi(inputString)
 	return inputInt, err
 }
 
-// ReadDataFromFile reads JSON data from a file and returns data in AllMeals struct
+// ReadDataFromFile returns unmarshalled AllMeals struct from specified JSON file
 func ReadDataFromFile(filePath string) AllMeals {
 	var allMeals AllMeals
 	jsonData, err := ioutil.ReadFile(filePath)

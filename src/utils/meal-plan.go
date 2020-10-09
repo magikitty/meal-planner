@@ -6,7 +6,7 @@ import (
 	"time"
 )
 
-// GetMealPlanDuration returns number of days meal plan should last
+// GetMealPlanDuration returns number of days meal plan must last
 func GetMealPlanDuration() (durationInputInt int) {
 	fmt.Println(MenuMessages().MealPlanDuration)
 	durationInput, err := GetInputAsInt()
@@ -26,7 +26,7 @@ func checkDurationValid(mealPlanDuration int, totalPortions int) (durationValid 
 	return durationValid
 }
 
-// getSumAllMealsPortions returns the sum of all the portions of all the meals combined
+// return sum of portions of all meals
 func getSumAllMealsPortions(meals AllMeals) (sumAllPortions int) {
 	sumAllPortions = 0
 	for _, meal := range meals.Meals {
@@ -35,7 +35,7 @@ func getSumAllMealsPortions(meals AllMeals) (sumAllPortions int) {
 	return sumAllPortions
 }
 
-// MakeMealPlan returns a collection of length duration containing randomly picked meals
+// MakeMealPlan returns collection of random meals of duration length
 func MakeMealPlan(duration int, allMealsSlice []Meal) []Meal {
 	var mealPlan []Meal
 	for i := 0; i < duration; {
@@ -57,20 +57,20 @@ func MakeMealPlan(duration int, allMealsSlice []Meal) []Meal {
 	return mealPlan
 }
 
-// GetRandomMealIndex returns an int for a random meal index from a slice of meals
+// GetRandomMealIndex returns random valid index of slice
 func GetRandomMealIndex(allMealsSlice []Meal) int {
 	rand.Seed(time.Now().UnixNano())
 	max := len(allMealsSlice)
 	return rand.Intn(max)
 }
 
-// removeMeal removes an item from a mealsSlice and returns the slice without the removed item
+// removeMeal returns copy of mealsSlice without specified item
 func removeMeal(mealsSlice []Meal, mealIndex int) []Meal {
 	mealsSlice[mealIndex] = mealsSlice[len(mealsSlice)-1]
 	return mealsSlice[:len(mealsSlice)-1]
 }
 
-// addAllPortionsOfMeal returns a collection containing a meal the number of times equal to its portion size
+// addAllPortionsOfMeal returns collection of a meal of meal's portion property length
 func addAllPortionsOfMeal(meal Meal) []Meal {
 	var mealCollection []Meal
 	for portion := 1; portion <= meal.Portions; portion++ {
