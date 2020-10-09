@@ -7,9 +7,6 @@ var MenuMainOptions = map[string]string{
 	"3": "Quit",
 }
 
-// QuitProgram set to false quits the program
-var QuitProgram = false
-
 // MenuMessages returns struct with menu messages
 func MenuMessages() menuMessages {
 	menuMessages := menuMessages{}
