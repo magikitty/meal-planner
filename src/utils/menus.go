@@ -19,7 +19,7 @@ func MenuMain() {
 func menuMainSelection(menuSelection string) {
 	switch menuSelection {
 	case MenuMessages().MenuMainOptions["1"]:
-		generateMealPlan()
+		generateDisplayMealPlan()
 	case MenuMessages().MenuMainOptions["2"]:
 		addNewMeal()
 	case MenuMessages().MenuMainOptions["3"]:
@@ -27,7 +27,7 @@ func menuMainSelection(menuSelection string) {
 	}
 }
 
-func generateMealPlan() {
+func generateDisplayMealPlan() {
 	duration := getMealPlanDuration()
 	mealData := ReadDataFromFile(FilePaths().JSONMealsData)
 	sumAllPortions := getSumAllMealsPortions(mealData)
