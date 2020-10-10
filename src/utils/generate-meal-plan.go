@@ -5,7 +5,7 @@ import (
 )
 
 func getMealPlan() ([]Meal, error) {
-	duration := getMealPlanDuration()
+	duration := ensureMealPlanDurationInput()
 	mealData := ReadDataFromFile(FilePaths().JSONMealsData)
 	sumAllPortions := getSumAllMealsPortions(mealData)
 	durationValid := checkDurationValid(duration, sumAllPortions)
@@ -16,13 +16,13 @@ func getMealPlan() ([]Meal, error) {
 	return nil, CustomErrors().InvalidMealDuration
 }
 
-// getMealPlanDuration returns number of days meal plan must last
-func getMealPlanDuration() (durationInputInt int) {
+// ensureMealPlanDurationInput gets required length of meal plan from user
+func ensureMealPlanDurationInput() (durationInputInt int) {
 	fmt.Println(MenuMessages().MealPlanDuration)
 	durationInput, err := GetInputAsInt()
 	if err != nil {
 		fmt.Printf(MenuMessages().InputNotValid)
-		return getMealPlanDuration()
+		return ensureMealPlanDurationInput()
 	}
 	return durationInput
 }
