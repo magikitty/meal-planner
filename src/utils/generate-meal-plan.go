@@ -36,11 +36,11 @@ func getSumMealsPortions(meals AllMeals) (sumPortions int) {
 }
 
 func durationValid(mealPlanDuration int, sumPortions int) (durationValid bool) {
-		fmt.Println(MenuMessages().DurationNotValid)
-	} else {
-		durationValid = true
+	if mealPlanDuration <= sumPortions && mealPlanDuration > 0 {
+		return true
 	}
-	return durationValid
+		fmt.Println(MenuMessages().DurationNotValid)
+	return false
 }
 
 // makeMealPlan returns collection of random meals of duration length
