@@ -6,14 +6,11 @@ import (
 	"math/rand"
 	"strconv"
 	"time"
-
-	"github.com/magikitty/menu"
 )
 
-// GetInputAsInt returns user input converted to int
-func GetInputAsInt() (int, error) {
-	inputString := menu.GetUserInput()
-	inputInt, err := strconv.Atoi(inputString)
+// ConvertStringToInt rconverts string to int
+func ConvertStringToInt(input string) (int, error) {
+	inputInt, err := strconv.Atoi(input)
 	return inputInt, err
 }
 

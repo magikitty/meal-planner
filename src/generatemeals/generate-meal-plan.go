@@ -6,6 +6,7 @@ import (
 	"log"
 
 	"github.com/magikitty/meal-planner/src/utils"
+	"github.com/magikitty/menu"
 )
 
 func getMealPlan() ([]Meal, error) {
@@ -20,7 +21,7 @@ func getMealPlan() ([]Meal, error) {
 // ensureMealPlanDurationInput gets required length of meal plan from user
 func ensureMealPlanDurationInput() (durationInputInt int) {
 	fmt.Println(utils.MenuMessages().MealPlanDuration)
-	durationInput, err := utils.GetInputAsInt()
+	durationInput, err := utils.GetInputAsInt(menu.GetUserInput())
 	if err != nil {
 		return ensureMealPlanDurationInput()
 	}
