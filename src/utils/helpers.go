@@ -1,7 +1,6 @@
 package utils
 
 import (
-	"encoding/json"
 	"io/ioutil"
 	"log"
 	"math/rand"
@@ -24,16 +23,11 @@ func GetRandomPositiveNumber(max int) int {
 	return rand.Intn(max)
 }
 
-// GetMealsFromFile returns unmarshalled AllMeals struct from specified JSON file
-func GetMealsFromFile(filePath string) AllMeals {
-	var allMeals AllMeals
+// GetFileData returns byte stream of data from file
+func GetFileData(filePath string) []byte {
 	jsonData, err := ioutil.ReadFile(filePath)
 	if err != nil {
 		log.Fatal(err)
 	}
-	err = json.Unmarshal(jsonData, &allMeals)
-	if err != nil {
-		log.Fatal(err)
-	}
-	return allMeals
+	return jsonData
 }

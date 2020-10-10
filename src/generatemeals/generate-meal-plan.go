@@ -1,7 +1,11 @@
-package utils
+package generatemeals
 
 import (
+	"encoding/json"
 	"fmt"
+	"log"
+
+	"github.com/magikitty/meal-planner/src/utils"
 )
 
 func getMealPlan() ([]Meal, error) {
@@ -10,13 +14,13 @@ func getMealPlan() ([]Meal, error) {
 	if durationValid(duration) {
 		return makeMealPlan(duration), nil
 	}
-	return nil, CustomErrors().InvalidMealDuration
+	return nil, utils.CustomErrors().InvalidMealDuration
 }
 
 // ensureMealPlanDurationInput gets required length of meal plan from user
 func ensureMealPlanDurationInput() (durationInputInt int) {
-	fmt.Println(MenuMessages().MealPlanDuration)
-	durationInput, err := GetInputAsInt()
+	fmt.Println(utils.MenuMessages().MealPlanDuration)
+	durationInput, err := utils.GetInputAsInt()
 	if err != nil {
 		return ensureMealPlanDurationInput()
 	}
@@ -36,7 +40,7 @@ func durationValid(mealPlanDuration int) (durationValid bool) {
 	if mealPlanDuration > 0 {
 		return true
 	}
-	fmt.Println(MenuMessages().DurationNotValid)
+	fmt.Println(utils.MenuMessages().DurationNotValid)
 	return false
 }
 
@@ -52,11 +56,11 @@ func makeMealPlan(totalTargetDuration int) []Meal {
 
 func addRandomMealsToPlan(mealPlan []Meal, targetDuration int) []Meal {
 	currentTargetDuration := targetDuration - len(mealPlan)
-	mealData := GetMealsFromFile(FilePaths().JSONMealsData)
-	allMeals := mealData.Meals
+	mealData := utils.GetFileData(utils.FilePaths().JSONMealsData)
+	allMeals := getAllMealsFromData(mealData).Meals
 
 	for duration := 0; duration < currentTargetDuration; {
-		randomNum := GetRandomPositiveNumber(len(allMeals))
+		randomNum := utils.GetRandomPositiveNumber(len(allMeals))
 		randomMeal := allMeals[randomNum]
 
 		if randomMeal.Portions == 1 {
@@ -75,6 +79,16 @@ func addRandomMealsToPlan(mealPlan []Meal, targetDuration int) []Meal {
 	return mealPlan
 }
 
+func getAllMealsFromData(data []byte) AllMeals {
+	fmt.Println(data)
+	var allMeals AllMeals
+	err := json.Unmarshal(data, &allMeals)
+	if err != nil {
+		log.Fatal(err)
+	}
+	return allMeals
+}
+
 func mealFitsPlan(meal Meal, duration int) bool {
 	if meal.Portions <= duration {
 		return true
@@ -83,7 +97,7 @@ func mealFitsPlan(meal Meal, duration int) bool {
 }
 
 func mealPlanFailed() {
-	fmt.Println(MenuMessages().MealPlanCreationFailed)
+	fmt.Println(utils.MenuMessages().MealPlanCreationFailed)
 	MenuMain()
 }
 
