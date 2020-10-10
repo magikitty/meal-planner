@@ -44,12 +44,16 @@ func durationValid(mealPlanDuration int, sumPortions int) (durationValid bool) {
 }
 
 // makeMealPlan returns collection of random meals of duration length
-func makeMealPlan(duration int, allMealsSlice []Meal) []Meal {
+func makeMealPlan(targetDuration int, allMealsSlice []Meal) []Meal {
 	var mealPlan []Meal
-	for i := 0; i < duration; {
-		randomNum := GetRandomPositiveNumber(len(allMealsSlice))
-		randomMeal := allMealsSlice[randomNum]
 
+	for planDuration := 1; planDuration <= targetDuration; {
+		randomNum := GetRandomPositiveNumber(len(allMealsSlice))
+		randomMeal := allMealsSlice[randomNum] // double declare?
+
+		if randomMeal.Portions == 1 {
+			mealPlan = append(mealPlan, randomMeal)
+			planDuration++
 		} else if mealSmallEnoughForPlan(randomMeal, targetDuration) {
 			mealPlan = append(mealPlan, addAllPortionsOfMeal(randomMeal)...)
 			planDuration += randomMeal.Portions
