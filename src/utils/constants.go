@@ -38,6 +38,7 @@ func FilePaths() filePaths {
 func CustomErrors() customErrors {
 	CustomErrors := customErrors{}
 	CustomErrors.InvalidMealDuration = errors.New("Invalid meal duration")
+	CustomErrors.TooBigMeal = errors.New("Meal has too many portions to fit in meal plan")
 	return CustomErrors
 }
 
@@ -62,4 +63,5 @@ type filePaths struct {
 
 type customErrors struct {
 	InvalidMealDuration error
+	TooBigMeal          error
 }

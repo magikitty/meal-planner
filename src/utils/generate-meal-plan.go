@@ -50,19 +50,27 @@ func makeMealPlan(duration int, allMealsSlice []Meal) []Meal {
 		randomNum := GetRandomPositiveNumber(len(allMealsSlice))
 		randomMeal := allMealsSlice[randomNum]
 
-		if randomMeal.Portions > 1 && randomMeal.Portions <= (duration-i) {
+		} else if mealSmallEnoughForPlan(randomMeal, targetDuration) {
 			mealPlan = append(mealPlan, addAllPortionsOfMeal(randomMeal)...)
-			i = i + randomMeal.Portions
-		} else if randomMeal.Portions == 1 {
-			mealPlan = append(mealPlan, randomMeal)
-			i++
+			planDuration += randomMeal.Portions
 		} else {
-			fmt.Println(MenuMessages().MealPlanCreationFailed)
-			MenuMain()
+			mealPlanFailed()
 		}
 		allMealsSlice = removeMeal(allMealsSlice, randomNum)
 	}
 	return mealPlan
+}
+
+func mealSmallEnoughForPlan(meal Meal, duration int) bool {
+	if meal.Portions > 1 && meal.Portions <= duration {
+		return true
+	}
+	return false
+}
+
+func mealPlanFailed() {
+	fmt.Println(MenuMessages().MealPlanCreationFailed)
+	MenuMain()
 }
 
 // addAllPortionsOfMeal returns collection of a meal of meal's portion property length
