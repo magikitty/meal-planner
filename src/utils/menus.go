@@ -38,10 +38,6 @@ func displayMealPlanNew(mealPlan []Meal, err error) {
 	}
 }
 
-func addNewMeal() {
-	fmt.Println("We are going to add a new meal! Yay!")
-}
-
 func quit() {
 	fmt.Println(MenuMessages().ConfirmQuit)
 	userInput := menu.GetUserInput()
