@@ -6,11 +6,10 @@ import (
 
 func getMealPlan() ([]Meal, error) {
 	duration := ensureMealPlanDurationInput()
-	mealData := ReadDataFromFile(FilePaths().JSONMealsData)
-	sumAllPortions := getSumAllMealsPortions(mealData)
-	durationValid := checkDurationValid(duration, sumAllPortions)
+	mealData := GetMealsFromFile(FilePaths().JSONMealsData)
+	sumPortions := getSumMealsPortions(mealData)
 
-	if durationValid {
+	if durationValid(duration, sumPortions) {
 		return makeMealPlan(duration, mealData.Meals), nil
 	}
 	return nil, CustomErrors().InvalidMealDuration
@@ -28,17 +27,15 @@ func ensureMealPlanDurationInput() (durationInputInt int) {
 }
 
 // return sum of portions of all meals
-func getSumAllMealsPortions(meals AllMeals) (sumAllPortions int) {
-	sumAllPortions = 0
+func getSumMealsPortions(meals AllMeals) (sumPortions int) {
+	sumPortions = 0
 	for _, meal := range meals.Meals {
-		sumAllPortions += meal.Portions
+		sumPortions += meal.Portions
 	}
-	return sumAllPortions
+	return sumPortions
 }
 
-func checkDurationValid(mealPlanDuration int, totalPortions int) (durationValid bool) {
-	durationValid = false
-	if mealPlanDuration > totalPortions {
+func durationValid(mealPlanDuration int, sumPortions int) (durationValid bool) {
 		fmt.Println(MenuMessages().DurationNotValid)
 	} else {
 		durationValid = true

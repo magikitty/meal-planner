@@ -24,8 +24,8 @@ func GetRandomPositiveNumber(max int) int {
 	return rand.Intn(max)
 }
 
-// ReadDataFromFile returns unmarshalled AllMeals struct from specified JSON file
-func ReadDataFromFile(filePath string) AllMeals {
+// GetMealsFromFile returns unmarshalled AllMeals struct from specified JSON file
+func GetMealsFromFile(filePath string) AllMeals {
 	var allMeals AllMeals
 	jsonData, err := ioutil.ReadFile(filePath)
 	if err != nil {
