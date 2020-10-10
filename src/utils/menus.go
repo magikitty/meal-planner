@@ -19,7 +19,7 @@ func MenuMain() {
 func menuMainSelection(menuSelection string) {
 	switch menuSelection {
 	case MenuMessages().MenuMainOptions["1"]:
-		generateDisplayMealPlan()
+		displayMealPlanNew(getMealPlan())
 	case MenuMessages().MenuMainOptions["2"]:
 		addNewMeal()
 	case MenuMessages().MenuMainOptions["3"]:
@@ -27,22 +27,14 @@ func menuMainSelection(menuSelection string) {
 	}
 }
 
-func generateDisplayMealPlan() {
-	duration := getMealPlanDuration()
-	mealData := ReadDataFromFile(FilePaths().JSONMealsData)
-	sumAllPortions := getSumAllMealsPortions(mealData)
-	durationValid := checkDurationValid(duration, sumAllPortions)
-
-	if durationValid == true {
-		mealPlan := makeMealPlan(duration, mealData.Meals)
-		displayMealPlan(mealPlan)
-	}
-}
-
-func displayMealPlan(mealPlan []Meal) {
-	fmt.Println(MenuMessages().DisplayMealPlan)
-	for i, meal := range mealPlan {
-		fmt.Printf(MenuMessages().DisplayPlanFormatting, i+1, meal.Name, meal.Ingredients, meal.Portions)
+func displayMealPlanNew(mealPlan []Meal, err error) {
+	if err != nil {
+		fmt.Println(err)
+	} else {
+		fmt.Println(MenuMessages().DisplayMealPlan)
+		for i, meal := range mealPlan {
+			fmt.Printf(MenuMessages().DisplayPlanFormatting, i+1, meal.Name, meal.Ingredients, meal.Portions)
+		}
 	}
 }
 
