@@ -21,7 +21,7 @@ func getMealPlan() ([]Meal, error) {
 // ensureMealPlanDurationInput gets required length of meal plan from user
 func ensureMealPlanDurationInput() (durationInputInt int) {
 	fmt.Println(utils.MenuMessages().MealPlanDuration)
-	durationInput, err := utils.GetInputAsInt(menu.GetUserInput())
+	durationInput, err := utils.ConvertStringToInt(menu.GetUserInput())
 	if err != nil {
 		return ensureMealPlanDurationInput()
 	}
