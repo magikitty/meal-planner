@@ -13,6 +13,7 @@ var MenuMainOptions = map[string]string{
 func MenuMessages() menuMessages {
 	menuMessages := menuMessages{}
 	menuMessages.ConfirmQuit = "Are you sure you want to quit? y/n"
+	menuMessages.InputNotValid = "Invalid input, please try again."
 	menuMessages.DisplayMealPlan = "\nHere is your meal plan:"
 	menuMessages.DisplayPlanFormatting = "%v. Meal: %v\n   Ingredients: %v\n   Portions: %v \n"
 	menuMessages.DurationNotValid = "You do not have enough recipes for that. Create a meal plan for less days or add more recipes."
@@ -45,6 +46,7 @@ type menuMessages struct {
 	DisplayMealPlan        string
 	DisplayPlanFormatting  string
 	DurationNotValid       string
+	InputNotValid          string
 	MealPlanDuration       string
 	MealPlanCreationFailed string
 	MenuInstructions       string

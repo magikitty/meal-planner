@@ -21,6 +21,7 @@ func getMealPlanDuration() (durationInputInt int) {
 	fmt.Println(MenuMessages().MealPlanDuration)
 	durationInput, err := GetInputAsInt()
 	if err != nil {
+		fmt.Printf(MenuMessages().InputNotValid)
 		return getMealPlanDuration()
 	}
 	return durationInput
