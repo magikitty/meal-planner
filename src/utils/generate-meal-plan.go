@@ -66,7 +66,11 @@ func addRandomMealsToPlan(mealPlan []Meal, targetDuration int) []Meal {
 			mealPlan = append(mealPlan, addAllPortionsOfMeal(randomMeal)...)
 			duration += randomMeal.Portions
 		}
+
 		allMeals = removeMeal(allMeals, randomNum)
+		if len(allMeals) == 0 {
+			break
+		}
 	}
 	return mealPlan
 }
