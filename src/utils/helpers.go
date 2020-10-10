@@ -9,9 +9,9 @@ import (
 )
 
 // ConvertStringToInt rconverts string to int
-func ConvertStringToInt(input string) (int, error) {
-	inputInt, err := strconv.Atoi(input)
-	return inputInt, err
+func ConvertStringToInt(input string) int {
+	inputInt, _ := strconv.Atoi(input)
+	return inputInt
 }
 
 // GetRandomPositiveNumber returns number between 0, max
