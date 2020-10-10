@@ -6,11 +6,9 @@ import (
 
 func getMealPlan() ([]Meal, error) {
 	duration := ensureMealPlanDurationInput()
-	mealData := GetMealsFromFile(FilePaths().JSONMealsData)
-	sumPortions := getSumMealsPortions(mealData)
 
-	if durationValid(duration, sumPortions) {
-		return makeMealPlan(duration, mealData.Meals), nil
+	if durationValid(duration) {
+		return makeMealPlan(duration), nil
 	}
 	return nil, CustomErrors().InvalidMealDuration
 }
@@ -20,7 +18,6 @@ func ensureMealPlanDurationInput() (durationInputInt int) {
 	fmt.Println(MenuMessages().MealPlanDuration)
 	durationInput, err := GetInputAsInt()
 	if err != nil {
-		fmt.Printf(MenuMessages().InputNotValid)
 		return ensureMealPlanDurationInput()
 	}
 	return durationInput
@@ -35,38 +32,47 @@ func getSumMealsPortions(meals AllMeals) (sumPortions int) {
 	return sumPortions
 }
 
-func durationValid(mealPlanDuration int, sumPortions int) (durationValid bool) {
-	if mealPlanDuration <= sumPortions && mealPlanDuration > 0 {
+func durationValid(mealPlanDuration int) (durationValid bool) {
+	if mealPlanDuration > 0 {
 		return true
 	}
-		fmt.Println(MenuMessages().DurationNotValid)
+	fmt.Println(MenuMessages().DurationNotValid)
 	return false
 }
 
-// makeMealPlan returns collection of random meals of duration length
-func makeMealPlan(targetDuration int, allMealsSlice []Meal) []Meal {
+func makeMealPlan(totalTargetDuration int) []Meal {
 	var mealPlan []Meal
 
-	for planDuration := 1; planDuration <= targetDuration; {
-		randomNum := GetRandomPositiveNumber(len(allMealsSlice))
-		randomMeal := allMealsSlice[randomNum] // double declare?
+	for len(mealPlan) != totalTargetDuration {
+		mealPlan = addRandomMealsToPlan(mealPlan, totalTargetDuration)
+	}
+
+	return mealPlan
+}
+
+func addRandomMealsToPlan(mealPlan []Meal, targetDuration int) []Meal {
+	currentTargetDuration := targetDuration - len(mealPlan)
+	mealData := GetMealsFromFile(FilePaths().JSONMealsData)
+	allMeals := mealData.Meals
+
+	for duration := 0; duration < currentTargetDuration; {
+		randomNum := GetRandomPositiveNumber(len(allMeals))
+		randomMeal := allMeals[randomNum]
 
 		if randomMeal.Portions == 1 {
 			mealPlan = append(mealPlan, randomMeal)
-			planDuration++
-		} else if mealSmallEnoughForPlan(randomMeal, targetDuration) {
+			duration++
+		} else if mealFitsPlan(randomMeal, currentTargetDuration-duration) {
 			mealPlan = append(mealPlan, addAllPortionsOfMeal(randomMeal)...)
-			planDuration += randomMeal.Portions
-		} else {
-			mealPlanFailed()
+			duration += randomMeal.Portions
 		}
-		allMealsSlice = removeMeal(allMealsSlice, randomNum)
+		allMeals = removeMeal(allMeals, randomNum)
 	}
 	return mealPlan
 }
 
-func mealSmallEnoughForPlan(meal Meal, duration int) bool {
-	if meal.Portions > 1 && meal.Portions <= duration {
+func mealFitsPlan(meal Meal, duration int) bool {
+	if meal.Portions <= duration {
 		return true
 	}
 	return false
