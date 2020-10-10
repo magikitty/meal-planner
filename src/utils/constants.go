@@ -1,5 +1,7 @@
 package utils
 
+import "errors"
+
 // MenuMainOptions contains main menu options
 var MenuMainOptions = map[string]string{
 	"1": "Generate a meal plan",
@@ -31,6 +33,13 @@ func FilePaths() filePaths {
 	return FilePaths
 }
 
+// FilePaths returns struct with errors
+func CustomErrors() customErrors {
+	CustomErrors := customErrors{}
+	CustomErrors.InvalidMealDuration = errors.New("Invalid meal duration")
+	return CustomErrors
+}
+
 type menuMessages struct {
 	ConfirmQuit            string
 	DisplayMealPlan        string
@@ -47,4 +56,8 @@ type menuMessages struct {
 
 type filePaths struct {
 	JSONMealsData string
+}
+
+type customErrors struct {
+	InvalidMealDuration error
 }
