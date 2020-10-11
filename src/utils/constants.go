@@ -1,7 +1,5 @@
 package utils
 
-import "errors"
-
 // MenuMainOptions contains main menu options
 var MenuMainOptions = map[string]string{
 	"1": "Generate a meal plan",
@@ -17,11 +15,9 @@ func MenuMessages() menuMessages {
 	menuMessages.DisplayMealPlan = "\nHere is your meal plan:"
 	menuMessages.DisplayPlanFormatting = "Day %v: %v\n   Ingredients: %v\n   Portions: %v \n"
 	menuMessages.MealPlanDuration = "How many days do you want to create a meal plan for?"
-	menuMessages.MealPlanCreationFailed = "Couldn't find meals with suitable portion sizes for that number of days. Please try again with a different number of days."
 	menuMessages.MenuInstructions = "\nWhat do you want to do? Press the number of your choice."
 	menuMessages.MenuMainOptions = MenuMainOptions
 	menuMessages.QuitYes = "y"
-	menuMessages.QuitNo = "n"
 	menuMessages.WelcomeMessage = "Welcome to the Meal Planner!"
 	return menuMessages
 }
@@ -33,33 +29,18 @@ func FilePaths() filePaths {
 	return FilePaths
 }
 
-// FilePaths returns struct with errors
-func CustomErrors() customErrors {
-	CustomErrors := customErrors{}
-	CustomErrors.InvalidMealDuration = errors.New("Invalid meal duration")
-	CustomErrors.TooBigMeal = errors.New("Meal has too many portions to fit in meal plan")
-	return CustomErrors
-}
-
 type menuMessages struct {
-	ConfirmQuit            string
-	DisplayMealPlan        string
-	DisplayPlanFormatting  string
-	InputNotValid          string
-	MealPlanDuration       string
-	MealPlanCreationFailed string
-	MenuInstructions       string
-	MenuMainOptions        map[string]string
-	QuitYes                string
-	QuitNo                 string
-	WelcomeMessage         string
+	ConfirmQuit           string
+	DisplayMealPlan       string
+	DisplayPlanFormatting string
+	InputNotValid         string
+	MealPlanDuration      string
+	MenuInstructions      string
+	MenuMainOptions       map[string]string
+	QuitYes               string
+	WelcomeMessage        string
 }
 
 type filePaths struct {
 	JSONMealsData string
-}
-
-type customErrors struct {
-	InvalidMealDuration error
-	TooBigMeal          error
 }

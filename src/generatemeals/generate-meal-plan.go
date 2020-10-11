@@ -24,15 +24,6 @@ func ensureMealPlanDurationInput() (durationInputInt int) {
 	return durationInput
 }
 
-// return sum of portions of all meals
-func getSumMealsPortions(meals AllMeals) (sumPortions int) {
-	sumPortions = 0
-	for _, meal := range meals.Meals {
-		sumPortions += meal.Portions
-	}
-	return sumPortions
-}
-
 func durationValid(mealPlanDuration int) (durationValid bool) {
 	if mealPlanDuration > 0 {
 		return true
@@ -91,11 +82,6 @@ func mealFitsPlan(meal Meal, duration int) bool {
 		return true
 	}
 	return false
-}
-
-func mealPlanFailed() {
-	fmt.Println(utils.MenuMessages().MealPlanCreationFailed)
-	MenuMain()
 }
 
 // addAllPortionsOfMeal returns collection of a meal of meal's portion property length
