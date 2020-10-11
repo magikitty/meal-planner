@@ -11,18 +11,14 @@ import (
 
 func getMealPlan() ([]Meal, error) {
 	duration := ensureMealPlanDurationInput()
-
-	if durationValid(duration) {
-		return makeMealPlan(duration), nil
-	}
-	return nil, utils.CustomErrors().InvalidMealDuration
+	return makeMealPlan(duration), nil
 }
 
 // ensureMealPlanDurationInput gets required length of meal plan from user
 func ensureMealPlanDurationInput() (durationInputInt int) {
 	fmt.Println(utils.MenuMessages().MealPlanDuration)
-	durationInput, err := utils.ConvertStringToInt(menu.GetUserInput())
-	if err != nil {
+	durationInput := utils.ConvertStringToInt(menu.GetUserInput())
+	if !durationValid(durationInput) {
 		return ensureMealPlanDurationInput()
 	}
 	return durationInput
