@@ -37,7 +37,7 @@ func durationValid(mealPlanDuration int) (durationValid bool) {
 	if mealPlanDuration > 0 {
 		return true
 	}
-	fmt.Println(utils.MenuMessages().DurationNotValid)
+	fmt.Println(utils.MenuMessages().InputNotValid)
 	return false
 }
 

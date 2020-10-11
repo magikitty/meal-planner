@@ -16,7 +16,6 @@ func MenuMessages() menuMessages {
 	menuMessages.InputNotValid = "Invalid input, please try again."
 	menuMessages.DisplayMealPlan = "\nHere is your meal plan:"
 	menuMessages.DisplayPlanFormatting = "Day %v: %v\n   Ingredients: %v\n   Portions: %v \n"
-	menuMessages.DurationNotValid = "You do not have enough recipes for that. Create a meal plan for less days or add more recipes."
 	menuMessages.MealPlanDuration = "How many days do you want to create a meal plan for?"
 	menuMessages.MealPlanCreationFailed = "Couldn't find meals with suitable portion sizes for that number of days. Please try again with a different number of days."
 	menuMessages.MenuInstructions = "\nWhat do you want to do? Press the number of your choice."
@@ -46,7 +45,6 @@ type menuMessages struct {
 	ConfirmQuit            string
 	DisplayMealPlan        string
 	DisplayPlanFormatting  string
-	DurationNotValid       string
 	InputNotValid          string
 	MealPlanDuration       string
 	MealPlanCreationFailed string
