@@ -1,4 +1,4 @@
-package utils
+package generatemeals
 
 // AllMeals is a struct containing all meals
 type AllMeals struct {

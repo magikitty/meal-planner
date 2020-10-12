@@ -1,31 +1,30 @@
 package utils
 
 import (
-	"encoding/json"
 	"io/ioutil"
 	"log"
+	"math/rand"
 	"strconv"
-
-	"github.com/magikitty/menu"
+	"time"
 )
 
-// GetInputAsInt returns an error and user input as an int
-func GetInputAsInt() (int, error) {
-	inputString := menu.GetUserInput()
-	inputInt, err := strconv.Atoi(inputString)
-	return inputInt, err
+// ConvertStringToInt rconverts string to int
+func ConvertStringToInt(input string) int {
+	inputInt, _ := strconv.Atoi(input)
+	return inputInt
 }
 
-// ReadDataFromFile reads JSON data from a file and returns data in AllMeals struct
-func ReadDataFromFile(filePath string) AllMeals {
-	var allMeals AllMeals
+// GetRandomPositiveNumber returns number between 0, max
+func GetRandomPositiveNumber(max int) int {
+	rand.Seed(time.Now().UnixNano())
+	return rand.Intn(max)
+}
+
+// GetFileData returns byte stream of data from file
+func GetFileData(filePath string) []byte {
 	jsonData, err := ioutil.ReadFile(filePath)
 	if err != nil {
 		log.Fatal(err)
 	}
-	err = json.Unmarshal(jsonData, &allMeals)
-	if err != nil {
-		log.Fatal(err)
-	}
-	return allMeals
+	return jsonData
 }
