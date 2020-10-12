@@ -68,7 +68,7 @@ func addRandomMealsToPlan(mealPlan []Meal, targetDuration int) []Meal {
 }
 
 func getAllMealsFromData(data []byte) AllMeals {
-	fmt.Println(data)
+	fmt.Println()
 	var allMeals AllMeals
 	err := json.Unmarshal(data, &allMeals)
 	if err != nil {
