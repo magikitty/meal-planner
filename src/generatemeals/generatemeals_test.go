@@ -32,3 +32,12 @@ func TestGenerateMeals_addAllPortionsOfMeal(t *testing.T) {
 
 	assert.Equal(t, expectedMealSlice, actualMealSlice, "Meal slice should have number of meals equal to meal's portion property length")
 }
+
+// PROBLEM: can't find json file with meals
+func TestGenerateMeals_makeMealPlan(t *testing.T) {
+	mealPlanExpectedLength := 15
+	mealPlanGenerated := makeMealPlan(15)
+	mealPlanGeneratedLength := len(mealPlanGenerated)
+
+	assert.Equal(t, mealPlanExpectedLength, mealPlanGeneratedLength, "Meal plan should be same length as duration")
+}
