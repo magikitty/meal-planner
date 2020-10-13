@@ -48,7 +48,7 @@ func TestGenerateMeals_removeMeal(t *testing.T) {
 // PROBLEM: can't find json file with meals
 func TestGenerateMeals_makeMealPlan(t *testing.T) {
 	mealPlanExpectedLength := 15
-	mealPlanGenerated := makeMealPlan(15)
+	mealPlanGenerated := makeMealPlan(15, "../../data/meals/meals.json")
 	mealPlanGeneratedLength := len(mealPlanGenerated)
 
 	assert.Equal(t, mealPlanExpectedLength, mealPlanGeneratedLength, "Meal plan should be same length as duration")
