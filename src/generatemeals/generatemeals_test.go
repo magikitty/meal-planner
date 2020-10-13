@@ -24,3 +24,11 @@ func TestGenerateMeals_durationValid(t *testing.T) {
 
 	assert.Equal(t, expectedDurationValidBool, gotDurationValidBool, "Duration needs to be more than 0")
 }
+
+func TestGenerateMeals_addAllPortionsOfMeal(t *testing.T) {
+	soup := Meal{"Soup", []string{"carrots, potatoes"}, 4}
+	expectedMealSlice := []Meal{soup, soup, soup, soup}
+	actualMealSlice := addAllPortionsOfMeal(soup)
+
+	assert.Equal(t, expectedMealSlice, actualMealSlice, "Meal slice should have number of meals equal to meal's portion property length")
+}
