@@ -33,6 +33,18 @@ func TestGenerateMeals_addAllPortionsOfMeal(t *testing.T) {
 	assert.Equal(t, expectedMealSlice, actualMealSlice, "Meal slice should have number of meals equal to meal's portion property length")
 }
 
+func TestGenerateMeals_removeMeal(t *testing.T) {
+	meal1 := Meal{"Soup", []string{"carrots, potatoes"}, 4}
+	meal2 := Meal{"Curry", []string{"curry, cauliflower"}, 1}
+	meal3 := Meal{"Salad", []string{"lettuce, tomato"}, 1}
+	meals := []Meal{meal1, meal2, meal3}
+
+	expectedMealSlice := []Meal{meal1, meal3}
+	actualMealSlice := removeMeal(meals, 1)
+
+	assert.Equal(t, expectedMealSlice, actualMealSlice, "Meal at given index position should be removed")
+}
+
 // PROBLEM: can't find json file with meals
 func TestGenerateMeals_makeMealPlan(t *testing.T) {
 	mealPlanExpectedLength := 15
