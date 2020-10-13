@@ -11,7 +11,7 @@ import (
 
 func getMealPlan() ([]Meal, error) {
 	duration := getMealPlanDurationInput()
-	return makeMealPlan(duration), nil
+	return makeMealPlan(duration, utils.FilePaths().JSONMealsData), nil
 }
 
 // ensure get valid duration input from user
@@ -32,20 +32,19 @@ func durationValid(mealPlanDuration int) (durationValid bool) {
 	return false
 }
 
-func makeMealPlan(totalTargetDuration int) []Meal {
+func makeMealPlan(totalTargetDuration int, filePath string) []Meal {
 	var mealPlan []Meal
-
+	mealData := utils.GetFileData(filePath)
+	allMeals := getAllMealsFromData(mealData).Meals
 	for len(mealPlan) != totalTargetDuration {
-		mealPlan = addRandomMealsToPlan(mealPlan, totalTargetDuration)
+		mealPlan = addRandomMealsToPlan(allMeals, mealPlan, totalTargetDuration)
 	}
 
 	return mealPlan
 }
 
-func addRandomMealsToPlan(mealPlan []Meal, targetDuration int) []Meal {
+func addRandomMealsToPlan(allMeals, mealPlan []Meal, targetDuration int) []Meal {
 	currentTargetDuration := targetDuration - len(mealPlan)
-	mealData := utils.GetFileData(utils.FilePaths().JSONMealsData)
-	allMeals := getAllMealsFromData(mealData).Meals
 
 	for duration := 0; duration < currentTargetDuration; {
 		randomNum := utils.GetRandomPositiveNumber(len(allMeals))
