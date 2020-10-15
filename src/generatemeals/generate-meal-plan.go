@@ -58,7 +58,7 @@ func addRandomMealsToPlan(allMeals, mealPlan []Meal, targetDuration int) []Meal 
 			duration += randomMeal.Portions
 		}
 
-		allMeals = removeMeal(allMeals, randomNum)
+		allMeals, _ = removeMeal(allMeals, randomNum)
 		if len(allMeals) == 0 {
 			break
 		}
@@ -92,7 +92,11 @@ func addAllPortionsOfMeal(meal Meal) []Meal {
 }
 
 // removeMeal returns copy of mealsSlice without specified item
-func removeMeal(mealsSlice []Meal, mealIndex int) []Meal {
-	mealsSlice[mealIndex] = mealsSlice[len(mealsSlice)-1]
-	return mealsSlice[:len(mealsSlice)-1]
+func removeMeal(mealsSlice []Meal, mealIndex int) ([]Meal, error) {
+	if mealIndex >= 0 && mealIndex <= len(mealsSlice)-1 {
+		mealsSlice[mealIndex] = mealsSlice[len(mealsSlice)-1]
+		return mealsSlice[:len(mealsSlice)-1], nil
+	} else {
+		return mealsSlice, utils.InvalidIndexToRemove
+	}
 }
