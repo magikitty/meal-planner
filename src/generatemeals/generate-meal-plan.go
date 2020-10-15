@@ -37,7 +37,11 @@ func makeMealPlan(totalTargetDuration int, filePath string) []Meal {
 	mealData := utils.GetFileData(filePath)
 	allMeals := getAllMealsFromData(mealData).Meals
 	for len(mealPlan) != totalTargetDuration {
-		mealPlan = addRandomMealsToPlan(allMeals, mealPlan, totalTargetDuration)
+		// keep copy of allMeals data in memory instead of reading from file each loop
+		allMealsCopy := make([]Meal, len(allMeals))
+		copy(allMealsCopy, allMeals)
+
+		mealPlan = addRandomMealsToPlan(allMealsCopy, mealPlan, totalTargetDuration)
 	}
 
 	return mealPlan
@@ -45,11 +49,9 @@ func makeMealPlan(totalTargetDuration int, filePath string) []Meal {
 
 func addRandomMealsToPlan(allMeals, mealPlan []Meal, targetDuration int) []Meal {
 	currentTargetDuration := targetDuration - len(mealPlan)
-
 	for duration := 0; duration < currentTargetDuration; {
 		randomNum := utils.GetRandomPositiveNumber(len(allMeals))
 		randomMeal := allMeals[randomNum]
-
 		if randomMeal.Portions == 1 {
 			mealPlan = append(mealPlan, randomMeal)
 			duration++
