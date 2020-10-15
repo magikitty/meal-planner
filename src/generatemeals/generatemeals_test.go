@@ -16,9 +16,9 @@ func TestGenerateMealPlan_mealFitsPlan(t *testing.T) {
 	actualBoolDoesNotFit := mealFitsPlan(meal, 3)
 
 	assert.Equal(t, expectedBoolFits, actualBoolFits,
-		"Meal portions should be less than or equal to duration")
+		"Soup has 4 portions and fits into the meal plan with a duration of 4, so it should have returned true.")
 	assert.Equal(t, expectedBoolDoesNotFit, actualBoolDoesNotFit,
-		"Meal portions should be less than or equal to duration")
+		"Soup has 4 portions and does not fit into the meal plan with a duration of 3, so it should have returned false.")
 }
 
 func TestGenerateMealPlan_durationValid(t *testing.T) {
@@ -32,7 +32,7 @@ func TestGenerateMealPlan_durationValid(t *testing.T) {
 	actualDurationInvalidBoolNegative := durationValid(-10)
 
 	assert.Equal(t, expectedDurationValidBool, actualDurationValidBool,
-		"Duration needs to be more than 0")
+		"Duration of 8 is valid and should have returned true.")
 	assert.Equal(t, expectedDurationInvalidBoolZero, actualDurationInvalidBoolZero,
 		"Duration of 0 is an invalid duration and should have returned false. Duration has to be more than 0.")
 	assert.Equal(t, expectedDurationInvalidBoolNegative, actualDurationInvalidBoolNegative,
@@ -45,7 +45,7 @@ func TestGenerateMealPlan_addAllPortionsOfMeal(t *testing.T) {
 	actualMealSlice := addAllPortionsOfMeal(soup)
 
 	assert.Equal(t, expectedMealSlice, actualMealSlice,
-		"Meal slice should have number of meals equal to meal's portion property length")
+		"Soup has 4 portions, so returned meal slice should contain soup 4 times.")
 }
 
 func TestGenerateMealPlan_removeMeal(t *testing.T) {
@@ -62,20 +62,20 @@ func TestGenerateMealPlan_removeMeal(t *testing.T) {
 	actualMealSliceInvalidInput, actualInvalidError := removeMeal(mealSlice2, 3)
 
 	assert.Equal(t, expectedMealSlice, actualMealSlice,
-		"Curry should have been removed from meals and new slice returned without curry. Error should be nil.")
+		"Curry should have been removed from meals and new slice returned without curry.")
 	assert.Equal(t, expectedErr, actualErr,
-		"Curry should have been removed from meals and new slice returned without curry. Error should be nil.")
+		"Error should be nil. Curry should have been removed from meals and new slice returned without curry.")
 	assert.Equal(t, expectedMealSliceInvalidInput, actualMealSliceInvalidInput,
 		"Tried to remove a meal at invalid index 3. It should have returned the original slice without removing anything.")
 	assert.Equal(t, expectedInvalidError, actualInvalidError,
-		"Invalid input of 3 for item index should have returned InvalidIndexToRemove error")
+		"Invalid input of 3 for item index should have returned InvalidIndexToRemove error.")
 }
 
 func TestGenerateMealPlan_makeMealPlan(t *testing.T) {
-	mealPlanExpectedLength := 15
-	mealPlanGenerated := makeMealPlan(15, "../../data/meals/meals.json")
-	mealPlanGeneratedLength := len(mealPlanGenerated)
+	actualMealPlan := makeMealPlan(11, "../../data/tests/test-make-meal-plan.json")
+	expectedMealPlanLength := 11
+	actualMealPlanLength := len(actualMealPlan)
 
-	assert.Equal(t, mealPlanExpectedLength, mealPlanGeneratedLength,
-		"Meal plan should be same length as duration")
+	assert.Equal(t, expectedMealPlanLength, actualMealPlanLength,
+		"Meal plan was not the right length. makeMealPlan should have returned a meal plan for 11 days.")
 }
