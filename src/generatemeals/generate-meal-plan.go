@@ -93,10 +93,9 @@ func addAllPortionsOfMeal(meal Meal) []Meal {
 
 // removeMeal returns copy of mealsSlice without specified item
 func removeMeal(mealsSlice []Meal, mealIndex int) ([]Meal, error) {
-	if mealIndex >= 0 && mealIndex <= len(mealsSlice)-1 {
-		mealsSlice[mealIndex] = mealsSlice[len(mealsSlice)-1]
-		return mealsSlice[:len(mealsSlice)-1], nil
-	} else {
-		return mealsSlice, utils.InvalidIndexToRemove
+	if mealIndex < 0 || mealIndex > len(mealsSlice)-1 {
+		log.Fatal(utils.InvalidIndexToRemove)
 	}
+	mealsSlice[mealIndex] = mealsSlice[len(mealsSlice)-1]
+	return mealsSlice[:len(mealsSlice)-1], nil
 }

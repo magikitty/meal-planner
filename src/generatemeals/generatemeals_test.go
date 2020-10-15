@@ -1,7 +1,6 @@
 package generatemeals
 
 import (
-	"github.com/magikitty/meal-planner/src/utils"
 	"testing"
 
 	"github.com/stretchr/testify/assert"
@@ -53,22 +52,14 @@ func TestGenerateMealPlan_removeMeal(t *testing.T) {
 	meal2 := Meal{"Curry", []string{"curry, cauliflower"}, 1}
 	meal3 := Meal{"Salad", []string{"lettuce, tomato"}, 1}
 	mealSlice1 := []Meal{meal1, meal2, meal3}
-	mealSlice2 := []Meal{meal1, meal2, meal3}
 
 	expectedMealSlice, expectedErr := []Meal{meal1, meal3}, error(nil)
 	actualMealSlice, actualErr := removeMeal(mealSlice1, 1)
-
-	expectedMealSliceInvalidInput, expectedInvalidError := mealSlice2, utils.InvalidIndexToRemove
-	actualMealSliceInvalidInput, actualInvalidError := removeMeal(mealSlice2, 3)
 
 	assert.Equal(t, expectedMealSlice, actualMealSlice,
 		"Curry should have been removed from meals and new slice returned without curry.")
 	assert.Equal(t, expectedErr, actualErr,
 		"Error should be nil. Curry should have been removed from meals and new slice returned without curry.")
-	assert.Equal(t, expectedMealSliceInvalidInput, actualMealSliceInvalidInput,
-		"Tried to remove a meal at invalid index 3. It should have returned the original slice without removing anything.")
-	assert.Equal(t, expectedInvalidError, actualInvalidError,
-		"Invalid input of 3 for item index should have returned InvalidIndexToRemove error.")
 }
 
 func TestGenerateMealPlan_makeMealPlan(t *testing.T) {
