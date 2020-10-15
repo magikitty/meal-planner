@@ -1,5 +1,7 @@
 package utils
 
+import "errors"
+
 // MenuMainOptions contains main menu options
 var MenuMainOptions = map[string]string{
 	"1": "Generate a meal plan",
@@ -29,6 +31,9 @@ func FilePaths() filePaths {
 	return FilePaths
 }
 
+// InvalidIndexToRemove returns error
+var InvalidIndexToRemove = errors.New("Invalid index. Cannot remove item.")
+
 type menuMessages struct {
 	ConfirmQuit           string
 	DisplayMealPlan       string
@@ -44,3 +49,14 @@ type menuMessages struct {
 type filePaths struct {
 	JSONMealsData string
 }
+
+// CustomErrors returns struct with custom errors
+//func CustomErrors() customErrors {
+//	customErrors := customErrors{}
+//	customErrors.InvalidIndexToRemove = "Invalid index. Cannot remove item."
+//	return customErrors
+//}
+//
+//type customErrors struct {
+//	InvalidIndexToRemove string
+//}

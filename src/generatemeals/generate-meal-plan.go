@@ -11,7 +11,7 @@ import (
 
 func getMealPlan() ([]Meal, error) {
 	duration := getMealPlanDurationInput()
-	return makeMealPlan(duration), nil
+	return makeMealPlan(duration, utils.FilePaths().JSONMealsData), nil
 }
 
 // ensure get valid duration input from user
@@ -32,25 +32,26 @@ func durationValid(mealPlanDuration int) (durationValid bool) {
 	return false
 }
 
-func makeMealPlan(totalTargetDuration int) []Meal {
+func makeMealPlan(totalTargetDuration int, filePath string) []Meal {
 	var mealPlan []Meal
-
+	mealData := utils.GetFileData(filePath)
+	allMeals := getAllMealsFromData(mealData).Meals
 	for len(mealPlan) != totalTargetDuration {
-		mealPlan = addRandomMealsToPlan(mealPlan, totalTargetDuration)
+		// keep copy of allMeals data in memory instead of reading from file each loop
+		allMealsCopy := make([]Meal, len(allMeals))
+		copy(allMealsCopy, allMeals)
+
+		mealPlan = addRandomMealsToPlan(allMealsCopy, mealPlan, totalTargetDuration)
 	}
 
 	return mealPlan
 }
 
-func addRandomMealsToPlan(mealPlan []Meal, targetDuration int) []Meal {
+func addRandomMealsToPlan(allMeals, mealPlan []Meal, targetDuration int) []Meal {
 	currentTargetDuration := targetDuration - len(mealPlan)
-	mealData := utils.GetFileData(utils.FilePaths().JSONMealsData)
-	allMeals := getAllMealsFromData(mealData).Meals
-
 	for duration := 0; duration < currentTargetDuration; {
 		randomNum := utils.GetRandomPositiveNumber(len(allMeals))
 		randomMeal := allMeals[randomNum]
-
 		if randomMeal.Portions == 1 {
 			mealPlan = append(mealPlan, randomMeal)
 			duration++
@@ -59,7 +60,7 @@ func addRandomMealsToPlan(mealPlan []Meal, targetDuration int) []Meal {
 			duration += randomMeal.Portions
 		}
 
-		allMeals = removeMeal(allMeals, randomNum)
+		allMeals, _ = removeMeal(allMeals, randomNum)
 		if len(allMeals) == 0 {
 			break
 		}
@@ -93,7 +94,10 @@ func addAllPortionsOfMeal(meal Meal) []Meal {
 }
 
 // removeMeal returns copy of mealsSlice without specified item
-func removeMeal(mealsSlice []Meal, mealIndex int) []Meal {
+func removeMeal(mealsSlice []Meal, mealIndex int) ([]Meal, error) {
+	if mealIndex < 0 || mealIndex > len(mealsSlice)-1 {
+		log.Fatal(utils.InvalidIndexToRemove)
+	}
 	mealsSlice[mealIndex] = mealsSlice[len(mealsSlice)-1]
-	return mealsSlice[:len(mealsSlice)-1]
+	return mealsSlice[:len(mealsSlice)-1], nil
 }
