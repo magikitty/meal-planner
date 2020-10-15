@@ -9,7 +9,7 @@ import (
 func TestGenerateMealPlan_mealFitsPlan(t *testing.T) {
 	meal := Meal{"Soup", []string{"carrots, potatoes"}, 4}
 	expectedBoolFits := true
-	actualBoolFits := mealFitsPlan(meal, 5)
+	actualBoolFits := mealFitsPlan(meal, 4)
 
 	expectedBoolDoesNotFit := false
 	actualBoolDoesNotFit := mealFitsPlan(meal, 2)
