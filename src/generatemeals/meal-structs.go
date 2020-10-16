@@ -9,5 +9,5 @@ type AllMeals struct {
 type Meal struct {
 	Name        string   `json:"name"`
 	Ingredients []string `json:"ingredients"`
-	Portions    int      `json:"portions"`
+	PortionSize int      `json:"portionSize"`
 }

@@ -14,7 +14,7 @@ func MenuMessages() menuMessages {
 	menuMessages := menuMessages{}
 	menuMessages.ConfirmQuit = "Are you sure you want to quit? y/n"
 	menuMessages.DisplayMealPlan = "\nHere is your meal plan:"
-	menuMessages.DisplayPlanFormatting = "Day %v: %v\n   Ingredients: %v\n   Portions: %v \n"
+	menuMessages.DisplayPlanFormatting = "Day %v: %v\n   Ingredients: %v\n   Portion size: %v \n"
 	menuMessages.InputNotValid = "Invalid input, please try again."
 	menuMessages.MealPlanDuration = "How many days do you want to create a meal plan for?"
 	menuMessages.MenuInstructions = "\nWhat do you want to do? Press the number of your choice."
