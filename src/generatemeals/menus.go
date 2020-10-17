@@ -35,12 +35,20 @@ func displayMealPlan(mealPlan []Meal, err error) {
 		fmt.Println(utils.MenuMessages().DisplayMealPlan)
 		for i, meal := range mealPlan {
 			// TODO: call function to handle display ingredients to user properly
-			fmt.Printf(utils.MenuMessages().DisplayPlanFormatting, i+1, meal.Name, meal.Ingredients, meal.PortionSize)
+			fmt.Printf(
+				utils.MenuMessages().DisplayPlanFormatting,
+				i+1,
+				meal.Name,
+				utils.Tab,
+				getMealIngredientsAsString(meal),
+				utils.Tab,
+				meal.PortionSize,
+			)
 		}
 	}
 }
 
-// TODO: Create function to handle display ingredients to user properly
+// TODO: Print strings returned from parse-meals
 
 func quit() {
 	fmt.Println(utils.MenuMessages().ConfirmQuit)

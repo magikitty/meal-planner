@@ -118,3 +118,35 @@ func TestGenerateMealPlan_makeMealPlan(t *testing.T) {
 	assert.Equal(t, expectedMealPlanLength, actualMealPlanLength,
 		"Meal plan was not the right length. makeMealPlan should have returned a meal plan for 11 days.")
 }
+
+func TestMenus_getMealParametersAsString(t *testing.T) {
+	meal := allMeals.Meals[0]
+	expectedMealName := "Potato Delight"
+	expectedMealIngredients := "1 potato"
+	expectedMealPortionSize := "1"
+	actualMealName, actualMealIngredients, actualMealPortionSize := getMealParametersAsString(meal)
+
+	assert.Equal(t, expectedMealName, actualMealName,
+		"Returned string did not match the name of the meal")
+	assert.Equal(t, expectedMealIngredients, actualMealIngredients,
+		"Returned string did not match the ingredients of the meal")
+	assert.Equal(t, expectedMealPortionSize, actualMealPortionSize,
+		"Could not get portion size as string. Expected portion size to be 1 as a string.")
+}
+
+func TestMenus_getMealIngredientsAsString(t *testing.T) {
+	meal1 := allMeals.Meals[0]
+	expectedIngredients1 :=	utils.Tab + utils.Tab + "1 potato"
+	actualIngredients1 := getMealIngredientsAsString(meal1)
+
+	meal2 := allMeals.Meals[1]
+	expectedIngredients2 := utils.Tab + utils.Tab + "2 tomato chunks\n" + utils.Tab + utils.Tab + "10 potato\n" +
+		utils.Tab + utils.Tab + "1 water"
+	actualIngredients2 := getMealIngredientsAsString(meal2)
+
+
+	assert.Equal(t, expectedIngredients1, actualIngredients1,
+		"Returned string did not match the ingredients of the meal")
+	assert.Equal(t, expectedIngredients2, actualIngredients2,
+		"Returned string did not match the ingredients of the meal")
+}
