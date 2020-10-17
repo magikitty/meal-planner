@@ -88,12 +88,12 @@ func TestGenerateMealPlan_durationValid(t *testing.T) {
 }
 
 func TestGenerateMealPlan_addAllPortionsOfMeal(t *testing.T) {
-	soup := allMeals.Meals[1]
-	expectedMealSlice := []Meal{soup, soup, soup, soup}
-	actualMealSlice := addAllPortionsOfMeal(soup)
+	meal := allMeals.Meals[1]
+	expectedMealSlice := []Meal{meal, meal, meal, meal}
+	actualMealSlice := addAllPortionsOfMeal(meal)
 
 	assert.Equal(t, expectedMealSlice, actualMealSlice,
-		"Meal has 4 portions, so returned meal slice should contain soup 4 times.")
+		"Meal has 4 portions, so returned meal slice should contain meal 4 times.")
 }
 
 func TestGenerateMealPlan_removeMeal(t *testing.T) {
