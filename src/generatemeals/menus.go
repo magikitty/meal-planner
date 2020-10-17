@@ -34,10 +34,13 @@ func displayMealPlan(mealPlan []Meal, err error) {
 	} else {
 		fmt.Println(utils.MenuMessages().DisplayMealPlan)
 		for i, meal := range mealPlan {
+			// TODO: call function to handle display ingredients to user properly
 			fmt.Printf(utils.MenuMessages().DisplayPlanFormatting, i+1, meal.Name, meal.Ingredients, meal.PortionSize)
 		}
 	}
 }
+
+// TODO: Create function to handle display ingredients to user properly
 
 func quit() {
 	fmt.Println(utils.MenuMessages().ConfirmQuit)

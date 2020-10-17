@@ -3,11 +3,60 @@ package generatemeals
 import (
 	"testing"
 
+	"github.com/magikitty/meal-planner/src/utils"
 	"github.com/stretchr/testify/assert"
 )
 
+var allMeals = AllMeals{
+	Meals: []Meal{
+		Meal{
+			Name: "Potato Delight",
+			Ingredients: []Ingredient{
+				Ingredient{
+					Name:     "potato",
+					Quantity: 1,
+				},
+			},
+			PortionSize: 1,
+		},
+		Meal{
+			Name: "Pomato",
+			Ingredients: []Ingredient{
+				{
+					Name:     "tomato chunks",
+					Quantity: 2,
+					Unit: &IngredientUnit{
+						Name:     "can",
+						Quantity: 400,
+						Unit:     "gram",
+					},
+				},
+				{
+					Name:     "potato",
+					Quantity: 10,
+				},
+				{
+					Name:     "water",
+					Quantity: 1,
+					Unit: &IngredientUnit{
+						Name: "litre",
+					},
+				},
+			},
+			PortionSize: 4,
+		},
+	},
+}
+
+func TestGenerateMealPlan_getMealsData(t *testing.T) {
+	mealsData := utils.GetFileData("../../data/tests/test-meals.json")
+	actualMealsAll := getAllMealsFromData(mealsData)
+
+	assert.Equal(t, allMeals, actualMealsAll, "Failed to get expected meals.")
+}
+
 func TestGenerateMealPlan_mealFitsPlan(t *testing.T) {
-	meal := Meal{"Soup", []string{"carrots, potatoes"}, 4}
+	meal := allMeals.Meals[1]
 	expectedBoolFits := true
 	actualBoolFits := mealFitsPlan(meal, 4)
 
@@ -15,9 +64,9 @@ func TestGenerateMealPlan_mealFitsPlan(t *testing.T) {
 	actualBoolDoesNotFit := mealFitsPlan(meal, 3)
 
 	assert.Equal(t, expectedBoolFits, actualBoolFits,
-		"Soup has 4 portions and fits into the meal plan with a duration of 4, so it should have returned true.")
+		"Meal has 4 portions and fits into the meal plan with a duration of 4, so it should have returned true.")
 	assert.Equal(t, expectedBoolDoesNotFit, actualBoolDoesNotFit,
-		"Soup has 4 portions and does not fit into the meal plan with a duration of 3, so it should have returned false.")
+		"Meal has 4 portions and does not fit into the meal plan with a duration of 3, so it should have returned false.")
 }
 
 func TestGenerateMealPlan_durationValid(t *testing.T) {
@@ -39,31 +88,30 @@ func TestGenerateMealPlan_durationValid(t *testing.T) {
 }
 
 func TestGenerateMealPlan_addAllPortionsOfMeal(t *testing.T) {
-	soup := Meal{"Soup", []string{"carrots, potatoes"}, 4}
+	soup := allMeals.Meals[1]
 	expectedMealSlice := []Meal{soup, soup, soup, soup}
 	actualMealSlice := addAllPortionsOfMeal(soup)
 
 	assert.Equal(t, expectedMealSlice, actualMealSlice,
-		"Soup has 4 portions, so returned meal slice should contain soup 4 times.")
+		"Meal has 4 portions, so returned meal slice should contain soup 4 times.")
 }
 
 func TestGenerateMealPlan_removeMeal(t *testing.T) {
-	meal1 := Meal{"Soup", []string{"carrots, potatoes"}, 4}
-	meal2 := Meal{"Curry", []string{"curry, cauliflower"}, 1}
-	meal3 := Meal{"Salad", []string{"lettuce, tomato"}, 1}
-	mealSlice1 := []Meal{meal1, meal2, meal3}
+	meal1 := allMeals.Meals[0]
+	meal2 := allMeals.Meals[1]
+	mealSlice := []Meal{meal1, meal2}
 
-	expectedMealSlice, expectedErr := []Meal{meal1, meal3}, error(nil)
-	actualMealSlice, actualErr := removeMeal(mealSlice1, 1)
+	expectedMealSlice, _ := []Meal{meal1}, error(nil)
+	actualMealSlice, actualErr := removeMeal(mealSlice, 1)
 
 	assert.Equal(t, expectedMealSlice, actualMealSlice,
-		"Curry should have been removed from meals and new slice returned without curry.")
-	assert.Equal(t, expectedErr, actualErr,
-		"Error should be nil. Curry should have been removed from meals and new slice returned without curry.")
+		"Meal should have been removed from meals and new slice returned without meal.")
+	assert.Nil(t, actualErr,
+		"Error returned as meal could not be removed - error should have been nil.")
 }
 
 func TestGenerateMealPlan_makeMealPlan(t *testing.T) {
-	actualMealPlan := makeMealPlan(11, "../../data/tests/test-make-meal-plan.json")
+	actualMealPlan := makeMealPlan(11, "../../data/tests/test-meals.json")
 	expectedMealPlanLength := 11
 	actualMealPlanLength := len(actualMealPlan)
 
