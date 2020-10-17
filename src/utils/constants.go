@@ -51,15 +51,3 @@ type menuMessages struct {
 type filePaths struct {
 	JSONMealsData string
 }
-
-// TODO: Delete unused CustomErrors
-// CustomErrors returns struct with custom errors
-//func CustomErrors() customErrors {
-//	customErrors := customErrors{}
-//	customErrors.InvalidIndexToRemove = "Invalid index. Cannot remove item."
-//	return customErrors
-//}
-//
-//type customErrors struct {
-//	InvalidIndexToRemove string
-//}
