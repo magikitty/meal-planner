@@ -20,7 +20,7 @@ func MenuMain() {
 func menuMainSelection(menuSelection string) {
 	switch menuSelection {
 	case utils.MenuMessages().MenuMainOptions["1"]:
-		displayMealPlan(getMealPlan())
+		displayMealPlan(GetMealPlan())
 	case utils.MenuMessages().MenuMainOptions["2"]:
 		addNewMeal()
 	case utils.MenuMessages().MenuMainOptions["3"]:
@@ -37,6 +37,19 @@ func displayMealPlan(mealPlan []Meal, err error) {
 			fmt.Printf(utils.MenuMessages().DisplayPlanFormatting, i+1, meal.Name, meal.Ingredients, meal.PortionSize)
 		}
 	}
+}
+
+// StringMealPlan to return string representation of meal plan for frontend
+func StringMealPlan(mealPlan []Meal) (string, error) {
+
+	var mealPlanString []string
+	var mealString string
+	mealPlanString = append(mealPlanString, utils.MenuMessages().DisplayMealPlan)
+	for i, meal := range mealPlan {
+		mealString = fmt.Sprintf(utils.MenuMessages().DisplayPlanFormatting, i+1, meal.Name, meal.Ingredients, meal.PortionSize)
+		mealPlanString = append(mealPlanString, mealString)
+	}
+	return strings.Join(mealPlanString, "\n"), nil
 }
 
 func quit() {
