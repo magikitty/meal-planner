@@ -1,16 +1,25 @@
 package main
 
 import (
-	"fmt"
+	"log"
+	"net/http"
+	"os"
 
-	"github.com/magikitty/meal-planner/src/generatemeals"
-	"github.com/magikitty/meal-planner/src/utils"
+	"github.com/magikitty/meal-planner/endpoints"
 )
 
 func main() {
-	fmt.Println(utils.MenuMessages().WelcomeMessage)
+	http.HandleFunc("/", endpoints.Index)
+	http.HandleFunc("/new-plan", endpoints.NewMealPlan)
+	http.HandleFunc("/new-recipe", endpoints.NewRecipe)
 
-	for true {
-		generatemeals.MenuMain()
+	log.Fatal(http.ListenAndServe(port(), nil))
+}
+
+func port() string {
+	port := os.Getenv("PORT")
+	if len(port) == 0 {
+		port = "8080"
 	}
+	return ":" + port
 }
