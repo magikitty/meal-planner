@@ -2,8 +2,9 @@ package endpoints
 
 import (
 	"fmt"
+	"html/template"
+	"log"
 	"net/http"
-	"strconv"
 
 	"github.com/magikitty/meal-planner/src/generatemeals"
 	"github.com/magikitty/meal-planner/src/utils"
@@ -11,18 +12,14 @@ import (
 
 // Index handler for root directory
 func Index(w http.ResponseWriter, _ *http.Request) {
+
 	w.WriteHeader(http.StatusOK)
-	_, err := fmt.Fprint(w, utils.MenuMessages().WelcomeMessage+"\n"+utils.MenuMessages().MenuInstructions)
+	html, err := template.ParseFiles("./html/home.html")
 	if err != nil {
-		fmt.Print(err)
+		log.Fatal(err)
 	}
 
-	var s string
-	menu := utils.MenuMainOptions
-	for i := 1; i <= len(menu); i++ {
-		s = fmt.Sprintf("%v. %s\n", i, menu[strconv.Itoa(i)])
-		_, err = fmt.Fprint(w, s)
-	}
+	err = html.Execute(w, utils.MessagesHome())
 }
 
 // NewMealPlan handler for /new-meal-plan directory
