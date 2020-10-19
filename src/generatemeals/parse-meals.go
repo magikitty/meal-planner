@@ -1,15 +1,16 @@
 package generatemeals
 
 import (
-	"github.com/magikitty/meal-planner/src/utils"
 	"strconv"
 	"strings"
+
+	"github.com/magikitty/meal-planner/src/utils"
 )
 
-func getMealParametersAsString(meal Meal) (string, string, string) {
+func getMealParametersAsString(meal Meal) (string, string, int) {
 	name := meal.Name
 	ingredients := getIngredientsAsString(meal)
-	portionSize := strconv.Itoa(meal.PortionSize)
+	portionSize := meal.PortionSize
 
 	return name, ingredients, portionSize
 }
@@ -19,10 +20,10 @@ func getIngredientsAsString(meal Meal) string {
 	var ingredientString string
 
 	for _, ingredient := range meal.Ingredients {
-		 if ingredient.Unit != nil {
-			 ingredientString = getIngredientUnitsAsString(ingredient)
-			 ingredients = append(ingredients, ingredientString)
-			} else {
+		if ingredient.Unit != nil {
+			ingredientString = getIngredientUnitsAsString(ingredient)
+			ingredients = append(ingredients, ingredientString)
+		} else {
 			ingredientString = utils.Tab + utils.Tab + strconv.Itoa(ingredient.Quantity) + " " + ingredient.Name
 			ingredients = append(ingredients, ingredientString)
 		}

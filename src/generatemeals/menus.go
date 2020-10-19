@@ -3,6 +3,7 @@ package generatemeals
 import (
 	"fmt"
 	"os"
+	"strconv"
 	"strings"
 
 	"github.com/magikitty/meal-planner/src/utils"
@@ -33,22 +34,39 @@ func displayMealPlan(mealPlan []Meal, err error) {
 		fmt.Println(err)
 	} else {
 		fmt.Println(utils.MenuMessages().DisplayMealPlan)
+		var name, ingredients string
+		var portionSize, portionsLeft int
+
 		for i, meal := range mealPlan {
-			// TODO: call function to handle display ingredients to user properly
+			// TODO: Refactor
+			// checkGetMeal
+			// checkClearIngredients
+			// printMealInPlan
+			if portionsLeft == 0 {
+				name, ingredients, portionSize = getMealParametersAsString(meal)
+				portionsLeft = portionSize
+			}
+
+			if portionsLeft != portionSize {
+				ingredients = ""
+			}
+
 			fmt.Printf(
 				utils.MenuMessages().DisplayPlanFormatting,
-				i+1,
-				meal.Name,
-				utils.Tab,
-				getIngredientsAsString(meal),
-				utils.Tab,
-				meal.PortionSize,
-			)
+				i+1, name,
+				utils.Tab, formatIngredients(ingredients, portionSize))
+			portionsLeft--
 		}
 	}
 }
 
-// TODO: Print strings returned from parse-meals
+func formatIngredients(ingredients string, portionSize int) string {
+	if ingredients == "" {
+		return ""
+	}
+	return fmt.Sprintf("Ingredients:\n%v\n%vPortions size: %v\n",
+		ingredients, utils.Tab, strconv.Itoa(portionSize))
+}
 
 func quit() {
 	fmt.Println(utils.MenuMessages().ConfirmQuit)
