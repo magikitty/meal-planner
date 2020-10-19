@@ -134,15 +134,15 @@ func TestMenus_getMealParametersAsString(t *testing.T) {
 		"Could not get portion size as string. Expected portion size to be 1 as a string.")
 }
 
-func TestMenus_getMealIngredientsAsString(t *testing.T) {
+func TestMenus_getIngredientsAsString(t *testing.T) {
 	meal1 := allMeals.Meals[0]
 	expectedIngredients1 :=	utils.Tab + utils.Tab + "1 potato"
-	actualIngredients1 := getMealIngredientsAsString(meal1)
+	actualIngredients1 := getIngredientsAsString(meal1)
 
 	meal2 := allMeals.Meals[1]
 	expectedIngredients2 := utils.Tab + utils.Tab + "2 can (400 gram) tomato chunks\n" + utils.Tab + utils.Tab + "10 potato\n" +
 		utils.Tab + utils.Tab + "1 litre water"
-	actualIngredients2 := getMealIngredientsAsString(meal2)
+	actualIngredients2 := getIngredientsAsString(meal2)
 
 
 	assert.Equal(t, expectedIngredients1, actualIngredients1,

@@ -40,7 +40,7 @@ func displayMealPlan(mealPlan []Meal, err error) {
 				i+1,
 				meal.Name,
 				utils.Tab,
-				getMealIngredientsAsString(meal),
+				getIngredientsAsString(meal),
 				utils.Tab,
 				meal.PortionSize,
 			)
