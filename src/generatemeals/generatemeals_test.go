@@ -140,8 +140,8 @@ func TestMenus_getMealIngredientsAsString(t *testing.T) {
 	actualIngredients1 := getMealIngredientsAsString(meal1)
 
 	meal2 := allMeals.Meals[1]
-	expectedIngredients2 := utils.Tab + utils.Tab + "2 tomato chunks\n" + utils.Tab + utils.Tab + "10 potato\n" +
-		utils.Tab + utils.Tab + "1 water"
+	expectedIngredients2 := utils.Tab + utils.Tab + "2 can (400 gram) tomato chunks\n" + utils.Tab + utils.Tab + "10 potato\n" +
+		utils.Tab + utils.Tab + "1 litre water"
 	actualIngredients2 := getMealIngredientsAsString(meal2)
 
 
