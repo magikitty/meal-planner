@@ -26,13 +26,13 @@ func MenuMessages() menuMessages {
 
 // FilePaths returns struct with file paths
 func FilePaths() filePaths {
-	FilePaths := filePaths{}
-	FilePaths.JSONMealsData = "./data/meals/meals.json"
-	return FilePaths
+	filePaths := filePaths{}
+	filePaths.JSONMealsData = "./data/meals/meals.json"
+	return filePaths
 }
 
-// InvalidIndexToRemove returns error
-var InvalidIndexToRemove = errors.New("Invalid index. Cannot remove item.")
+// ErrInvalidIndexToRemove returns error
+var ErrInvalidIndexToRemove = errors.New("cannot remove item as index invalid")
 
 type menuMessages struct {
 	ConfirmQuit           string
@@ -50,13 +50,19 @@ type filePaths struct {
 	JSONMealsData string
 }
 
-// CustomErrors returns struct with custom errors
-//func CustomErrors() customErrors {
-//	customErrors := customErrors{}
-//	customErrors.InvalidIndexToRemove = "Invalid index. Cannot remove item."
-//	return customErrors
-//}
-//
-//type customErrors struct {
-//	InvalidIndexToRemove string
-//}
+type pageMessagesHome struct {
+	WelcomeMessage  string
+	Instructions    string
+	OptionNewPlan   string
+	OptionNewRecipe string
+}
+
+// MessagesHome returns strings for home page
+func MessagesHome() pageMessagesHome {
+	Messages := pageMessagesHome{}
+	Messages.WelcomeMessage = MenuMessages().WelcomeMessage
+	Messages.Instructions = MenuMessages().MenuInstructions
+	Messages.OptionNewPlan = MenuMainOptions["1"]
+	Messages.OptionNewRecipe = MenuMainOptions["2"]
+	return Messages
+}
