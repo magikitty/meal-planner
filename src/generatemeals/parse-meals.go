@@ -7,7 +7,7 @@ import (
 	"github.com/magikitty/meal-planner/src/utils"
 )
 
-func getMealParametersAsString(meal Meal) (string, string, int) {
+func prettifyMealProperties(meal Meal) (string, string, int) {
 	name := meal.Name
 	ingredients := getIngredientsAsString(meal)
 	portionSize := meal.PortionSize

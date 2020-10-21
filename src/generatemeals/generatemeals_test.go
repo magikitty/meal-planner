@@ -124,7 +124,7 @@ func TestMenus_getMealParametersAsString(t *testing.T) {
 	expectedMealName := "Potato Delight"
 	expectedMealIngredients := "1 potato"
 	expectedMealPortionSize := "1"
-	actualMealName, actualMealIngredients, actualMealPortionSize := getMealParametersAsString(meal)
+	actualMealName, actualMealIngredients, actualMealPortionSize := prettifyMealProperties(meal)
 
 	assert.Equal(t, expectedMealName, actualMealName,
 		"Returned string did not match the name of the meal")

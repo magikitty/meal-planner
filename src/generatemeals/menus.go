@@ -43,7 +43,7 @@ func displayMealPlan(mealPlan []Meal, err error) {
 			// checkClearIngredients
 			// printMealInPlan
 			if portionsLeft == 0 {
-				name, ingredients, portionSize = getMealParametersAsString(meal)
+				name, ingredients, portionSize = prettifyMealProperties(meal)
 				portionsLeft = portionSize
 			}
 
