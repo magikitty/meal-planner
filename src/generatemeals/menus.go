@@ -51,13 +51,18 @@ func displayMealPlan(mealPlan []Meal, err error) {
 				ingredients = ""
 			}
 
-			fmt.Printf(
-				utils.MenuMessages().DisplayPlanFormatting,
-				i+1, name,
-				utils.Tab, formatIngredients(ingredients, portionSize))
+			printMealInPlan(i, name, ingredients, portionSize)
+
 			portionsLeft--
 		}
 	}
+}
+
+func printMealInPlan(i int, name string, ingredients string, portionSize int) {
+	fmt.Printf(
+		utils.MenuMessages().DisplayPlanFormatting,
+		i+1, name,
+		utils.Tab, formatIngredients(ingredients, portionSize))
 }
 
 func formatIngredients(ingredients string, portionSize int) string {
