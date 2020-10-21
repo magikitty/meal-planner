@@ -1,6 +1,6 @@
 package generatemeals
 
-// AllMeals contains new to-be-implemented meals (below)
+// AllMeals is a struct for marshaling and unmarshaling json data
 type AllMeals struct {
 	Meals []Meal
 }
@@ -24,4 +24,11 @@ type IngredientUnit struct {
 	Name     string `json:"name"`
 	Quantity int    `json:"quantity,omitempty"`
 	Unit     string `json:"unit,omitempty"`
+}
+
+type FormattedMeal struct {
+	DayNumber string
+	Name string
+	Ingredients string
+	PortionSize string
 }

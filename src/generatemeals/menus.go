@@ -21,12 +21,46 @@ func MenuMain() {
 func menuMainSelection(menuSelection string) {
 	switch menuSelection {
 	case utils.MenuMessages().MenuMainOptions["1"]:
-		displayMealPlan(getMealPlan())
+		//displayMealPlan(getMealPlan())
+		fmt.Print(FormatMealPlan(getMealPlan()))
 	case utils.MenuMessages().MenuMainOptions["2"]:
 		addNewMeal()
 	case utils.MenuMessages().MenuMainOptions["3"]:
 		quit()
 	}
+}
+
+func FormatMealPlan(mealPlan []Meal, err error) []FormattedMeal {
+	var formattedMealPlan []FormattedMeal
+
+	if err != nil {
+		fmt.Println(err)
+	} else {
+		var name, ingredients string
+		var portionSize, portionsLeft int
+
+		for i, meal := range mealPlan {
+			name, ingredients, portionSize = prettifyMealProperties(meal)
+			//fmt.Println("\nday: ", i, "\nname: ", name, "\ningredients: ", ingredients, "\nportion size: ", portionSize)
+
+			if portionsLeft == 0 {
+				name, ingredients, portionSize = prettifyMealProperties(meal)
+				portionsLeft = portionSize
+			} else if portionsLeft != portionSize {
+				ingredients = ""
+			}
+
+			formattedMealPlan = append(formattedMealPlan,
+				FormattedMeal{
+				strconv.Itoa(i),
+				name,
+				ingredients,
+				strconv.Itoa(portionSize)})
+			portionsLeft--
+		}
+	}
+
+	return formattedMealPlan
 }
 
 func displayMealPlan(mealPlan []Meal, err error) {
@@ -38,21 +72,17 @@ func displayMealPlan(mealPlan []Meal, err error) {
 		var portionSize, portionsLeft int
 
 		for i, meal := range mealPlan {
-			// TODO: Refactor
-			// checkGetMeal
-			// checkClearIngredients
-			// printMealInPlan
+			name, ingredients, portionSize = prettifyMealProperties(meal)
+			//fmt.Println("\nday: ", i, "\nname: ", name, "\ningredients: ", ingredients, "\nportion size: ", portionSize)
+
 			if portionsLeft == 0 {
 				name, ingredients, portionSize = prettifyMealProperties(meal)
 				portionsLeft = portionSize
-			}
-
-			if portionsLeft != portionSize {
+			} else if portionsLeft != portionSize {
 				ingredients = ""
 			}
 
 			printMealInPlan(i, name, ingredients, portionSize)
-
 			portionsLeft--
 		}
 	}

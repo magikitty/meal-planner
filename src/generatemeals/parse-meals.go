@@ -24,7 +24,8 @@ func getIngredientsAsString(meal Meal) string {
 			ingredientString = getIngredientUnitsAsString(ingredient)
 			ingredients = append(ingredients, ingredientString)
 		} else {
-			ingredientString = utils.Tab + utils.Tab + strconv.Itoa(ingredient.Quantity) + " " + ingredient.Name
+			ingredientString = strconv.Itoa(ingredient.Quantity) + " " + ingredient.Name
+			//ingredientString = utils.Tab + utils.Tab + strconv.Itoa(ingredient.Quantity) + " " + ingredient.Name
 			ingredients = append(ingredients, ingredientString)
 		}
 	}
