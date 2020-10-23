@@ -14,12 +14,12 @@ import (
 func Index(w http.ResponseWriter, _ *http.Request) {
 
 	w.WriteHeader(http.StatusOK)
-	html, err := template.ParseFiles("./html/home.html")
+	html, err := template.ParseFiles(utils.FilePaths()["pageIndex"])
 	if err != nil {
 		log.Fatal(err)
 	}
 
-	err = html.Execute(w, utils.UXHomeConstants())
+	err = html.Execute(w, utils.GetConstantsHome())
 }
 
 // NewMealPlan handler for /new-meal-plan directory
@@ -38,10 +38,10 @@ func NewMealPlan(w http.ResponseWriter, _ *http.Request) {
 // NewRecipe handler for /new-recipe
 func NewRecipe(w http.ResponseWriter, _ *http.Request) {
 	w.WriteHeader(http.StatusOK)
-	html, err := template.ParseFiles("./html/newRecipe.html")
+	html, err := template.ParseFiles(utils.FilePaths()["pageNewRecipe"])
 	if err != nil {
 		log.Fatal(err)
 	}
 
-	err = html.Execute(w, utils.UXNewRecipeConstants())
+	err = html.Execute(w, utils.GetConstantsNewRecipe())
 }

@@ -10,9 +10,9 @@ import (
 )
 
 func main() {
-	http.HandleFunc(utils.PageAddresses().Home, endpoints.Index)
-	http.HandleFunc(utils.PageAddresses().NewPlan, endpoints.NewMealPlan)
-	http.HandleFunc(utils.PageAddresses().NewRecipe, endpoints.NewRecipe)
+	http.HandleFunc(utils.PageAddresses()["home"], endpoints.Index)
+	http.HandleFunc(utils.PageAddresses()["newPlan"], endpoints.NewMealPlan)
+	http.HandleFunc(utils.PageAddresses()["newRecipe"], endpoints.NewRecipe)
 
 	log.Fatal(http.ListenAndServe(port(), nil))
 }

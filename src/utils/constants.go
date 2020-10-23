@@ -13,10 +13,13 @@ var MenuMainOptions = map[string]string{
 	"3": "Quit",
 }
 
-// FilePaths returns struct with file paths
-func FilePaths() filePaths {
-	filePaths := filePaths{}
-	filePaths.JSONMealsData = "./data/meals/meals.json"
+// FilePaths initialiser function returns map of all file paths
+func FilePaths() map[string]string {
+	var filePaths = map[string]string{
+		"dataMeal":      "./data/meals/meals.json",
+		"pageIndex":     "./html/home.html",
+		"pageNewRecipe": "./html/newRecipe.html",
+	}
 	return filePaths
 }
 
@@ -35,66 +38,73 @@ func MenuMessages() menuMessages {
 	return menuMessages
 }
 
-// MessagesHome returns strings for home page
-func MessagesHome() messagesHome {
-	Messages := messagesHome{}
-	Messages.WelcomeMessage = MenuMessages().WelcomeMessage
-	Messages.Instructions = MenuMessages().MenuInstructions
-	Messages.OptionNewPlan = MenuMainOptions["1"]
-	Messages.OptionNewRecipe = MenuMainOptions["2"]
-	return Messages
+// MessagesHome initialiser function returns map of home page messages
+func MessagesHome() map[string]string {
+	var messagesHome = map[string]string{
+		"welcome":         "Welcome to the Meal Planner!",
+		"instructions":    "What do you want to do?",
+		"optionNewPlan":   "Make a new meal plan",
+		"optionNewRecipe": "Add a new recipe",
+	}
+	return messagesHome
 }
 
-// MessagesGlobal contains messages for users common to many pages
-func MessagesGlobal() messagesGlobal {
-	Messages := messagesGlobal{}
-	Messages.Home = "Home"
-	Messages.NameApp = "Meal Planner"
-	Messages.TitleNewRecipe = "New Recipe"
-	return Messages
+// MessagesGlobal initialiser function returns map of global page messages
+func MessagesGlobal() map[string]string {
+	var messagesGlobal = map[string]string{
+		"home":           "Home",
+		"nameApp":        "Meal Planner",
+		"titleNewRecipe": "New Recipe",
+		"titleNewPlan":   "New Plan",
+	}
+	return messagesGlobal
 }
 
-// PageAddresses contains all page addresses used in e.g. messages and links
-func PageAddresses() pageAddress {
-	Address := pageAddress{}
-	Address.Home = "/"
-	Address.NewPlan = "/new-plan"
-	Address.NewRecipe = "/new-recipe"
-	return Address
+// PageAddresses initialiser function returns map of all page addresses
+func PageAddresses() map[string]string {
+	var pageAddresses = map[string]string{
+		"home":      "/",
+		"newPlan":   "/new-plan",
+		"newRecipe": "/new-recipe",
+	}
+	return pageAddresses
 }
 
-// UXHomeConstants values used to display any content to user
-func UXHomeConstants() uXHomeConstants {
-	u := uXHomeConstants{}
-	u.AddressHome = PageAddresses().Home
-	u.AddressNewPlan = PageAddresses().NewPlan
-	u.AddressNewRecipe = PageAddresses().NewRecipe
-	u.MessageWelcome = MessagesHome().WelcomeMessage
-	u.MessageInstructions = MessagesHome().Instructions
-	u.ButtonOptionsNewPlan = MessagesHome().OptionNewPlan
-	u.ButtonOptionsNewRecipe = MessagesHome().OptionNewRecipe
-	u.NavHome = MessagesGlobal().Home
-	u.Title = MessagesGlobal().NameApp
-	return u
+// GetConstantsHome returns constant values for Home page
+func GetConstantsHome() ConstantsHome {
+	c := ConstantsHome{}
+	c.AddressHome = PageAddresses()["home"]
+	c.AddressNewPlan = PageAddresses()["newPlan"]
+	c.AddressNewRecipe = PageAddresses()["newRecipe"]
+	c.MessageWelcome = MessagesHome()["welcome"]
+	c.MessageInstructions = MessagesHome()["instructions"]
+	c.ButtonOptionsNewPlan = MessagesHome()["optionNewPlan"]
+	c.ButtonOptionsNewRecipe = MessagesHome()["optionNewRecipe"]
+	c.NavHome = MessagesGlobal()["home"]
+	c.Title = MessagesGlobal()["nameApp"]
+	return c
 }
 
-func UXNewRecipeConstants() uxNewRecipeConstants {
-	u := uxNewRecipeConstants{}
-	u.AddressHome = PageAddresses().Home
-	u.AddressNewPlan = PageAddresses().NewPlan
-	u.AddressNewRecipe = PageAddresses().NewRecipe
+// GetConstantsNewPlan returns constant values for New Plan page
+func GetConstantsNewPlan() ConstantsNewPlan {
+	c := ConstantsNewPlan{}
+	c.AddressHome = PageAddresses()["home"]
+	c.Title = MessagesGlobal()["titleNewPlan"]
+	return c
+}
+
+// GetConstantsNewRecipe returns constant values for New Recipe page
+func GetConstantsNewRecipe() ConstantsNewRecipe {
+	u := ConstantsNewRecipe{}
+	u.AddressHome = PageAddresses()["home"]
 	u.MessageNewRecipe = "We are going to add a new meal! Yay!"
-	u.NavHome = MessagesGlobal().Home
-	u.Title = MessagesGlobal().TitleNewRecipe
+	u.NavHome = MessagesGlobal()["home"]
+	u.Title = MessagesGlobal()["titleNewRecipe"]
 	return u
 }
 
 // ErrInvalidIndexToRemove returns error
 var ErrInvalidIndexToRemove = errors.New("cannot remove item as index invalid")
-
-type filePaths struct {
-	JSONMealsData string
-}
 
 type menuMessages struct {
 	ConfirmQuit           string
@@ -140,7 +150,8 @@ type pageAddress struct {
 	NewRecipe string
 }
 
-type uXHomeConstants struct {
+// ConstantsHome struct for Home page constants
+type ConstantsHome struct {
 	AddressHome            string
 	AddressNewPlan         string
 	AddressNewRecipe       string
@@ -152,12 +163,15 @@ type uXHomeConstants struct {
 	Title                  string
 }
 
+// ConstantsNewPlan struct for New Plan page constants
+type ConstantsNewPlan struct {
+	AddressHome string
+	Title       string
 }
 
-type uxNewRecipeConstants struct {
+// ConstantsNewRecipe struct for New Recipe page constants
+type ConstantsNewRecipe struct {
 	AddressHome      string
-	AddressNewPlan   string
-	AddressNewRecipe string
 	MessageNewRecipe string
 	NavHome          string
 	NameApp          string
