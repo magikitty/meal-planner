@@ -11,7 +11,7 @@ import (
 // GetMealPlan returns meal plan ready to be converterd to string for front end
 func GetMealPlan() ([]Meal, error) {
 	duration := getMealPlanDurationInput()
-	return makeMealPlan(duration, utils.FilePaths().JSONMealsData), nil
+	return makeMealPlan(duration, utils.FilePaths()["dataMeal"]), nil
 }
 
 // TODO: allow user input via UX in frontend to set duration; currently set to 10
