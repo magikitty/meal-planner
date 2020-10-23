@@ -60,10 +60,10 @@ func UXHomeConstants() uXHomeConstants {
 	u.AddressHome = PageAddresses().Home
 	u.AddressNewPlan = PageAddresses().NewPlan
 	u.AddressNewRecipe = PageAddresses().NewRecipe
-	u.HomeMessageWelcome = MessagesHome().WelcomeMessage
-	u.HomeMessageInstructions = MessagesHome().Instructions
-	u.HomeButtonOptionsNewPlan = MessagesHome().OptionNewPlan
-	u.HomeButtonOptionsNewRecipe = MessagesHome().OptionNewRecipe
+	u.MessageWelcome = MessagesHome().WelcomeMessage
+	u.MessageInstructions = MessagesHome().Instructions
+	u.ButtonOptionsNewPlan = MessagesHome().OptionNewPlan
+	u.ButtonOptionsNewRecipe = MessagesHome().OptionNewRecipe
 	return u
 }
 
@@ -113,11 +113,12 @@ type pageAddress struct {
 }
 
 type uXHomeConstants struct {
-	AddressHome                string
-	AddressNewPlan             string
-	AddressNewRecipe           string
-	HomeMessageWelcome         string
-	HomeMessageInstructions    string
-	HomeButtonOptionsNewPlan   string
-	HomeButtonOptionsNewRecipe string
+	AddressHome            string
+	AddressNewPlan         string
+	AddressNewRecipe       string
+	MessageWelcome         string
+	MessageInstructions    string
+	ButtonOptionsNewPlan   string
+	ButtonOptionsNewRecipe string
+}
 }
