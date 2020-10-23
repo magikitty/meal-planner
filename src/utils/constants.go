@@ -50,9 +50,9 @@ func PageAddresses() pageAddress {
 	return Address
 }
 
-// UXConstants values used to display any content to user
-func UXConstants() uxConstants {
-	u := uxConstants{}
+// UXHomeConstants values used to display any content to user
+func UXHomeConstants() uXHomeConstants {
+	u := uXHomeConstants{}
 	u.AddressHome = PageAddresses().Home
 	u.AddressNewPlan = PageAddresses().NewPlan
 	u.AddressNewRecipe = PageAddresses().NewRecipe
@@ -95,7 +95,7 @@ type pageAddress struct {
 	NewRecipe string
 }
 
-type uxConstants struct {
+type uXHomeConstants struct {
 	AddressHome                string
 	AddressNewPlan             string
 	AddressNewRecipe           string
