@@ -38,8 +38,10 @@ func NewMealPlan(w http.ResponseWriter, _ *http.Request) {
 // NewRecipe handler for /new-recipe
 func NewRecipe(w http.ResponseWriter, _ *http.Request) {
 	w.WriteHeader(http.StatusOK)
-	_, err := fmt.Fprint(w, "We are going to add a new meal! Yay!")
+	html, err := template.ParseFiles("./html/newRecipe.html")
 	if err != nil {
-		fmt.Print(err)
+		log.Fatal(err)
 	}
+
+	err = html.Execute(w, utils.UXNewRecipeConstants())
 }

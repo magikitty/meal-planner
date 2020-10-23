@@ -63,6 +63,15 @@ func UXHomeConstants() uXHomeConstants {
 	return u
 }
 
+func UXNewRecipeConstants() uxNewRecipeConstants {
+	u := uxNewRecipeConstants{}
+	u.AddressHome = PageAddresses().Home
+	u.AddressNewPlan = PageAddresses().NewPlan
+	u.AddressNewRecipe = PageAddresses().NewRecipe
+	u.MessageNewRecipe = "We are going to add a new meal! Yay!"
+	return u
+}
+
 // ErrInvalidIndexToRemove returns error
 var ErrInvalidIndexToRemove = errors.New("cannot remove item as index invalid")
 
@@ -104,4 +113,10 @@ type uXHomeConstants struct {
 	ButtonOptionsNewPlan   string
 	ButtonOptionsNewRecipe string
 }
+
+type uxNewRecipeConstants struct {
+	AddressHome      string
+	AddressNewPlan   string
+	AddressNewRecipe string
+	MessageNewRecipe string
 }
