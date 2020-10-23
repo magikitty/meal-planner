@@ -6,12 +6,52 @@ import (
 
 var Tab = "   "
 
-// MenuMainOptions contains main menu options
-var MenuMainOptions = map[string]string{
-	"1": "Generate a meal plan",
-	"2": "Add a new meal",
-	"3": "Quit",
+/*
+Structs containing page-specific values
+	- Structs populated by values stored in maps
+	- Structs passed to handlers' html.Execute functions for passing to
+		pages' HTML
+*/
+
+// GetConstantsHome returns struct with constant values for Home page
+func GetConstantsHome() ConstantsHome {
+	c := ConstantsHome{}
+	c.AddressHome = PageAddresses()["home"]
+	c.AddressNewPlan = PageAddresses()["newPlan"]
+	c.AddressNewRecipe = PageAddresses()["newRecipe"]
+	c.MessageWelcome = MessagesHome()["welcome"]
+	c.MessageInstructions = MessagesHome()["instructions"]
+	c.ButtonOptionsNewPlan = MessagesHome()["optionNewPlan"]
+	c.ButtonOptionsNewRecipe = MessagesHome()["optionNewRecipe"]
+	c.NavHome = MessagesGlobal()["home"]
+	c.Title = MessagesGlobal()["nameApp"]
+	return c
 }
+
+// GetConstantsNewPlan returns struct with constant values for New Plan page
+func GetConstantsNewPlan() ConstantsNewPlan {
+	c := ConstantsNewPlan{}
+	c.AddressHome = PageAddresses()["home"]
+	c.Title = MessagesGlobal()["titleNewPlan"]
+	return c
+}
+
+// GetConstantsNewRecipe returns struct with constant values for New Recipe page
+func GetConstantsNewRecipe() ConstantsNewRecipe {
+	u := ConstantsNewRecipe{}
+	u.AddressHome = PageAddresses()["home"]
+	u.MessageNewRecipe = "We are going to add a new meal! Yay!"
+	u.NavHome = MessagesGlobal()["home"]
+	u.Title = MessagesGlobal()["titleNewRecipe"]
+	return u
+}
+
+/*
+Map initialiser functions returning maps containing values, acting as constants
+	- Maps' valused used both:
+		- In backend, e.g. as paths to files and custom errors
+		- In frontend, e.g. as text displayed to user and page metadata
+*/
 
 // FilePaths initialiser function returns map of all file paths
 func FilePaths() map[string]string {
@@ -21,21 +61,6 @@ func FilePaths() map[string]string {
 		"pageNewRecipe": "./html/newRecipe.html",
 	}
 	return filePaths
-}
-
-// MenuMessages returns struct with menu messages
-func MenuMessages() menuMessages {
-	menuMessages := menuMessages{}
-	menuMessages.ConfirmQuit = "Are you sure you want to quit? y/n"
-	menuMessages.DisplayMealPlan = "\nHere is your meal plan:\n"
-	menuMessages.DisplayPlanFormatting = "Day %v: %v\n%v%v\n"
-	menuMessages.InputNotValid = "Invalid input, please try again."
-	menuMessages.MealPlanDuration = "How many days do you want to create a meal plan for?"
-	menuMessages.MenuInstructions = "\nWhat do you want to do?\n"
-	menuMessages.MenuMainOptions = MenuMainOptions
-	menuMessages.QuitYes = "y"
-	menuMessages.WelcomeMessage = "Welcome to the Meal Planner!"
-	return menuMessages
 }
 
 // MessagesHome initialiser function returns map of home page messages
@@ -70,52 +95,12 @@ func PageAddresses() map[string]string {
 	return pageAddresses
 }
 
-// GetConstantsHome returns constant values for Home page
-func GetConstantsHome() ConstantsHome {
-	c := ConstantsHome{}
-	c.AddressHome = PageAddresses()["home"]
-	c.AddressNewPlan = PageAddresses()["newPlan"]
-	c.AddressNewRecipe = PageAddresses()["newRecipe"]
-	c.MessageWelcome = MessagesHome()["welcome"]
-	c.MessageInstructions = MessagesHome()["instructions"]
-	c.ButtonOptionsNewPlan = MessagesHome()["optionNewPlan"]
-	c.ButtonOptionsNewRecipe = MessagesHome()["optionNewRecipe"]
-	c.NavHome = MessagesGlobal()["home"]
-	c.Title = MessagesGlobal()["nameApp"]
-	return c
-}
-
-// GetConstantsNewPlan returns constant values for New Plan page
-func GetConstantsNewPlan() ConstantsNewPlan {
-	c := ConstantsNewPlan{}
-	c.AddressHome = PageAddresses()["home"]
-	c.Title = MessagesGlobal()["titleNewPlan"]
-	return c
-}
-
-// GetConstantsNewRecipe returns constant values for New Recipe page
-func GetConstantsNewRecipe() ConstantsNewRecipe {
-	u := ConstantsNewRecipe{}
-	u.AddressHome = PageAddresses()["home"]
-	u.MessageNewRecipe = "We are going to add a new meal! Yay!"
-	u.NavHome = MessagesGlobal()["home"]
-	u.Title = MessagesGlobal()["titleNewRecipe"]
-	return u
-}
-
-// ErrInvalidIndexToRemove returns error
-var ErrInvalidIndexToRemove = errors.New("cannot remove item as index invalid")
-
-type menuMessages struct {
-	ConfirmQuit           string
-	DisplayMealPlan       string
-	DisplayPlanFormatting string
-	InputNotValid         string
-	MealPlanDuration      string
-	MenuInstructions      string
-	MenuMainOptions       map[string]string
-	QuitYes               string
-	WelcomeMessage        string
+// CustomErrors initialiser function returns map of all custom errors
+func CustomErrors() map[string]error {
+	var customErrors = map[string]error{
+		"invalidIndexToRemove": errors.New("cannot remove item as index invalid"),
+	}
+	return customErrors
 }
 
 // GetFormatStrings initialization function returns map of string formatting values
@@ -176,4 +161,42 @@ type ConstantsNewRecipe struct {
 	NavHome          string
 	NameApp          string
 	Title            string
+}
+
+/*
+DEPRECATE
+*/
+
+// MenuMainOptions contains main menu options
+var MenuMainOptions = map[string]string{
+	"1": "Generate a meal plan",
+	"2": "Add a new meal",
+	"3": "Quit",
+}
+
+// MenuMessages returns struct with menu messages
+func MenuMessages() menuMessages {
+	menuMessages := menuMessages{}
+	menuMessages.ConfirmQuit = "Are you sure you want to quit? y/n"
+	menuMessages.DisplayMealPlan = "\nHere is your meal plan:"
+	menuMessages.DisplayPlanFormatting = "Day %v: %v\n   Ingredients: %v\n   Portion size: %v \n"
+	menuMessages.InputNotValid = "Invalid input, please try again."
+	menuMessages.MealPlanDuration = "How many days do you want to create a meal plan for?"
+	menuMessages.MenuInstructions = "\nWhat do you want to do?\n"
+	menuMessages.MenuMainOptions = MenuMainOptions
+	menuMessages.QuitYes = "y"
+	menuMessages.WelcomeMessage = "Welcome to the Meal Planner!"
+	return menuMessages
+}
+
+type menuMessages struct {
+	ConfirmQuit           string
+	DisplayMealPlan       string
+	DisplayPlanFormatting string
+	InputNotValid         string
+	MealPlanDuration      string
+	MenuInstructions      string
+	MenuMainOptions       map[string]string
+	QuitYes               string
+	WelcomeMessage        string
 }
