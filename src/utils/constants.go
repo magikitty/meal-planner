@@ -49,6 +49,8 @@ func MessagesHome() messagesHome {
 func MessagesGlobal() messagesGlobal {
 	Messages := messagesGlobal{}
 	Messages.Home = "Home"
+	Messages.NameApp = "Meal Planner"
+	Messages.TitleNewRecipe = "New Recipe"
 	return Messages
 }
 
@@ -72,6 +74,7 @@ func UXHomeConstants() uXHomeConstants {
 	u.ButtonOptionsNewPlan = MessagesHome().OptionNewPlan
 	u.ButtonOptionsNewRecipe = MessagesHome().OptionNewRecipe
 	u.NavHome = MessagesGlobal().Home
+	u.Title = MessagesGlobal().NameApp
 	return u
 }
 
@@ -82,6 +85,7 @@ func UXNewRecipeConstants() uxNewRecipeConstants {
 	u.AddressNewRecipe = PageAddresses().NewRecipe
 	u.MessageNewRecipe = "We are going to add a new meal! Yay!"
 	u.NavHome = MessagesGlobal().Home
+	u.Title = MessagesGlobal().TitleNewRecipe
 	return u
 }
 
@@ -125,7 +129,9 @@ type messagesHome struct {
 }
 
 type messagesGlobal struct {
-	Home string
+	Home           string
+	NameApp        string
+	TitleNewRecipe string
 }
 
 type pageAddress struct {
@@ -143,6 +149,9 @@ type uXHomeConstants struct {
 	ButtonOptionsNewPlan   string
 	ButtonOptionsNewRecipe string
 	NavHome                string
+	Title                  string
+}
+
 }
 
 type uxNewRecipeConstants struct {
@@ -151,4 +160,6 @@ type uxNewRecipeConstants struct {
 	AddressNewRecipe string
 	MessageNewRecipe string
 	NavHome          string
+	NameApp          string
+	Title            string
 }
