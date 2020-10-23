@@ -6,12 +6,13 @@ import (
 	"os"
 
 	"github.com/magikitty/meal-planner/endpoints"
+	"github.com/magikitty/meal-planner/src/utils"
 )
 
 func main() {
-	http.HandleFunc("/", endpoints.Index)
-	http.HandleFunc("/new-plan", endpoints.NewMealPlan)
-	http.HandleFunc("/new-recipe", endpoints.NewRecipe)
+	http.HandleFunc(utils.PageAddresses().Home, endpoints.Index)
+	http.HandleFunc(utils.PageAddresses().NewPlan, endpoints.NewMealPlan)
+	http.HandleFunc(utils.PageAddresses().NewRecipe, endpoints.NewRecipe)
 
 	log.Fatal(http.ListenAndServe(port(), nil))
 }

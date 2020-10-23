@@ -19,7 +19,7 @@ func Index(w http.ResponseWriter, _ *http.Request) {
 		log.Fatal(err)
 	}
 
-	err = html.Execute(w, utils.MessagesHome())
+	err = html.Execute(w, utils.UXConstants())
 }
 
 // NewMealPlan handler for /new-meal-plan directory

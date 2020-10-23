@@ -9,9 +9,11 @@
 </style>
 <body>
     <div>
-        <p>{{.WelcomeMessage}}</p>
-        <p>{{.Instructions}}</p>
-        <p>{{.OptionNewPlan}}</p>
-        <p>{{.OptionNewRecipe}}</p>
+        <p>{{.HomeMessageWelcome}}</p>
+        <p>{{.HomeMessageInstructions}}</p>
+        <button type=“button”><a href={{.AddressNewPlan}}>
+            {{.HomeButtonOptionsNewPlan}}</a></button>
+        <button type=“button”><a href={{.AddressNewRecipe}}>
+            {{.HomeButtonOptionsNewRecipe}}</a></button>
     </div>
 </body>
