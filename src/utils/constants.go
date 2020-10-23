@@ -41,6 +41,13 @@ func MessagesHome() messagesHome {
 	return Messages
 }
 
+// MessagesGlobal contains messages for users common to many pages
+func MessagesGlobal() messagesGlobal {
+	Messages := messagesGlobal{}
+	Messages.Home = "Home"
+	return Messages
+}
+
 // PageAddresses contains all page addresses used in e.g. messages and links
 func PageAddresses() pageAddress {
 	Address := pageAddress{}
@@ -60,6 +67,7 @@ func UXHomeConstants() uXHomeConstants {
 	u.MessageInstructions = MessagesHome().Instructions
 	u.ButtonOptionsNewPlan = MessagesHome().OptionNewPlan
 	u.ButtonOptionsNewRecipe = MessagesHome().OptionNewRecipe
+	u.NavHome = MessagesGlobal().Home
 	return u
 }
 
@@ -69,6 +77,7 @@ func UXNewRecipeConstants() uxNewRecipeConstants {
 	u.AddressNewPlan = PageAddresses().NewPlan
 	u.AddressNewRecipe = PageAddresses().NewRecipe
 	u.MessageNewRecipe = "We are going to add a new meal! Yay!"
+	u.NavHome = MessagesGlobal().Home
 	return u
 }
 
@@ -98,6 +107,10 @@ type messagesHome struct {
 	OptionNewRecipe string
 }
 
+type messagesGlobal struct {
+	Home string
+}
+
 type pageAddress struct {
 	Home      string
 	NewPlan   string
@@ -112,6 +125,7 @@ type uXHomeConstants struct {
 	MessageInstructions    string
 	ButtonOptionsNewPlan   string
 	ButtonOptionsNewRecipe string
+	NavHome                string
 }
 
 type uxNewRecipeConstants struct {
@@ -119,4 +133,5 @@ type uxNewRecipeConstants struct {
 	AddressNewPlan   string
 	AddressNewRecipe string
 	MessageNewRecipe string
+	NavHome          string
 }
