@@ -21,7 +21,7 @@ func stringifyMealPlan(mealPlan []Meal, err error) []MealStringified {
 	for i, meal := range mealPlan {
 		if portionsLeft == 0 {
 			name = meal.Name
-			ingredients = getIngredientsAsString(meal)
+			ingredients = stringifiedIngredients(meal)
 			portionSize = meal.PortionSize
 			portionsLeft = portionSize
 		} else if portionsLeft != portionSize {
@@ -47,7 +47,7 @@ func stringifiedMeal(i int, name string, ingredients []string, portionSize int) 
 	return stringifiedMeal
 }
 
-func getIngredientsAsString(meal Meal) []string {
+func stringifiedIngredients(meal Meal) []string {
 	var ingredients []string
 	var ingredientString string
 
