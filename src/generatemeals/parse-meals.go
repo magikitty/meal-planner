@@ -2,34 +2,34 @@ package generatemeals
 
 import (
 	"fmt"
-	"github.com/magikitty/meal-planner/src/utils"
 	"strconv"
+
+	"github.com/magikitty/meal-planner/src/utils"
 )
 
 func stringifyMealPlan(mealPlan []Meal, err error) []MealStringified {
-	var stringifiedMealPlan []MealStringified
-
+	// TODO: Throw new custom error defined in constants file instead
 	if err != nil {
 		fmt.Println(err)
-	} else {
-		var name string
-		var ingredients []string
-		var portionSize, portionsLeft int
+	}
 
-		for i, meal := range mealPlan {
+	var stringifiedMealPlan []MealStringified
+	var name string
+	var ingredients []string
+	var portionSize, portionsLeft int
 
-			if portionsLeft == 0 {
-				name = meal.Name
-				ingredients = getIngredientsAsString(meal)
-				portionSize = meal.PortionSize
-				portionsLeft = portionSize
-			} else if portionsLeft != portionSize {
-				ingredients = []string{}
-			}
-
-			stringifiedMealPlan = append(stringifiedMealPlan, stringifiedMeal(i, name, ingredients, portionSize))
-			portionsLeft--
+	for i, meal := range mealPlan {
+		if portionsLeft == 0 {
+			name = meal.Name
+			ingredients = getIngredientsAsString(meal)
+			portionSize = meal.PortionSize
+			portionsLeft = portionSize
+		} else if portionsLeft != portionSize {
+			ingredients = []string{}
 		}
+
+		stringifiedMealPlan = append(stringifiedMealPlan, stringifiedMeal(i, name, ingredients, portionSize))
+		portionsLeft--
 	}
 
 	return stringifiedMealPlan
@@ -72,20 +72,20 @@ func getIngredientUnitsAsString(ingredient Ingredient) string {
 		ingredientString =
 			strconv.Itoa(ingredient.Quantity) +
 				utils.GetFormatStrings()["space"] +
-			ingredient.Unit.Name +
+				ingredient.Unit.Name +
 				utils.GetFormatStrings()["space"] + utils.GetFormatStrings()["bracketOpen"] +
-			strconv.Itoa(ingredient.Unit.Quantity) +
+				strconv.Itoa(ingredient.Unit.Quantity) +
 				utils.GetFormatStrings()["space"] +
-			ingredient.Unit.Unit +
+				ingredient.Unit.Unit +
 				utils.GetFormatStrings()["bracketClosed"] + utils.GetFormatStrings()["space"] +
-			ingredient.Name
+				ingredient.Name
 	} else {
 		ingredientString =
 			strconv.Itoa(ingredient.Quantity) +
 				utils.GetFormatStrings()["space"] +
-			ingredient.Unit.Name +
+				ingredient.Unit.Name +
 				utils.GetFormatStrings()["space"] +
-			ingredient.Name
+				ingredient.Name
 	}
 	return ingredientString
 }
