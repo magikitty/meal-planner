@@ -5,7 +5,13 @@
       "ingredients": [
         {
           "name":     "potato",
-          "quantity": 1
+          "quantity": 1,
+          "unit":
+          {
+              "name": "",
+              "quantity": 0,
+              "unit": ""
+          }
         }
       ],
       "portionSize": 1
@@ -25,7 +31,13 @@
         },
         {
           "name":     "potato",
-          "quantity": 10
+          "quantity": 10,
+          "unit":
+          {
+              "name": "",
+              "quantity": 0,
+              "unit": ""
+          }
         },
         {
           "name":     "water",

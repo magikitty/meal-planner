@@ -15,6 +15,11 @@ var allMeals = AllMeals{
 				Ingredient{
 					Name:     "potato",
 					Quantity: 1,
+					Unit: &IngredientUnit{
+						Name:     "",
+						Quantity: 0,
+						Unit:     "",
+					},
 				},
 			},
 			PortionSize: 1,
@@ -34,12 +39,19 @@ var allMeals = AllMeals{
 				{
 					Name:     "potato",
 					Quantity: 10,
+					Unit: &IngredientUnit{
+						Name:     "",
+						Quantity: 0,
+						Unit:     "",
+					},
 				},
 				{
 					Name:     "water",
 					Quantity: 1,
 					Unit: &IngredientUnit{
-						Name: "litre",
+						Name:     "litre",
+						Quantity: 0,
+						Unit:     "",
 					},
 				},
 			},
@@ -51,7 +63,6 @@ var allMeals = AllMeals{
 func TestGenerateMealPlan_getMealsData(t *testing.T) {
 	mealsData := utils.GetFileData("../../data/tests/test-meals.json")
 	actualMealsAll := getAllMealsFromData(mealsData)
-
 	assert.Equal(t, allMeals, actualMealsAll, "Failed to get expected meals.")
 }
 
@@ -119,34 +130,69 @@ func TestGenerateMealPlan_makeMealPlan(t *testing.T) {
 		"Meal plan was not the right length. makeMealPlan should have returned a meal plan for 11 days.")
 }
 
-func TestMenus_getMealParametersAsString(t *testing.T) {
+func TestParseMeals_StringifiedIngredients(t *testing.T) {
 	meal := allMeals.Meals[0]
-	expectedMealName := "Potato Delight"
-	expectedMealIngredients := "1 potato"
-	expectedMealPortionSize := "1"
-	actualMealName, actualMealIngredients, actualMealPortionSize := prettifyMealProperties(meal)
 
-	assert.Equal(t, expectedMealName, actualMealName,
-		"Returned string did not match the name of the meal")
-	assert.Equal(t, expectedMealIngredients, actualMealIngredients,
-		"Returned string did not match the ingredients of the meal")
-	assert.Equal(t, expectedMealPortionSize, actualMealPortionSize,
-		"Could not get portion size as string. Expected portion size to be 1 as a string.")
+	expectedIngredients := []string{"1 potato"}
+	actualIngredients := stringifiedIngredients(meal)
+
+	assert.Equal(t, expectedIngredients, actualIngredients,
+		"Ingredients were not properly stringified.")
 }
 
-func TestMenus_getIngredientsAsString(t *testing.T) {
-	meal1 := allMeals.Meals[0]
-	expectedIngredients1 :=	utils.Tab + utils.Tab + "1 potato"
-	actualIngredients1 := getIngredientsAsString(meal1)
+func TestParseMeals_StringifyMeal(t *testing.T) {
+	meal := allMeals.Meals[0]
+	expectedMeal := MealStringified{
+		DayNumber:   "Day 1: ",
+		Name:        "Potato Delight",
+		Ingredients: []string{"1 potato"},
+		PortionSize: "Portion size: 1",
+	}
+	actualMeal := stringifiedMeal(0, meal.Name, stringifiedIngredients(meal), meal.PortionSize)
 
-	meal2 := allMeals.Meals[1]
-	expectedIngredients2 := utils.Tab + utils.Tab + "2 can (400 gram) tomato chunks\n" + utils.Tab + utils.Tab + "10 potato\n" +
-		utils.Tab + utils.Tab + "1 litre water"
-	actualIngredients2 := getIngredientsAsString(meal2)
+	assert.Equal(t, expectedMeal, actualMeal,
+		"Meal was not properly stringified.")
+}
 
+func TestParseMeals_StringifyMealPlan(t *testing.T) {
+	expectedPlan := []MealStringified{
+		MealStringified{
+			DayNumber:   "Day 1: ",
+			Name:        "Potato Delight",
+			Ingredients: []string{"1 potato"},
+			PortionSize: "Portion size: 1",
+		},
+		MealStringified{
+			DayNumber: "Day 2: ",
+			Name:      "Pomato",
+			Ingredients: []string{
+				"2 can (400 gram) tomato chunks",
+				"10 potato",
+				"1 litre water",
+			},
+			PortionSize: "Portion size: 4",
+		},
+		MealStringified{
+			DayNumber:   "Day 3: ",
+			Name:        "Pomato",
+			Ingredients: []string{},
+			PortionSize: "Portion size: 4",
+		},
+		MealStringified{
+			DayNumber:   "Day 4: ",
+			Name:        "Pomato",
+			Ingredients: []string{},
+			PortionSize: "Portion size: 4",
+		},
+		MealStringified{
+			DayNumber:   "Day 5: ",
+			Name:        "Pomato",
+			Ingredients: []string{},
+			PortionSize: "Portion size: 4",
+		},
+	}
+	actualPlan := stringifyMealPlan([]Meal{allMeals.Meals[0], allMeals.Meals[1], allMeals.Meals[1], allMeals.Meals[1], allMeals.Meals[1]}, nil)
 
-	assert.Equal(t, expectedIngredients1, actualIngredients1,
-		"Returned string did not match the ingredients of the meal")
-	assert.Equal(t, expectedIngredients2, actualIngredients2,
-		"Returned string did not match the ingredients of the meal")
+	assert.Equal(t, expectedPlan, actualPlan,
+		"Plan was not properly stringified.")
 }
