@@ -1,20 +1,21 @@
 package generatemeals
 
-// AllMeals is a struct for marshaling and unmarshaling json data
+// AllMeals struct represnts unmarshalled JSON data of all meals
 type AllMeals struct {
 	Meals []Meal
 }
 
-// Meal to be implemented once new Meal data representation sorted out
+// Meal struct for unmarhshalling JSON meals
 type Meal struct {
 	Name        string       `json:"name"`
 	Ingredients []Ingredient `json:"ingredients"`
 	PortionSize int          `json:"portionSize"`
 }
 
+// MealStringified is string-representation meals for front end presentation
 type MealStringified struct {
-	DayNumber string
-	Name string
+	DayNumber   string
+	Name        string
 	Ingredients []string
 	PortionSize string
 }
