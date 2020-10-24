@@ -10,7 +10,7 @@ import (
 )
 
 func main() {
-	http.HandleFunc(utils.PageAddresses()["home"], endpoints.Index)
+	http.HandleFunc(utils.PageAddresses()["index"], endpoints.Index)
 	http.HandleFunc(utils.PageAddresses()["newPlan"], endpoints.NewMealPlan)
 	http.HandleFunc(utils.PageAddresses()["newRecipe"], endpoints.NewRecipe)
 
