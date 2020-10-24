@@ -120,7 +120,7 @@
               "quantity": 120,
               "unit":
               {
-                  "name": "",
+                  "name": "g",
                   "quantity": 0,
                   "unit": ""
               }
@@ -178,7 +178,7 @@
               {
                   "name": "can",
                   "quantity": 400,
-                  "unit": "gram"
+                  "unit": "g"
               }
           },
           {
@@ -346,10 +346,10 @@
       ]
       },
       {       
-      "name": "Potato Stew",
+      "name": "Soup",
       "ingredients": [
           {
-              "name": "potato",
+              "name": "pumpkin",
               "quantity": 10,
               "unit":
               {
@@ -369,7 +369,7 @@
               }
           },
           {
-              "name": "carrot",
+              "name": "squash",
               "quantity": 6,
               "unit":
               {
