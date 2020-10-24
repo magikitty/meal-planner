@@ -30,32 +30,28 @@ func menuMainSelection(menuSelection string) {
 	}
 }
 
-func FormatMealPlan(mealPlan []Meal, err error) []FormattedMeal {
-	var formattedMealPlan []FormattedMeal
+func FormatMealPlan(mealPlan []Meal, err error) []MealStringified {
+	var formattedMealPlan []MealStringified
 
 	if err != nil {
 		fmt.Println(err)
 	} else {
-		var name, ingredients string
+		var name string
+		var ingredients []string
 		var portionSize, portionsLeft int
 
 		for i, meal := range mealPlan {
-			name, ingredients, portionSize = prettifyMealProperties(meal)
-			//fmt.Println("\nday: ", i, "\nname: ", name, "\ningredients: ", ingredients, "\nportion size: ", portionSize)
 
 			if portionsLeft == 0 {
-				name, ingredients, portionSize = prettifyMealProperties(meal)
+				name = meal.Name
+				ingredients = getIngredientsAsString(meal)
+				portionSize = meal.PortionSize
 				portionsLeft = portionSize
 			} else if portionsLeft != portionSize {
-				ingredients = ""
+				ingredients = []string{}
 			}
 
-			formattedMealPlan = append(formattedMealPlan,
-				FormattedMeal{
-				strconv.Itoa(i),
-				name,
-				ingredients,
-				strconv.Itoa(portionSize)})
+			formattedMealPlan = append(formattedMealPlan, formattedMeal(i, name, ingredients, portionSize))
 			portionsLeft--
 		}
 	}
@@ -63,44 +59,14 @@ func FormatMealPlan(mealPlan []Meal, err error) []FormattedMeal {
 	return formattedMealPlan
 }
 
-func displayMealPlan(mealPlan []Meal, err error) {
-	if err != nil {
-		fmt.Println(err)
-	} else {
-		fmt.Println(utils.MenuMessages().DisplayMealPlan)
-		var name, ingredients string
-		var portionSize, portionsLeft int
+func formattedMeal(i int, name string, ingredients []string, portionSize int) MealStringified {
+	formattedMeal := MealStringified{
+		"Day " + strconv.Itoa(i+1) + ":",
+		name,
+		ingredients,
+		"Portion size: " + strconv.Itoa(portionSize)}
 
-		for i, meal := range mealPlan {
-			name, ingredients, portionSize = prettifyMealProperties(meal)
-			//fmt.Println("\nday: ", i, "\nname: ", name, "\ningredients: ", ingredients, "\nportion size: ", portionSize)
-
-			if portionsLeft == 0 {
-				name, ingredients, portionSize = prettifyMealProperties(meal)
-				portionsLeft = portionSize
-			} else if portionsLeft != portionSize {
-				ingredients = ""
-			}
-
-			printMealInPlan(i, name, ingredients, portionSize)
-			portionsLeft--
-		}
-	}
-}
-
-func printMealInPlan(i int, name string, ingredients string, portionSize int) {
-	fmt.Printf(
-		utils.MenuMessages().DisplayPlanFormatting,
-		i+1, name,
-		utils.Tab, formatIngredients(ingredients, portionSize))
-}
-
-func formatIngredients(ingredients string, portionSize int) string {
-	if ingredients == "" {
-		return ""
-	}
-	return fmt.Sprintf("Ingredients:\n%v\n%vPortions size: %v\n",
-		ingredients, utils.Tab, strconv.Itoa(portionSize))
+	return formattedMeal
 }
 
 func quit() {
