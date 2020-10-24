@@ -53,3 +53,16 @@ type menuMessages struct {
 type filePaths struct {
 	JSONMealsData string
 }
+
+// GetFormatStrings initialization function returns map of string formatting values
+func GetFormatStrings() map[string]string {
+	var formatStrings = map[string]string {
+		"day" : "Day",
+		"portionSize" : "Portion size",
+		"space" : " ",
+		"colon" : ":",
+		"bracketOpen" : "(",
+		"bracketClosed" : ")",
+	}
+	return formatStrings
+}
