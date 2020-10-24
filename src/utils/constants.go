@@ -13,36 +13,33 @@ Structs containing page-specific values
 		pages' HTML
 */
 
-// GetConstantsHome returns struct with constant values for Home page
-func GetConstantsHome() ConstantsHome {
-	c := ConstantsHome{}
-	c.AddressHome = PageAddresses()["home"]
+// GetConstantsIndex returns struct with constant values for Home page
+func GetConstantsIndex() ConstantsIndex {
+	c := ConstantsIndex{}
+	c.AddressIndex = PageAddresses()["index"]
 	c.AddressNewPlan = PageAddresses()["newPlan"]
 	c.AddressNewRecipe = PageAddresses()["newRecipe"]
-	c.MessageWelcome = MessagesHome()["welcome"]
-	c.MessageInstructions = MessagesHome()["instructions"]
-	c.ButtonOptionsNewPlan = MessagesHome()["optionNewPlan"]
-	c.ButtonOptionsNewRecipe = MessagesHome()["optionNewRecipe"]
-	c.NavHome = MessagesGlobal()["home"]
-	c.Title = MessagesGlobal()["nameApp"]
+	c.MessageWelcome = MessagesIndex()["welcome"]
+	c.MessageInstructions = MessagesIndex()["instructions"]
+	c.ButtonOptionsNewPlan = MessagesIndex()["optionNewPlan"]
+	c.ButtonOptionsNewRecipe = MessagesIndex()["optionNewRecipe"]
+	c.NavIndex = MessagesGlobal()["index"]
 	return c
 }
 
 // GetConstantsNewPlan returns struct with constant values for New Plan page
 func GetConstantsNewPlan() ConstantsNewPlan {
 	c := ConstantsNewPlan{}
-	c.AddressHome = PageAddresses()["home"]
-	c.Title = MessagesGlobal()["titleNewPlan"]
+	c.AddressIndex = PageAddresses()["index"]
 	return c
 }
 
 // GetConstantsNewRecipe returns struct with constant values for New Recipe page
 func GetConstantsNewRecipe() ConstantsNewRecipe {
 	u := ConstantsNewRecipe{}
-	u.AddressHome = PageAddresses()["home"]
+	u.AddressIndex = PageAddresses()["index"]
 	u.MessageNewRecipe = "We are going to add a new meal! Yay!"
-	u.NavHome = MessagesGlobal()["home"]
-	u.Title = MessagesGlobal()["titleNewRecipe"]
+	u.NavIndex = MessagesGlobal()["index"]
 	return u
 }
 
@@ -63,21 +60,21 @@ func FilePaths() map[string]string {
 	return filePaths
 }
 
-// MessagesHome initialiser function returns map of home page messages
-func MessagesHome() map[string]string {
-	var messagesHome = map[string]string{
+// MessagesIndex initialiser function returns map of home page messages
+func MessagesIndex() map[string]string {
+	var messagesIndex = map[string]string{
 		"welcome":         "Welcome to the Meal Planner!",
 		"instructions":    "What do you want to do?",
 		"optionNewPlan":   "Make a new meal plan",
 		"optionNewRecipe": "Add a new recipe",
 	}
-	return messagesHome
+	return messagesIndex
 }
 
 // MessagesGlobal initialiser function returns map of global page messages
 func MessagesGlobal() map[string]string {
 	var messagesGlobal = map[string]string{
-		"home":           "Home",
+		"index":          "Home",
 		"nameApp":        "Meal Planner",
 		"titleNewRecipe": "New Recipe",
 		"titleNewPlan":   "New Plan",
@@ -88,7 +85,7 @@ func MessagesGlobal() map[string]string {
 // PageAddresses initialiser function returns map of all page addresses
 func PageAddresses() map[string]string {
 	var pageAddresses = map[string]string{
-		"home":      "/",
+		"index":     "/",
 		"newPlan":   "/new-plan",
 		"newRecipe": "/new-recipe",
 	}
@@ -135,30 +132,34 @@ type pageAddress struct {
 	NewRecipe string
 }
 
-// ConstantsHome struct for Home page constants
-type ConstantsHome struct {
-	AddressHome            string
+/*
+Struct definitions for structs used to pass values to application pages
+*/
+
+// ConstantsIndex struct for Home page constants
+type ConstantsIndex struct {
+	AddressIndex           string
 	AddressNewPlan         string
 	AddressNewRecipe       string
 	MessageWelcome         string
 	MessageInstructions    string
 	ButtonOptionsNewPlan   string
 	ButtonOptionsNewRecipe string
-	NavHome                string
-	Title                  string
+	NavIndex               string
+	TitlePage              string
+	TitleApp               string
 }
 
 // ConstantsNewPlan struct for New Plan page constants
 type ConstantsNewPlan struct {
-	AddressHome string
-	Title       string
+	AddressIndex string
 }
 
 // ConstantsNewRecipe struct for New Recipe page constants
 type ConstantsNewRecipe struct {
-	AddressHome      string
+	AddressIndex     string
 	MessageNewRecipe string
-	NavHome          string
+	NavIndex         string
 	NameApp          string
 	Title            string
 }
