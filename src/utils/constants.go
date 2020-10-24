@@ -7,7 +7,7 @@ import (
 var Tab = "   "
 
 /*
-Structs containing page-specific values
+Struct initialiser functions returning structs with page-specific values
 	- Structs populated by values stored in maps
 	- Structs passed to handlers' html.Execute functions for passing to
 		pages' HTML
@@ -24,6 +24,8 @@ func GetConstantsIndex() ConstantsIndex {
 	c.ButtonOptionsNewPlan = MessagesIndex()["optionNewPlan"]
 	c.ButtonOptionsNewRecipe = MessagesIndex()["optionNewRecipe"]
 	c.NavIndex = MessagesGlobal()["index"]
+	c.TitlePage = MessagesGlobal()["index"]
+	c.TitleApp = MessagesGlobal()["nameApp"]
 	return c
 }
 
@@ -31,20 +33,24 @@ func GetConstantsIndex() ConstantsIndex {
 func GetConstantsNewPlan() ConstantsNewPlan {
 	c := ConstantsNewPlan{}
 	c.AddressIndex = PageAddresses()["index"]
+	c.TitlePage = MessagesGlobal()["titleNewPlan"]
+	c.TitleApp = MessagesGlobal()["nameApp"]
 	return c
 }
 
 // GetConstantsNewRecipe returns struct with constant values for New Recipe page
 func GetConstantsNewRecipe() ConstantsNewRecipe {
-	u := ConstantsNewRecipe{}
-	u.AddressIndex = PageAddresses()["index"]
-	u.MessageNewRecipe = "We are going to add a new meal! Yay!"
-	u.NavIndex = MessagesGlobal()["index"]
-	return u
+	c := ConstantsNewRecipe{}
+	c.AddressIndex = PageAddresses()["index"]
+	c.MessageNewRecipe = "We are going to add a new meal! Yay!"
+	c.NavIndex = MessagesGlobal()["index"]
+	c.TitlePage = MessagesGlobal()["titleNewRecipe"]
+	c.TitleApp = MessagesGlobal()["nameApp"]
+	return c
 }
 
 /*
-Map initialiser functions returning maps containing values, acting as constants
+Map initialiser functions return maps containing values, acting as constants
 	- Maps' valused used both:
 		- In backend, e.g. as paths to files and custom errors
 		- In frontend, e.g. as text displayed to user and page metadata
@@ -153,6 +159,8 @@ type ConstantsIndex struct {
 // ConstantsNewPlan struct for New Plan page constants
 type ConstantsNewPlan struct {
 	AddressIndex string
+	TitlePage    string
+	TitleApp     string
 }
 
 // ConstantsNewRecipe struct for New Recipe page constants
@@ -161,7 +169,8 @@ type ConstantsNewRecipe struct {
 	MessageNewRecipe string
 	NavIndex         string
 	NameApp          string
-	Title            string
+	TitlePage        string
+	TitleApp         string
 }
 
 /*
