@@ -5,7 +5,7 @@ import (
 	"strconv"
 )
 
-func FormatMealPlan(mealPlan []Meal, err error) []MealStringified {
+func stringifyMealPlan(mealPlan []Meal, err error) []MealStringified {
 	var formattedMealPlan []MealStringified
 
 	if err != nil {
@@ -26,7 +26,7 @@ func FormatMealPlan(mealPlan []Meal, err error) []MealStringified {
 				ingredients = []string{}
 			}
 
-			formattedMealPlan = append(formattedMealPlan, formattedMeal(i, name, ingredients, portionSize))
+			formattedMealPlan = append(formattedMealPlan, stringifiedMeal(i, name, ingredients, portionSize))
 			portionsLeft--
 		}
 	}
@@ -34,7 +34,7 @@ func FormatMealPlan(mealPlan []Meal, err error) []MealStringified {
 	return formattedMealPlan
 }
 
-func formattedMeal(i int, name string, ingredients []string, portionSize int) MealStringified {
+func stringifiedMeal(i int, name string, ingredients []string, portionSize int) MealStringified {
 	formattedMeal := MealStringified{
 		"Day " + strconv.Itoa(i+1) + ":",
 		name,

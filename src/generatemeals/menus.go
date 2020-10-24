@@ -21,7 +21,7 @@ func menuMainSelection(menuSelection string) {
 	switch menuSelection {
 	case utils.MenuMessages().MenuMainOptions["1"]:
 		//displayMealPlan(getMealPlan())
-		fmt.Print(FormatMealPlan(getMealPlan()))
+		fmt.Print(stringifyMealPlan(getMealPlan()))
 	case utils.MenuMessages().MenuMainOptions["2"]:
 		addNewMeal()
 	case utils.MenuMessages().MenuMainOptions["3"]:
