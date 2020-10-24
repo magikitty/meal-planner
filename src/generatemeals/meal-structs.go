@@ -12,6 +12,13 @@ type Meal struct {
 	PortionSize int          `json:"portionSize"`
 }
 
+type MealStringified struct {
+	DayNumber string
+	Name string
+	Ingredients []string
+	PortionSize string
+}
+
 // Ingredient is a struct of ingredients for a meal
 type Ingredient struct {
 	Name     string          `json:"name"`
@@ -24,11 +31,4 @@ type IngredientUnit struct {
 	Name     string `json:"name"`
 	Quantity int    `json:"quantity,omitempty"`
 	Unit     string `json:"unit,omitempty"`
-}
-
-type FormattedMeal struct {
-	DayNumber string
-	Name string
-	Ingredients string
-	PortionSize string
 }
