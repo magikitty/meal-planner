@@ -4,12 +4,12 @@ import (
 	"errors"
 )
 
-/*
+/***********************************************************************
 Struct initialiser functions returning structs with page-specific values
 	- Structs populated by values stored in maps
 	- Structs passed to handlers' html.Execute functions for passing to
 		pages' HTML
-*/
+***********************************************************************/
 
 // GetConstantsIndex returns struct with constant values for Home page
 func GetConstantsIndex() ConstantsIndex {
@@ -62,7 +62,6 @@ Map initialiser functions return maps containing values, acting as constants
 func FilePaths() map[string]string {
 	var filePaths = map[string]string{
 		"dataMeal":      "./data/meals/meals.json",
-		"pageIndex":     "./html/home.html",
 		"pageNewRecipe": "./html/newRecipe.html",
 		"pageNewPlan":   "./html/newMealPlan.html",
 	}
@@ -122,25 +121,7 @@ func GetFormatStrings() map[string]string {
 	return formatStrings
 }
 
-type messagesHome struct {
-	WelcomeMessage  string
-	Instructions    string
-	OptionNewPlan   string
-	OptionNewRecipe string
-}
-
-type messagesGlobal struct {
-	Home           string
-	NameApp        string
-	TitleNewRecipe string
-}
-
-type pageAddress struct {
-	Home      string
-	NewPlan   string
-	NewRecipe string
-}
-
+// TODO: Remove this section header, move struct definitions to under initialisation functions
 /*
 Struct definitions for structs used to pass values to application pages
 */
@@ -180,6 +161,7 @@ type ConstantsNewRecipe struct {
 	TitleApp         string
 }
 
+// TODO: Delete these, anything using these
 /*
 DEPRECATE
 */
@@ -223,4 +205,23 @@ type menuMessages struct {
 	MenuMainOptions       map[string]string
 	QuitYes               string
 	WelcomeMessage        string
+}
+
+type messagesHome struct {
+	WelcomeMessage  string
+	Instructions    string
+	OptionNewPlan   string
+	OptionNewRecipe string
+}
+
+type messagesGlobal struct {
+	Home           string
+	NameApp        string
+	TitleNewRecipe string
+}
+
+type pageAddress struct {
+	Home      string
+	NewPlan   string
+	NewRecipe string
 }
