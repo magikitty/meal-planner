@@ -1,0 +1,56 @@
+{
+  "meals": [
+    {
+      "name": "Potato Delight",
+      "ingredients": [
+        {
+          "name":     "potato",
+          "quantity": 1,
+          "unit":
+          {
+              "name": "",
+              "quantity": 0,
+              "unit": ""
+          }
+        }
+      ],
+      "portionSize": 1
+    },
+    {
+      "name": "Pomato",
+      "ingredients": [
+        {
+          "name":     "tomato chunks",
+          "quantity": 2,
+          "unit":
+          {
+              "name": "can",
+              "quantity": 400,
+              "unit": "gram"
+          }
+        },
+        {
+          "name":     "potato",
+          "quantity": 10,
+          "unit":
+          {
+              "name": "",
+              "quantity": 0,
+              "unit": ""
+          }
+        },
+        {
+          "name":     "water",
+          "quantity": 1,
+          "unit":
+          {
+              "name": "litre",
+              "quantity": 0,
+              "unit": ""
+          }
+        }
+      ],
+      "portionSize": 4
+    }
+  ]
+}

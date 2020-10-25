@@ -1,6 +1,10 @@
 package utils
 
-import "errors"
+import (
+	"errors"
+)
+
+var Tab = "   "
 
 // MenuMainOptions contains main menu options
 var MenuMainOptions = map[string]string{
@@ -13,8 +17,8 @@ var MenuMainOptions = map[string]string{
 func MenuMessages() menuMessages {
 	menuMessages := menuMessages{}
 	menuMessages.ConfirmQuit = "Are you sure you want to quit? y/n"
-	menuMessages.DisplayMealPlan = "\nHere is your meal plan:"
-	menuMessages.DisplayPlanFormatting = "Day %v: %v\n   Ingredients: %v\n   Portion size: %v \n"
+	menuMessages.DisplayMealPlan = "\nHere is your meal plan:\n"
+	menuMessages.DisplayPlanFormatting = "Day %v: %v\n%v%v\n"
 	menuMessages.InputNotValid = "Invalid input, please try again."
 	menuMessages.MealPlanDuration = "How many days do you want to create a meal plan for?"
 	menuMessages.MenuInstructions = "\nWhat do you want to do? Press the number of your choice."
@@ -50,13 +54,15 @@ type filePaths struct {
 	JSONMealsData string
 }
 
-// CustomErrors returns struct with custom errors
-//func CustomErrors() customErrors {
-//	customErrors := customErrors{}
-//	customErrors.InvalidIndexToRemove = "Invalid index. Cannot remove item."
-//	return customErrors
-//}
-//
-//type customErrors struct {
-//	InvalidIndexToRemove string
-//}
+// GetFormatStrings initialization function returns map of string formatting values
+func GetFormatStrings() map[string]string {
+	var formatStrings = map[string]string {
+		"day" : "Day",
+		"portionSize" : "Portion size",
+		"space" : " ",
+		"colon" : ":",
+		"bracketOpen" : "(",
+		"bracketClosed" : ")",
+	}
+	return formatStrings
+}

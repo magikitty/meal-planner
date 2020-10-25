@@ -20,22 +20,11 @@ func MenuMain() {
 func menuMainSelection(menuSelection string) {
 	switch menuSelection {
 	case utils.MenuMessages().MenuMainOptions["1"]:
-		displayMealPlan(getMealPlan())
+		fmt.Print(stringifyMealPlan(getMealPlan()))
 	case utils.MenuMessages().MenuMainOptions["2"]:
 		addNewMeal()
 	case utils.MenuMessages().MenuMainOptions["3"]:
 		quit()
-	}
-}
-
-func displayMealPlan(mealPlan []Meal, err error) {
-	if err != nil {
-		fmt.Println(err)
-	} else {
-		fmt.Println(utils.MenuMessages().DisplayMealPlan)
-		for i, meal := range mealPlan {
-			fmt.Printf(utils.MenuMessages().DisplayPlanFormatting, i+1, meal.Name, meal.Ingredients, meal.PortionSize)
-		}
 	}
 }
 

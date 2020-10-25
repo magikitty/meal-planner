@@ -1,39 +1,421 @@
 {
   "meals": [
-    {
+      {
       "name": "Potato Omelette",
-      "ingredients": ["potatoes", "eggs", "onion"],
-      "portionSize" : 1
-    },
-    {
-      "name": "Zucchini Pasta",
-      "ingredients": ["zucchini", "pasta", "garlic", "cheese"],
-      "portionSize" : 1
-    },
-    {
-      "name": "Veggie Couscous",
-      "ingredients": ["broccoli", "cauliflower", "onion", "couscous", "vegetable stock"],
-      "portionSize" : 1
-    },
-    {
-      "name": "Veggie Casserole",
-      "ingredients": ["potatoes", "zucchini", "onion", "rice", "canned tomato", "oatcream"],
-      "portionSize" : 3
-    },
-    {
-      "name": "Nachos",
-      "ingredients": ["nacho chips", "black beans", "corn", "onion", "tomatoes", "cheese", "taco spice"],
-      "portionSize" : 3
-    },
-    {
-      "name": "Burritos",
-      "ingredients": ["burrito wraps", "black beans", "corn", "onion", "tomatoes", "cheese", "rice"],
+      "ingredients": [
+          {
+              "name": "potato",
+              "quantity": 4,
+              "unit":
+              {
+                  "name": "",
+                  "quantity": 0,
+                  "unit": ""
+              }            
+          },
+          {
+              "name": "egg",
+              "quantity": 5,
+              "unit":
+              {
+                  "name": "",
+                  "quantity": 0,
+                  "unit": ""
+              }   
+          },
+          {
+              "name": "onion",
+              "quantity": 1,
+              "unit":
+              {
+                  "name": "",
+                  "quantity": 0,
+                  "unit": ""
+              }   
+          }
+      ],
       "portionSize" : 2
-    },
-    {
-      "name": "Stew",
-      "ingredients": ["potatoes", "zucchini", "onion", "carrots"],
+      },
+      {
+      "name": "Zucchini Pasta",
+      "ingredients": [
+          {
+              "name": "zucchini",
+              "quantity": 1,
+              "unit":
+              {
+                  "name": "",
+                  "quantity": 0,
+                  "unit": ""
+              }   
+          },
+          {
+              "name": "pasta",
+              "quantity": 150,
+              "unit":
+              {
+                  "name": "g",
+                  "quantity": 0,
+                  "unit": ""
+              }
+          },
+          {
+              "name": "garlic",
+              "quantity": 3,
+              "unit":
+              {
+                  "name": "cloves",
+                  "quantity": 0,
+                  "unit": ""
+              }
+          },
+          {
+              "name": "cheese",
+              "quantity": 1,
+              "unit":
+              {
+                  "name": "cups",
+                  "quantity": 0,
+                  "unit": ""
+              }
+          }
+      ],
+      "portionSize" : 2
+      },
+      {
+      "name": "Veggie Couscous",
+      "ingredients": [
+          {
+              "name": "broccoli",
+              "quantity": 1,
+              "unit":
+              {
+                  "name": "",
+                  "quantity": 0,
+                  "unit": ""
+              }
+          },
+          {
+              "name": "cauliflower",
+              "quantity": 1,
+              "unit":
+              {
+                  "name": "",
+                  "quantity": 0,
+                  "unit": ""
+              }
+          },
+          {
+              "name": "onion",
+              "quantity": 1,
+              "unit":
+              {
+                  "name": "",
+                  "quantity": 0,
+                  "unit": ""
+              }
+          },
+          {
+              "name": "couscous",
+              "quantity": 120,
+              "unit":
+              {
+                  "name": "g",
+                  "quantity": 0,
+                  "unit": ""
+              }
+          }
+      ],
       "portionSize" : 4
-    }
+      },
+      {
+      "name": "Veggie Casserole",
+      "ingredients": [
+          {
+              "name": "potatoes",
+              "quantity": 10,
+              "unit":
+              {
+                  "name": "",
+                  "quantity": 0,
+                  "unit": ""
+              }
+          },
+          {
+              "name": "zucchini",
+              "quantity": 1,
+              "unit":
+              {
+                  "name": "",
+                  "quantity": 0,
+                  "unit": ""
+              }
+          },
+          {
+              "name": "onion",
+              "quantity": 1,
+              "unit":
+              {
+                  "name": "",
+                  "quantity": 0,
+                  "unit": ""
+              }
+          },
+          {
+              "name": "rice",
+              "quantity": 2,
+              "unit":
+              {
+                  "name": "cups",
+                  "quantity": 0,
+                  "unit": ""
+              }                
+          },
+          {
+              "name": "tomato chunks",
+              "quantity": 1,
+              "unit":
+              {
+                  "name": "can",
+                  "quantity": 400,
+                  "unit": "g"
+              }
+          },
+          {
+              "name": "oat cream",
+              "quantity": 1,
+              "unit":
+              {
+                  "name": "carton",
+                  "quantity": 200,
+                  "unit": "ml"
+              }
+          }
+      ],
+      "portionSize" : 6
+      },
+      {
+      "name": "Nachos",
+      "ingredients": [
+          {
+              "name": "nacho chips",
+              "quantity": 1,
+              "unit":
+              {
+                  "name": "bag",
+                  "quantity": 400,
+                  "unit": "g"
+              }
+          },
+          {
+              "name": "black beans",
+              "quantity": 1,
+              "unit":
+              {
+                  "name": "can",
+                  "quantity": 400,
+                  "unit": "g"
+              }
+          },
+          {
+              "name": "corn",
+              "quantity": 1,
+              "unit":
+              {
+                  "name": "can",
+                  "quantity": 250,
+                  "unit": "g"
+              }
+          },
+          {
+              "name": "onion",
+              "quantity": 1,
+              "unit":
+              {
+                  "name": "",
+                  "quantity": 0,
+                  "unit": ""
+              }
+          },
+          {
+              "name": "tomato chunks",
+              "quantity": 1,
+              "unit":
+              {
+                  "name": "can",
+                  "quantity": 400,
+                  "unit": "g"
+              }
+          },
+          {
+              "name": "cheese",
+              "quantity": 2,
+              "unit":
+              {
+                  "name": "cups",
+                  "quantity": 0,
+                  "unit": ""
+              }
+          },
+          {
+              "name": "taco spice",
+              "quantity": 1,
+              "unit":
+              {
+                  "name": "bag",
+                  "quantity": 50,
+                  "unit": "g"
+              }
+          }
+      ],
+      "portionSize" : 4
+      },
+      {
+      "name": "Burritos",
+      "ingredients": [
+          {
+              "name": "burrito wraps",
+              "quantity": 1,
+              "unit":
+              {
+                  "name": "bag",
+                  "quantity": 6,
+                  "unit": "wraps"
+              }
+          },
+          {
+              "name": "black beans",
+              "quantity": 1,
+              "unit":
+              {
+                  "name": "can",
+                  "quantity": 400,
+                  "unit": "g"
+              }
+          },
+          {
+              "name": "corn",
+              "quantity": 1,
+              "unit":
+              {
+                  "name": "can",
+                  "quantity": 250,
+                  "unit": "g"
+              }
+          },
+          {
+              "name": "onion",
+              "quantity": 1,
+              "unit":
+              {
+                  "name": "",
+                  "quantity": 0,
+                  "unit": ""
+              }
+          },
+          {
+              "name": "tomato chunks",
+              "quantity": 1,
+              "unit":
+              {
+                  "name": "can",
+                  "quantity": 400,
+                  "unit": "g"
+              }
+          },
+          {
+              "name": "cheese",
+              "quantity": 1,
+              "unit":
+              {
+                  "name": "cups",
+                  "quantity": 0,
+                  "unit": ""
+              }
+          },
+          {
+              "name": "rice",
+              "quantity": 1,
+              "unit":
+              {
+                  "name": "cup",
+                  "quantity": 0,
+                  "unit": ""
+              }
+          }
+      ]
+      },
+      {       
+      "name": "Soup",
+      "ingredients": [
+          {
+              "name": "pumpkin",
+              "quantity": 10,
+              "unit":
+              {
+                  "name": "",
+                  "quantity": 0,
+                  "unit": ""
+              }
+          },
+          {
+              "name": "onion",
+              "quantity": 2,
+              "unit":
+              {
+                  "name": "",
+                  "quantity": 0,
+                  "unit": ""
+              }
+          },
+          {
+              "name": "squash",
+              "quantity": 6,
+              "unit":
+              {
+                  "name": "",
+                  "quantity": 0,
+                  "unit": ""
+              }
+          }
+      ],
+      "portionSize" : 1
+      },
+      {
+      "name": "Potato Stew",
+      "ingredients": [
+          {
+              "name": "potato",
+              "quantity": 10,
+              "unit":
+              {
+                  "name": "",
+                  "quantity": 0,
+                  "unit": ""
+              }
+          },
+          {
+              "name": "onion",
+              "quantity": 2,
+              "unit":
+              {
+                  "name": "",
+                  "quantity": 0,
+                  "unit": ""
+              }
+          },
+          {
+              "name": "carrot",
+              "quantity": 6,
+              "unit":
+              {
+                  "name": "",
+                  "quantity": 0,
+                  "unit": ""
+              }
+          }
+      ],
+      "portionSize" : 4
+      }
   ]
 }
