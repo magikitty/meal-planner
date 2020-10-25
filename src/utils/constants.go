@@ -28,11 +28,13 @@ func GetConstantsIndex() ConstantsIndex {
 }
 
 // GetConstantsNewPlan returns struct with constant values for New Plan page
-func GetConstantsNewPlan() ConstantsNewPlan {
+func GetConstantsNewPlan(mealPlan []MealStringified) ConstantsNewPlan {
 	c := ConstantsNewPlan{}
 	c.AddressIndex = PageAddresses()["index"]
+	c.NavIndex = MessagesGlobal()["index"]
 	c.TitlePage = MessagesGlobal()["titleNewPlan"]
 	c.TitleApp = MessagesGlobal()["nameApp"]
+	c.MealPlan = mealPlan
 	return c
 }
 
@@ -60,6 +62,7 @@ func FilePaths() map[string]string {
 		"dataMeal":      "./data/meals/meals.json",
 		"pageIndex":     "./html/home.html",
 		"pageNewRecipe": "./html/newRecipe.html",
+		"pageNewPlan":   "./html/newMealPlan.html",
 	}
 	return filePaths
 }
@@ -81,7 +84,7 @@ func MessagesGlobal() map[string]string {
 		"index":          "Home",
 		"nameApp":        "Meal Planner",
 		"titleNewRecipe": "New Recipe",
-		"titleNewPlan":   "New Plan",
+		"titleNewPlan":   "New Meal Plan",
 	}
 	return messagesGlobal
 }
@@ -157,8 +160,10 @@ type ConstantsIndex struct {
 // ConstantsNewPlan struct for New Plan page constants
 type ConstantsNewPlan struct {
 	AddressIndex string
+	NavIndex     string
 	TitlePage    string
 	TitleApp     string
+	MealPlan     []MealStringified
 }
 
 // ConstantsNewRecipe struct for New Recipe page constants

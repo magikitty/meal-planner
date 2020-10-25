@@ -1,7 +1,6 @@
 package endpoints
 
 import (
-	"fmt"
 	"html/template"
 	"log"
 	"net/http"
@@ -25,12 +24,18 @@ func Index(w http.ResponseWriter, _ *http.Request) {
 // NewMealPlan handler for /new-meal-plan directory
 func NewMealPlan(w http.ResponseWriter, _ *http.Request) {
 	w.WriteHeader(http.StatusOK)
-	stringMealPlan, err := generatemeals.StringifyMealPlan(generatemeals.GetMealPlan())
-	_, err = fmt.Fprint(w, stringMealPlan)
+	html, err := template.ParseFiles(utils.FilePaths()["pageNewPlan"])
 	if err != nil {
-		fmt.Print(err)
+		log.Fatal(err)
 	}
-
+	mealPlan, err := generatemeals.StringifyMealPlan(generatemeals.GetMealPlan())
+	if err != nil {
+		log.Fatal(err)
+	}
+	err = html.Execute(w, utils.GetConstantsNewPlan(mealPlan))
+	if err != nil {
+		log.Fatal(err)
+	}
 }
 
 // NewRecipe handler for /new-recipe

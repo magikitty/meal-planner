@@ -7,15 +7,15 @@ import (
 	"github.com/stretchr/testify/assert"
 )
 
-var allMeals = AllMeals{
-	Meals: []Meal{
-		Meal{
+var allMeals = utils.AllMeals{
+	Meals: []utils.Meal{
+		utils.Meal{
 			Name: "Potato Delight",
-			Ingredients: []Ingredient{
-				Ingredient{
+			Ingredients: []utils.Ingredient{
+				utils.Ingredient{
 					Name:     "potato",
 					Quantity: 1,
-					Unit: &IngredientUnit{
+					Unit: &utils.IngredientUnit{
 						Name:     "",
 						Quantity: 0,
 						Unit:     "",
@@ -24,13 +24,13 @@ var allMeals = AllMeals{
 			},
 			PortionSize: 1,
 		},
-		Meal{
+		utils.Meal{
 			Name: "Pomato",
-			Ingredients: []Ingredient{
+			Ingredients: []utils.Ingredient{
 				{
 					Name:     "tomato chunks",
 					Quantity: 2,
-					Unit: &IngredientUnit{
+					Unit: &utils.IngredientUnit{
 						Name:     "can",
 						Quantity: 400,
 						Unit:     "gram",
@@ -39,7 +39,7 @@ var allMeals = AllMeals{
 				{
 					Name:     "potato",
 					Quantity: 10,
-					Unit: &IngredientUnit{
+					Unit: &utils.IngredientUnit{
 						Name:     "",
 						Quantity: 0,
 						Unit:     "",
@@ -48,7 +48,7 @@ var allMeals = AllMeals{
 				{
 					Name:     "water",
 					Quantity: 1,
-					Unit: &IngredientUnit{
+					Unit: &utils.IngredientUnit{
 						Name:     "litre",
 						Quantity: 0,
 						Unit:     "",
@@ -100,7 +100,7 @@ func TestGenerateMealPlan_durationValid(t *testing.T) {
 
 func TestGenerateMealPlan_addAllPortionsOfMeal(t *testing.T) {
 	meal := allMeals.Meals[1]
-	expectedMealSlice := []Meal{meal, meal, meal, meal}
+	expectedMealSlice := []utils.Meal{meal, meal, meal, meal}
 	actualMealSlice := addAllPortionsOfMeal(meal)
 
 	assert.Equal(t, expectedMealSlice, actualMealSlice,
@@ -110,9 +110,9 @@ func TestGenerateMealPlan_addAllPortionsOfMeal(t *testing.T) {
 func TestGenerateMealPlan_removeMeal(t *testing.T) {
 	meal1 := allMeals.Meals[0]
 	meal2 := allMeals.Meals[1]
-	mealSlice := []Meal{meal1, meal2}
+	mealSlice := []utils.Meal{meal1, meal2}
 
-	expectedMealSlice, _ := []Meal{meal1}, error(nil)
+	expectedMealSlice, _ := []utils.Meal{meal1}, error(nil)
 	actualMealSlice, actualErr := removeMeal(mealSlice, 1)
 
 	assert.Equal(t, expectedMealSlice, actualMealSlice,
@@ -142,7 +142,7 @@ func TestParseMeals_StringifiedIngredients(t *testing.T) {
 
 func TestParseMeals_StringifyMeal(t *testing.T) {
 	meal := allMeals.Meals[0]
-	expectedMeal := MealStringified{
+	expectedMeal := utils.MealStringified{
 		DayNumber:   "Day 1: ",
 		Name:        "Potato Delight",
 		Ingredients: []string{"1 potato"},
@@ -155,14 +155,14 @@ func TestParseMeals_StringifyMeal(t *testing.T) {
 }
 
 func TestParseMeals_StringifyMealPlan(t *testing.T) {
-	expectedPlan := []MealStringified{
-		MealStringified{
+	expectedPlan := []utils.MealStringified{
+		utils.MealStringified{
 			DayNumber:   "Day 1: ",
 			Name:        "Potato Delight",
 			Ingredients: []string{"1 potato"},
 			PortionSize: "Portion size: 1",
 		},
-		MealStringified{
+		utils.MealStringified{
 			DayNumber: "Day 2: ",
 			Name:      "Pomato",
 			Ingredients: []string{
@@ -172,26 +172,26 @@ func TestParseMeals_StringifyMealPlan(t *testing.T) {
 			},
 			PortionSize: "Portion size: 4",
 		},
-		MealStringified{
+		utils.MealStringified{
 			DayNumber:   "Day 3: ",
 			Name:        "Pomato",
 			Ingredients: []string{},
 			PortionSize: "Portion size: 4",
 		},
-		MealStringified{
+		utils.MealStringified{
 			DayNumber:   "Day 4: ",
 			Name:        "Pomato",
 			Ingredients: []string{},
 			PortionSize: "Portion size: 4",
 		},
-		MealStringified{
+		utils.MealStringified{
 			DayNumber:   "Day 5: ",
 			Name:        "Pomato",
 			Ingredients: []string{},
 			PortionSize: "Portion size: 4",
 		},
 	}
-	actualPlan, _ := StringifyMealPlan([]Meal{allMeals.Meals[0], allMeals.Meals[1], allMeals.Meals[1], allMeals.Meals[1], allMeals.Meals[1]}, nil)
+	actualPlan, _ := StringifyMealPlan([]utils.Meal{allMeals.Meals[0], allMeals.Meals[1], allMeals.Meals[1], allMeals.Meals[1], allMeals.Meals[1]}, nil)
 
 	assert.Equal(t, expectedPlan, actualPlan,
 		"Plan was not properly stringified.")

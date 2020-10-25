@@ -1,4 +1,4 @@
-package generatemeals
+package utils
 
 // AllMeals struct represnts unmarshalled JSON data of all meals
 type AllMeals struct {
