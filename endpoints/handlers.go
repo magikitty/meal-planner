@@ -32,7 +32,8 @@ func NewMealPlan(w http.ResponseWriter, _ *http.Request) {
 	if err != nil {
 		log.Fatal(err)
 	}
-	err = html.Execute(w, utils.GetConstantsNewPlan(mealPlan))
+	mealString := utils.GetConstantsNewPlan(mealPlan, utils.ReformatMealStringPlan(mealPlan))
+	err = html.Execute(w, mealString)
 	if err != nil {
 		log.Fatal(err)
 	}

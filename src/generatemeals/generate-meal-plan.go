@@ -11,14 +11,12 @@ import (
 
 // GetMealPlan returns meal plan ready to be converterd to string for front end
 func GetMealPlan() ([]utils.Meal, error) {
-	// TODO: Have user input duration in frontend
 	// duration := getMealPlanDurationInput()
 	duration := 10
 	return makeMealPlan(duration, utils.FilePaths()["dataMeal"]), nil
 }
 
-// TODO: allow user input via UX in frontend to set duration; currently set to 10
-// ensure get valid duration input from user
+// TODO: Have user input duration in frontend
 func getMealPlanDurationInput() (durationInputInt int) {
 	fmt.Println(utils.MenuMessages().MealPlanDuration)
 	durationInput := utils.ConvertStringToInt(menu.GetUserInput())

@@ -28,13 +28,15 @@ func GetConstantsIndex() ConstantsIndex {
 }
 
 // GetConstantsNewPlan returns struct with constant values for New Plan page
-func GetConstantsNewPlan(mealPlan []MealStringified) ConstantsNewPlan {
+func GetConstantsNewPlan(mealPlan []MealStringified, mealPlanString []string) ConstantsNewPlan {
 	c := ConstantsNewPlan{}
 	c.AddressIndex = PageAddresses()["index"]
 	c.NavIndex = MessagesGlobal()["index"]
 	c.TitlePage = MessagesGlobal()["titleNewPlan"]
 	c.TitleApp = MessagesGlobal()["nameApp"]
+	// TODO: Remove once implemented string collection rendering in HTML
 	c.MealPlan = mealPlan
+	c.MealPlanString = mealPlanString
 	return c
 }
 
@@ -163,7 +165,9 @@ type ConstantsNewPlan struct {
 	NavIndex     string
 	TitlePage    string
 	TitleApp     string
-	MealPlan     []MealStringified
+	// TODO: Remove once implemented string collection rendering in HTML
+	MealPlan       []MealStringified
+	MealPlanString []string
 }
 
 // ConstantsNewRecipe struct for New Recipe page constants
