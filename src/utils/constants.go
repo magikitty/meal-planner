@@ -180,6 +180,13 @@ type ConstantsNewRecipe struct {
 DEPRECATE
 */
 
+/*
+Struct initialiser functions returning structs with page-specific values
+	- Structs populated by values stored in maps
+	- Structs passed to handlers' html.Execute functions for passing to
+		pages' HTML
+*/
+
 // MenuMainOptions contains main menu options
 var MenuMainOptions = map[string]string{
 	"1": "Generate a meal plan",

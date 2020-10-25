@@ -28,6 +28,30 @@ func menuMainSelection(menuSelection string) {
 	}
 }
 
+func displayMealPlan(mealPlan []utils.Meal, err error) {
+	if err != nil {
+		fmt.Println(err)
+	} else {
+		fmt.Println(utils.MenuMessages().DisplayMealPlan)
+		for i, meal := range mealPlan {
+			fmt.Printf(utils.MenuMessages().DisplayPlanFormatting, i+1, meal.Name, meal.Ingredients, meal.PortionSize)
+		}
+	}
+}
+
+// StringMealPlan to return string representation of meal plan for frontend
+func StringMealPlan(mealPlan []utils.Meal) (string, error) {
+
+	var mealPlanString []string
+	var mealString string
+	mealPlanString = append(mealPlanString, utils.MenuMessages().DisplayMealPlan)
+	for i, meal := range mealPlan {
+		mealString = fmt.Sprintf(utils.MenuMessages().DisplayPlanFormatting, i+1, meal.Name, meal.Ingredients, meal.PortionSize)
+		mealPlanString = append(mealPlanString, mealString)
+	}
+	return strings.Join(mealPlanString, "\n"), nil
+}
+
 func quit() {
 	fmt.Println(utils.MenuMessages().ConfirmQuit)
 	userInput := menu.GetUserInput()
