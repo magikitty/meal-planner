@@ -1,16 +1,16 @@
 package generatemeals
 
 import (
-	"fmt"
 	"strconv"
 
 	"github.com/magikitty/meal-planner/src/utils"
 )
 
-func stringifyMealPlan(mealPlan []Meal, err error) []MealStringified {
+// StringifyMealPlan returns struct of stringified mealplans
+func StringifyMealPlan(mealPlan []Meal, err error) ([]MealStringified, error) {
 	// TODO: Throw new custom error defined in constants file instead
 	if err != nil {
-		fmt.Println(err)
+		return nil, err
 	}
 
 	var stringifiedMealPlan []MealStringified
@@ -32,7 +32,7 @@ func stringifyMealPlan(mealPlan []Meal, err error) []MealStringified {
 		portionsLeft--
 	}
 
-	return stringifiedMealPlan
+	return stringifiedMealPlan, nil
 }
 
 func stringifiedMeal(i int, name string, ingredients []string, portionSize int) MealStringified {

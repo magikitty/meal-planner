@@ -191,7 +191,7 @@ func TestParseMeals_StringifyMealPlan(t *testing.T) {
 			PortionSize: "Portion size: 4",
 		},
 	}
-	actualPlan := stringifyMealPlan([]Meal{allMeals.Meals[0], allMeals.Meals[1], allMeals.Meals[1], allMeals.Meals[1], allMeals.Meals[1]}, nil)
+	actualPlan, _ := StringifyMealPlan([]Meal{allMeals.Meals[0], allMeals.Meals[1], allMeals.Meals[1], allMeals.Meals[1], allMeals.Meals[1]}, nil)
 
 	assert.Equal(t, expectedPlan, actualPlan,
 		"Plan was not properly stringified.")

@@ -20,7 +20,7 @@ func MenuMain() {
 func menuMainSelection(menuSelection string) {
 	switch menuSelection {
 	case utils.MenuMessages().MenuMainOptions["1"]:
-		fmt.Print(stringifyMealPlan(GetMealPlan()))
+		fmt.Print(StringifyMealPlan(GetMealPlan()))
 	case utils.MenuMessages().MenuMainOptions["2"]:
 		addNewMeal()
 	case utils.MenuMessages().MenuMainOptions["3"]:

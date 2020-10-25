@@ -25,9 +25,7 @@ func Index(w http.ResponseWriter, _ *http.Request) {
 // NewMealPlan handler for /new-meal-plan directory
 func NewMealPlan(w http.ResponseWriter, _ *http.Request) {
 	w.WriteHeader(http.StatusOK)
-	var stringMealPlan string
-	mealPlan, err := generatemeals.GetMealPlan()
-	stringMealPlan, err = generatemeals.StringMealPlan(mealPlan)
+	stringMealPlan, err := generatemeals.StringifyMealPlan(generatemeals.GetMealPlan())
 	_, err = fmt.Fprint(w, stringMealPlan)
 	if err != nil {
 		fmt.Print(err)

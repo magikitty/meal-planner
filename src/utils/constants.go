@@ -4,8 +4,6 @@ import (
 	"errors"
 )
 
-var Tab = "   "
-
 /*
 Struct initialiser functions returning structs with page-specific values
 	- Structs populated by values stored in maps
