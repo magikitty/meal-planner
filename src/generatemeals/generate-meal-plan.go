@@ -6,12 +6,13 @@ import (
 	"log"
 
 	"github.com/magikitty/meal-planner/src/utils"
+	"github.com/magikitty/menu"
 )
 
 // GetMealPlan returns meal plan ready to be converterd to string for front end
 func GetMealPlan() ([]utils.Meal, error) {
-	// duration := getMealPlanDurationInput()
 	// TODO: Have user input duration in frontend
+	// duration := getMealPlanDurationInput()
 	duration := 10
 	return makeMealPlan(duration, utils.FilePaths()["dataMeal"]), nil
 }
@@ -19,13 +20,12 @@ func GetMealPlan() ([]utils.Meal, error) {
 // TODO: allow user input via UX in frontend to set duration; currently set to 10
 // ensure get valid duration input from user
 func getMealPlanDurationInput() (durationInputInt int) {
-	// fmt.Println(utils.MenuMessages().MealPlanDuration)
-	// durationInput := utils.ConvertStringToInt(menu.GetUserInput())
-	// if !durationValid(durationInput) {
-	// 	return getMealPlanDurationInput()
-	// }
-	// return durationInput
-	return 10
+	fmt.Println(utils.MenuMessages().MealPlanDuration)
+	durationInput := utils.ConvertStringToInt(menu.GetUserInput())
+	if !durationValid(durationInput) {
+		return getMealPlanDurationInput()
+	}
+	return durationInput
 }
 
 func durationValid(mealPlanDuration int) (durationValid bool) {
