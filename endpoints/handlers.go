@@ -19,6 +19,9 @@ func Index(w http.ResponseWriter, _ *http.Request) {
 	}
 
 	err = html.Execute(w, utils.GetConstantsIndex())
+	if err != nil {
+		log.Fatal(err)
+	}
 }
 
 // NewMealPlan handler for /new-meal-plan directory
