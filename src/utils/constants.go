@@ -27,6 +27,20 @@ func GetConstantsIndex() ConstantsIndex {
 	return c
 }
 
+// ConstantsIndex struct for Home page constants
+type ConstantsIndex struct {
+	AddressIndex           string
+	AddressNewPlan         string
+	AddressNewRecipe       string
+	MessageWelcome         string
+	MessageInstructions    string
+	ButtonOptionsNewPlan   string
+	ButtonOptionsNewRecipe string
+	NavIndex               string
+	TitlePage              string
+	TitleApp               string
+}
+
 // GetConstantsNewPlan returns struct with constant values for New Plan page
 func GetConstantsNewPlan(mealPlan []MealStringified, mealPlanString []string) ConstantsNewPlan {
 	c := ConstantsNewPlan{}
@@ -40,6 +54,17 @@ func GetConstantsNewPlan(mealPlan []MealStringified, mealPlanString []string) Co
 	return c
 }
 
+// ConstantsNewPlan struct for New Plan page constants
+type ConstantsNewPlan struct {
+	AddressIndex string
+	NavIndex     string
+	TitlePage    string
+	TitleApp     string
+	// TODO: Remove once implemented string collection rendering in HTML
+	MealPlan       []MealStringified
+	MealPlanString []string
+}
+
 // GetConstantsNewRecipe returns struct with constant values for New Recipe page
 func GetConstantsNewRecipe() ConstantsNewRecipe {
 	c := ConstantsNewRecipe{}
@@ -49,6 +74,16 @@ func GetConstantsNewRecipe() ConstantsNewRecipe {
 	c.TitlePage = MessagesGlobal()["titleNewRecipe"]
 	c.TitleApp = MessagesGlobal()["nameApp"]
 	return c
+}
+
+// ConstantsNewRecipe struct for New Recipe page constants
+type ConstantsNewRecipe struct {
+	AddressIndex     string
+	MessageNewRecipe string
+	NavIndex         string
+	NameApp          string
+	TitlePage        string
+	TitleApp         string
 }
 
 /*
@@ -62,6 +97,7 @@ Map initialiser functions return maps containing values, acting as constants
 func FilePaths() map[string]string {
 	var filePaths = map[string]string{
 		"dataMeal":      "./data/meals/meals.json",
+		"pageIndex": 	 "./html/home.html",
 		"pageNewRecipe": "./html/newRecipe.html",
 		"pageNewPlan":   "./html/newMealPlan.html",
 	}
@@ -119,46 +155,6 @@ func GetFormatStrings() map[string]string {
 		"bracketClosed": ")",
 	}
 	return formatStrings
-}
-
-// TODO: Remove this section header, move struct definitions to under initialisation functions
-/*
-Struct definitions for structs used to pass values to application pages
-*/
-
-// ConstantsIndex struct for Home page constants
-type ConstantsIndex struct {
-	AddressIndex           string
-	AddressNewPlan         string
-	AddressNewRecipe       string
-	MessageWelcome         string
-	MessageInstructions    string
-	ButtonOptionsNewPlan   string
-	ButtonOptionsNewRecipe string
-	NavIndex               string
-	TitlePage              string
-	TitleApp               string
-}
-
-// ConstantsNewPlan struct for New Plan page constants
-type ConstantsNewPlan struct {
-	AddressIndex string
-	NavIndex     string
-	TitlePage    string
-	TitleApp     string
-	// TODO: Remove once implemented string collection rendering in HTML
-	MealPlan       []MealStringified
-	MealPlanString []string
-}
-
-// ConstantsNewRecipe struct for New Recipe page constants
-type ConstantsNewRecipe struct {
-	AddressIndex     string
-	MessageNewRecipe string
-	NavIndex         string
-	NameApp          string
-	TitlePage        string
-	TitleApp         string
 }
 
 // TODO: Delete these, anything using these
