@@ -45,6 +45,7 @@ type ConstantsIndex struct {
 func GetConstantsNewPlan(mealPlan []MealStringified, mealPlanString []string) ConstantsNewPlan {
 	c := ConstantsNewPlan{}
 	c.AddressIndex = PageAddresses()["index"]
+	c.DurationMealPlan = MessagesNewMealPlan()["durationMealPlan"]
 	c.NavIndex = MessagesGlobal()["index"]
 	c.TitlePage = MessagesGlobal()["titleNewPlan"]
 	c.TitleApp = MessagesGlobal()["nameApp"]
@@ -56,10 +57,11 @@ func GetConstantsNewPlan(mealPlan []MealStringified, mealPlanString []string) Co
 
 // ConstantsNewPlan struct for New Plan page constants
 type ConstantsNewPlan struct {
-	AddressIndex string
-	NavIndex     string
-	TitlePage    string
-	TitleApp     string
+	AddressIndex 		string
+	DurationMealPlan 	string
+	NavIndex     		string
+	TitlePage    		string
+	TitleApp     		string
 	// TODO: Remove once implemented string collection rendering in HTML
 	MealPlan       []MealStringified
 	MealPlanString []string
@@ -115,6 +117,15 @@ func MessagesIndex() map[string]string {
 	return messagesIndex
 }
 
+// MessagesIndex initialiser function returns map of home page messages
+func MessagesNewMealPlan() map[string]string {
+	var messagesNewMealPlan = map[string]string{
+		"durationMealPlan": "How many days do you want to make a meal plan for?",
+		"invalidDuration": "Invalid meal plan duration. Please try again.",
+	}
+	return messagesNewMealPlan
+}
+
 // MessagesGlobal initialiser function returns map of global page messages
 func MessagesGlobal() map[string]string {
 	var messagesGlobal = map[string]string{
@@ -140,6 +151,7 @@ func PageAddresses() map[string]string {
 func CustomErrors() map[string]error {
 	var customErrors = map[string]error{
 		"invalidIndexToRemove": errors.New("cannot remove item as index invalid"),
+		"stringifyMealPlanFailed" : errors.New("cannot stringify meal plan"),
 	}
 	return customErrors
 }
@@ -155,69 +167,4 @@ func GetFormatStrings() map[string]string {
 		"bracketClosed": ")",
 	}
 	return formatStrings
-}
-
-// TODO: Delete these, anything using these
-/*
-DEPRECATE
-*/
-
-/*
-Struct initialiser functions returning structs with page-specific values
-	- Structs populated by values stored in maps
-	- Structs passed to handlers' html.Execute functions for passing to
-		pages' HTML
-*/
-
-// MenuMainOptions contains main menu options
-var MenuMainOptions = map[string]string{
-	"1": "Generate a meal plan",
-	"2": "Add a new meal",
-	"3": "Quit",
-}
-
-// MenuMessages returns struct with menu messages
-func MenuMessages() menuMessages {
-	menuMessages := menuMessages{}
-	menuMessages.ConfirmQuit = "Are you sure you want to quit? y/n"
-	menuMessages.DisplayMealPlan = "\nHere is your meal plan:"
-	menuMessages.DisplayPlanFormatting = "Day %v: %v\n   Ingredients: %v\n   Portion size: %v \n"
-	menuMessages.InputNotValid = "Invalid input, please try again."
-	menuMessages.MealPlanDuration = "How many days do you want to create a meal plan for?"
-	menuMessages.MenuInstructions = "\nWhat do you want to do?\n"
-	menuMessages.MenuMainOptions = MenuMainOptions
-	menuMessages.QuitYes = "y"
-	menuMessages.WelcomeMessage = "Welcome to the Meal Planner!"
-	return menuMessages
-}
-
-type menuMessages struct {
-	ConfirmQuit           string
-	DisplayMealPlan       string
-	DisplayPlanFormatting string
-	InputNotValid         string
-	MealPlanDuration      string
-	MenuInstructions      string
-	MenuMainOptions       map[string]string
-	QuitYes               string
-	WelcomeMessage        string
-}
-
-type messagesHome struct {
-	WelcomeMessage  string
-	Instructions    string
-	OptionNewPlan   string
-	OptionNewRecipe string
-}
-
-type messagesGlobal struct {
-	Home           string
-	NameApp        string
-	TitleNewRecipe string
-}
-
-type pageAddress struct {
-	Home      string
-	NewPlan   string
-	NewRecipe string
 }

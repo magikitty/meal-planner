@@ -8,9 +8,8 @@ import (
 
 // StringifyMealPlan returns struct of stringified mealplans
 func StringifyMealPlan(mealPlan []utils.Meal, err error) ([]utils.MealStringified, error) {
-	// TODO: Throw new custom error defined in constants file instead
 	if err != nil {
-		return nil, err
+		return nil, utils.CustomErrors()["stringifyMealPlanFailed"]
 	}
 
 	var stringifiedMealPlan []utils.MealStringified

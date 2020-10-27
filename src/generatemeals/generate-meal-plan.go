@@ -18,7 +18,6 @@ func GetMealPlan() ([]utils.Meal, error) {
 
 // TODO: Have user input duration in frontend
 func getMealPlanDurationInput() (durationInputInt int) {
-	fmt.Println(utils.MenuMessages().MealPlanDuration)
 	durationInput := utils.ConvertStringToInt(menu.GetUserInput())
 	if !durationValid(durationInput) {
 		return getMealPlanDurationInput()
@@ -30,7 +29,7 @@ func durationValid(mealPlanDuration int) (durationValid bool) {
 	if mealPlanDuration > 0 {
 		return true
 	}
-	fmt.Println(utils.MenuMessages().InputNotValid)
+	fmt.Println("Invalid meal plan duration")   // debugging
 	return false
 }
 
