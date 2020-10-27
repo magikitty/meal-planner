@@ -1,8 +1,6 @@
 package utils
 
 import (
-	"io/ioutil"
-	"log"
 	"math/rand"
 	"strconv"
 	"time"
@@ -20,11 +18,18 @@ func GetRandomPositiveNumber(max int) int {
 	return rand.Intn(max)
 }
 
-// GetFileData returns byte stream of data from file
-func GetFileData(filePath string) []byte {
-	jsonData, err := ioutil.ReadFile(filePath)
-	if err != nil {
-		log.Fatal(err)
+// IsLargerThanZero returns if provided number is larger than zero
+func IsLargerThanZero(mealPlanDuration int) (isLargerThanZero bool) {
+	if mealPlanDuration > 0 {
+		return true
 	}
-	return jsonData
+	return false
+}
+
+// NumberFitsLimit checks provided value less than or equal to provided limit
+func NumberFitsLimit(number, limit int) bool {
+	if number <= limit && number > 0 {
+		return true
+	}
+	return false
 }

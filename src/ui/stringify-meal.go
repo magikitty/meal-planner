@@ -1,19 +1,18 @@
-package generatemeals
+package ui
 
 import (
-	"fmt"
 	"strconv"
 
 	"github.com/magikitty/meal-planner/src/utils"
 )
 
-func stringifyMealPlan(mealPlan []Meal, err error) []MealStringified {
-	// TODO: Throw new custom error defined in constants file instead
+// StringifyMealPlan returns struct of stringified mealplans
+func StringifyMealPlan(mealPlan []utils.Meal, err error) ([]utils.MealStringified, error) {
 	if err != nil {
-		fmt.Println(err)
+		return nil, utils.CustomErrors()["stringifyMealPlanFailed"]
 	}
 
-	var stringifiedMealPlan []MealStringified
+	var stringifiedMealPlan []utils.MealStringified
 	var name string
 	var ingredients []string
 	var portionSize, portionsLeft int
@@ -32,11 +31,11 @@ func stringifyMealPlan(mealPlan []Meal, err error) []MealStringified {
 		portionsLeft--
 	}
 
-	return stringifiedMealPlan
+	return stringifiedMealPlan, nil
 }
 
-func stringifiedMeal(i int, name string, ingredients []string, portionSize int) MealStringified {
-	stringifiedMeal := MealStringified{
+func stringifiedMeal(i int, name string, ingredients []string, portionSize int) utils.MealStringified {
+	stringifiedMeal := utils.MealStringified{
 		utils.GetFormatStrings()["day"] + utils.GetFormatStrings()["space"] + strconv.Itoa(i+1) +
 			utils.GetFormatStrings()["colon"] + utils.GetFormatStrings()["space"],
 		name,
@@ -47,7 +46,7 @@ func stringifiedMeal(i int, name string, ingredients []string, portionSize int) 
 	return stringifiedMeal
 }
 
-func stringifiedIngredients(meal Meal) []string {
+func stringifiedIngredients(meal utils.Meal) []string {
 	var ingredients []string
 	var ingredientString string
 
@@ -64,7 +63,7 @@ func stringifiedIngredients(meal Meal) []string {
 	return ingredients
 }
 
-func getIngredientUnitsAsString(ingredient Ingredient) string {
+func getIngredientUnitsAsString(ingredient utils.Ingredient) string {
 	var ingredientString string
 
 	// Format ingredient for recipe string
