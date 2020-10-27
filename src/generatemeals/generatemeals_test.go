@@ -3,6 +3,7 @@ package generatemeals
 import (
 	"testing"
 
+	"github.com/magikitty/meal-planner/src/ui"
 	"github.com/magikitty/meal-planner/src/utils"
 	"github.com/stretchr/testify/assert"
 )
@@ -60,44 +61,6 @@ var allMeals = utils.AllMeals{
 	},
 }
 
-func TestGenerateMealPlan_getMealsData(t *testing.T) {
-	mealsData := utils.GetFileData("../../data/tests/test-meals.json")
-	actualMealsAll := getAllMealsFromData(mealsData)
-	assert.Equal(t, allMeals, actualMealsAll, "Failed to get expected meals.")
-}
-
-func TestGenerateMealPlan_mealFitsPlan(t *testing.T) {
-	meal := allMeals.Meals[1]
-	expectedBoolFits := true
-	actualBoolFits := mealFitsPlan(meal, 4)
-
-	expectedBoolDoesNotFit := false
-	actualBoolDoesNotFit := mealFitsPlan(meal, 3)
-
-	assert.Equal(t, expectedBoolFits, actualBoolFits,
-		"Meal has 4 portions and fits into the meal plan with a duration of 4, so it should have returned true.")
-	assert.Equal(t, expectedBoolDoesNotFit, actualBoolDoesNotFit,
-		"Meal has 4 portions and does not fit into the meal plan with a duration of 3, so it should have returned false.")
-}
-
-func TestGenerateMealPlan_durationValid(t *testing.T) {
-	expectedDurationValidBool := true
-	actualDurationValidBool := durationValid(8)
-
-	expectedDurationInvalidBoolZero := false
-	actualDurationInvalidBoolZero := durationValid(0)
-
-	expectedDurationInvalidBoolNegative := false
-	actualDurationInvalidBoolNegative := durationValid(-10)
-
-	assert.Equal(t, expectedDurationValidBool, actualDurationValidBool,
-		"Duration of 8 is valid and should have returned true.")
-	assert.Equal(t, expectedDurationInvalidBoolZero, actualDurationInvalidBoolZero,
-		"Duration of 0 is an invalid duration and should have returned false. Duration has to be more than 0.")
-	assert.Equal(t, expectedDurationInvalidBoolNegative, actualDurationInvalidBoolNegative,
-		"Duration of -5 is invalid and should have returned false. Duration cannot be a negative number.")
-}
-
 func TestGenerateMealPlan_addAllPortionsOfMeal(t *testing.T) {
 	meal := allMeals.Meals[1]
 	expectedMealSlice := []utils.Meal{meal, meal, meal, meal}
@@ -128,30 +91,6 @@ func TestGenerateMealPlan_makeMealPlan(t *testing.T) {
 
 	assert.Equal(t, expectedMealPlanLength, actualMealPlanLength,
 		"Meal plan was not the right length. makeMealPlan should have returned a meal plan for 11 days.")
-}
-
-func TestParseMeals_StringifiedIngredients(t *testing.T) {
-	meal := allMeals.Meals[0]
-
-	expectedIngredients := []string{"1 potato"}
-	actualIngredients := stringifiedIngredients(meal)
-
-	assert.Equal(t, expectedIngredients, actualIngredients,
-		"Ingredients were not properly stringified.")
-}
-
-func TestParseMeals_StringifyMeal(t *testing.T) {
-	meal := allMeals.Meals[0]
-	expectedMeal := utils.MealStringified{
-		DayNumber:   "Day 1: ",
-		Name:        "Potato Delight",
-		Ingredients: []string{"1 potato"},
-		PortionSize: "Portion size: 1",
-	}
-	actualMeal := stringifiedMeal(0, meal.Name, stringifiedIngredients(meal), meal.PortionSize)
-
-	assert.Equal(t, expectedMeal, actualMeal,
-		"Meal was not properly stringified.")
 }
 
 func TestParseMeals_StringifyMealPlan(t *testing.T) {
@@ -191,7 +130,7 @@ func TestParseMeals_StringifyMealPlan(t *testing.T) {
 			PortionSize: "Portion size: 4",
 		},
 	}
-	actualPlan, _ := StringifyMealPlan([]utils.Meal{allMeals.Meals[0], allMeals.Meals[1], allMeals.Meals[1], allMeals.Meals[1], allMeals.Meals[1]}, nil)
+	actualPlan, _ := ui.StringifyMealPlan([]utils.Meal{allMeals.Meals[0], allMeals.Meals[1], allMeals.Meals[1], allMeals.Meals[1], allMeals.Meals[1]}, nil)
 
 	assert.Equal(t, expectedPlan, actualPlan,
 		"Plan was not properly stringified.")

@@ -1,8 +1,6 @@
 package generatemeals
 
 import (
-	"encoding/json"
-	"fmt"
 	"log"
 
 	"github.com/magikitty/meal-planner/src/utils"
@@ -19,24 +17,17 @@ func GetMealPlan() ([]utils.Meal, error) {
 // TODO: Have user input duration in frontend
 func getMealPlanDurationInput() (durationInputInt int) {
 	durationInput := utils.ConvertStringToInt(menu.GetUserInput())
-	if !durationValid(durationInput) {
+	if !utils.IsLargerThanZero(durationInput) {
+		// TODO: Display message in UX once implemented generate plan via web page
 		return getMealPlanDurationInput()
 	}
 	return durationInput
 }
 
-func durationValid(mealPlanDuration int) (durationValid bool) {
-	if mealPlanDuration > 0 {
-		return true
-	}
-	fmt.Println("Invalid meal plan duration")   // debugging
-	return false
-}
-
 func makeMealPlan(totalTargetDuration int, filePath string) []utils.Meal {
 	var mealPlan []utils.Meal
 	mealData := utils.GetFileData(filePath)
-	allMeals := getAllMealsFromData(mealData).Meals
+	allMeals := utils.GetAllMealsFromData(mealData).Meals
 	for len(mealPlan) != totalTargetDuration {
 		// keep copy of allMeals data in memory instead of reading from file each loop
 		allMealsCopy := make([]utils.Meal, len(allMeals))
@@ -56,7 +47,7 @@ func addRandomMealsToPlan(allMeals, mealPlan []utils.Meal, targetDuration int) [
 		if randomMeal.PortionSize == 1 {
 			mealPlan = append(mealPlan, randomMeal)
 			duration++
-		} else if mealFitsPlan(randomMeal, currentTargetDuration-duration) {
+		} else if utils.NumberFitsLimit(randomMeal.PortionSize, currentTargetDuration-duration) {
 			mealPlan = append(mealPlan, addAllPortionsOfMeal(randomMeal)...)
 			duration += randomMeal.PortionSize
 		}
@@ -67,22 +58,6 @@ func addRandomMealsToPlan(allMeals, mealPlan []utils.Meal, targetDuration int) [
 		}
 	}
 	return mealPlan
-}
-
-func getAllMealsFromData(data []byte) utils.AllMeals {
-	var allMeals utils.AllMeals
-	err := json.Unmarshal(data, &allMeals)
-	if err != nil {
-		log.Fatal(err)
-	}
-	return allMeals
-}
-
-func mealFitsPlan(meal utils.Meal, duration int) bool {
-	if meal.PortionSize <= duration {
-		return true
-	}
-	return false
 }
 
 // addAllPortionsOfMeal returns collection of a meal of meal's portion property length

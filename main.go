@@ -5,7 +5,7 @@ import (
 	"net/http"
 	"os"
 
-	"github.com/magikitty/meal-planner/endpoints"
+	"github.com/magikitty/meal-planner/src/endpoints"
 	"github.com/magikitty/meal-planner/src/utils"
 )
 

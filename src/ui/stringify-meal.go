@@ -1,4 +1,4 @@
-package generatemeals
+package ui
 
 import (
 	"strconv"

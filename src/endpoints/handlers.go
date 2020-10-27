@@ -6,6 +6,7 @@ import (
 	"net/http"
 
 	"github.com/magikitty/meal-planner/src/generatemeals"
+	"github.com/magikitty/meal-planner/src/ui"
 	"github.com/magikitty/meal-planner/src/utils"
 )
 
@@ -31,11 +32,11 @@ func NewMealPlan(w http.ResponseWriter, _ *http.Request) {
 	if err != nil {
 		log.Fatal(err)
 	}
-	mealPlan, err := generatemeals.StringifyMealPlan(generatemeals.GetMealPlan())
+	mealPlan, err := ui.StringifyMealPlan(generatemeals.GetMealPlan())
 	if err != nil {
 		log.Fatal(err)
 	}
-	mealString := utils.GetConstantsNewPlan(mealPlan, utils.ReformatMealStringPlan(mealPlan))
+	mealString := utils.GetConstantsNewPlan(mealPlan, ui.ReformatMealStringPlan(mealPlan))
 	err = html.Execute(w, mealString)
 	if err != nil {
 		log.Fatal(err)

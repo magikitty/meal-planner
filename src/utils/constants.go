@@ -4,12 +4,12 @@ import (
 	"errors"
 )
 
-/***********************************************************************
-Struct initialiser functions returning structs with page-specific values
-	- Structs populated by values stored in maps
-	- Structs passed to handlers' html.Execute functions for passing to
-		pages' HTML
-***********************************************************************/
+/************************************************************************
+* Struct initialiser functions return structs with page-specific values	*
+*	- Structs populated by values stored in maps						*
+*	- Structs passed to handlers' html.Execute functions for passing to	*
+*		pages' HTML														*
+*************************************************************************/
 
 // GetConstantsIndex returns struct with constant values for Home page
 func GetConstantsIndex() ConstantsIndex {
@@ -57,11 +57,11 @@ func GetConstantsNewPlan(mealPlan []MealStringified, mealPlanString []string) Co
 
 // ConstantsNewPlan struct for New Plan page constants
 type ConstantsNewPlan struct {
-	AddressIndex 		string
-	DurationMealPlan 	string
-	NavIndex     		string
-	TitlePage    		string
-	TitleApp     		string
+	AddressIndex     string
+	DurationMealPlan string
+	NavIndex         string
+	TitlePage        string
+	TitleApp         string
 	// TODO: Remove once implemented string collection rendering in HTML
 	MealPlan       []MealStringified
 	MealPlanString []string
@@ -71,7 +71,7 @@ type ConstantsNewPlan struct {
 func GetConstantsNewRecipe() ConstantsNewRecipe {
 	c := ConstantsNewRecipe{}
 	c.AddressIndex = PageAddresses()["index"]
-	c.MessageNewRecipe = "We are going to add a new meal! Yay!"
+	c.MessageNewRecipe = MessagesNewRecipe()["messageNewRecipe"]
 	c.NavIndex = MessagesGlobal()["index"]
 	c.TitlePage = MessagesGlobal()["titleNewRecipe"]
 	c.TitleApp = MessagesGlobal()["nameApp"]
@@ -88,25 +88,25 @@ type ConstantsNewRecipe struct {
 	TitleApp         string
 }
 
-/*
-Map initialiser functions return maps containing values, acting as constants
-	- Maps' valused used both:
-		- In backend, e.g. as paths to files and custom errors
-		- In frontend, e.g. as text displayed to user and page metadata
-*/
+/********************************************************************************
+* Map initialiser functions return maps containing values, acting as constants	*
+* 	- Maps' values used both:													*
+* 		- In backend, e.g. as paths to files and custom errors					*
+* 		- In frontend, e.g. as text displayed to user and page metadata			*
+*********************************************************************************/
 
 // FilePaths initialiser function returns map of all file paths
 func FilePaths() map[string]string {
 	var filePaths = map[string]string{
 		"dataMeal":      "./data/meals/meals.json",
-		"pageIndex": 	 "./html/home.html",
+		"pageIndex":     "./html/home.html",
 		"pageNewRecipe": "./html/newRecipe.html",
 		"pageNewPlan":   "./html/newMealPlan.html",
 	}
 	return filePaths
 }
 
-// MessagesIndex initialiser function returns map of home page messages
+// MessagesIndex initialiser function returns map of Home page messages
 func MessagesIndex() map[string]string {
 	var messagesIndex = map[string]string{
 		"welcome":         "Welcome to the Meal Planner!",
@@ -117,13 +117,21 @@ func MessagesIndex() map[string]string {
 	return messagesIndex
 }
 
-// MessagesIndex initialiser function returns map of home page messages
+// MessagesNewMealPlan initialiser function returns map of New Plan page messages
 func MessagesNewMealPlan() map[string]string {
 	var messagesNewMealPlan = map[string]string{
 		"durationMealPlan": "How many days do you want to make a meal plan for?",
-		"invalidDuration": "Invalid meal plan duration. Please try again.",
+		"invalidDuration":  "Invalid meal plan duration. Please try again.",
 	}
 	return messagesNewMealPlan
+}
+
+// MessagesNewRecipe initialiser function returns map of New Recipe page messages
+func MessagesNewRecipe() map[string]string {
+	var messagesNewRecipe = map[string]string{
+		"messageNewRecipe": "We are going to add a new meal! Yay!",
+	}
+	return messagesNewRecipe
 }
 
 // MessagesGlobal initialiser function returns map of global page messages
@@ -150,8 +158,8 @@ func PageAddresses() map[string]string {
 // CustomErrors initialiser function returns map of all custom errors
 func CustomErrors() map[string]error {
 	var customErrors = map[string]error{
-		"invalidIndexToRemove": errors.New("cannot remove item as index invalid"),
-		"stringifyMealPlanFailed" : errors.New("cannot stringify meal plan"),
+		"invalidIndexToRemove":    errors.New("cannot remove item as index invalid"),
+		"stringifyMealPlanFailed": errors.New("cannot stringify meal plan"),
 	}
 	return customErrors
 }
