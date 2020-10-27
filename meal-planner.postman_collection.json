@@ -1,0 +1,122 @@
+{
+	"info": {
+		"_postman_id": "a6f143ff-1ac4-4fe4-a9fa-82dca47571b0",
+		"name": "meal-planner",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "home",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "d6029329-275a-40df-bbf7-91da5b49c765",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Response body is Home page\", function () ",
+							"{",
+							"    pm.expect(pm.response.text()).to.include(\"<title>Home</title>\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://{{domain}}:{{port}}",
+					"protocol": "http",
+					"host": [
+						"{{domain}}"
+					],
+					"port": "{{port}}"
+				},
+				"description": "# Home\n\nSend request to the Root page of the meal-planner which greets the user.\n\n## Implementation\n\n`endpoints.Index` function called via main on GET request sent to root directory `/`."
+			},
+			"response": []
+		},
+		{
+			"name": "new-recipe",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "dbb65b44-9709-4d9d-90fc-ec2236ae43aa",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Response body is New Recipe page\", function () {",
+							"    pm.expect(pm.response.text()).to.include(\"<title>New Recipe</title>\");",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://{{domain}}:{{port}}/{{new-recipe}}",
+					"protocol": "http",
+					"host": [
+						"{{domain}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						"{{new-recipe}}"
+					]
+				},
+				"description": "# New Recipe\n\nSend request to the New Recipe \"/new-recipe\" page of the meal-planner.\n\n## Implementation\n\n`endpoints.NewRecipe` function called via main on GET request sent to root directory `/new-recipe`."
+			},
+			"response": []
+		},
+		{
+			"name": "new-meal-plan",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "499a0c2c-5ad2-46c6-a617-89804c686b8f",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Response body is New Meal Plan page\", function () {",
+							"    pm.expect(pm.response.text()).to.include(\"<title>New Meal Plan</title>\");",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://{{domain}}:{{port}}/{{new-plan}}",
+					"protocol": "http",
+					"host": [
+						"{{domain}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						"{{new-plan}}"
+					]
+				},
+				"description": "# New Plan Plan\n\nSend request to the New Recipe page of the meal-planner where users can create new meal plans.\n\n## Implementation\n\n`endpoints.NewMealPlan` function called via main on GET request sent to root directory `/new-recipe`."
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
